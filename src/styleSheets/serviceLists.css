@@ -1,0 +1,125 @@
+.policy-container {
+    position: sticky;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.policy-card {
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    height: 100%;
+}
+
+.policy-card ul {
+    padding-left: 18px;
+    margin: 0;
+    max-height: 240px;
+    overflow: auto;
+}
+
+.policy-card li {
+    font-size: 14px;
+    margin-bottom: 6px;
+    line-height: 1.4;
+    color: #4A4A4A;
+}
+
+.policy-card h6 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.notincluded {
+    border-left: 4px solid #dc3545;
+}
+
+.responsibilities {
+    border-left: 4px solid #0d6efd;
+}
+
+.service-box {
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.service-subtext {
+    color: #4A4A4A;
+}
+
+.service-checkbox-container {
+    background: #f6e0e7;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.service-desc {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 16px;
+}
+
+.service-checkbox-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.service-checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 14px;
+}
+
+.service-checkbox-item input {
+    cursor: pointer;
+}
+
+.service-name {
+    flex: 1;
+}
+
+.service-price {
+    font-weight: 600;
+    color: #2e7d32;
+}
+
+/* scrolling images */
+
+.service-image-slider {
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.slider-image-wrapper {
+    height: 170px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.slider-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.slider-image-wrapper:hover img {
+    transform: scale(1.05);
+}
+
+.pet-selection {
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
