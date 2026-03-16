@@ -1,125 +1,438 @@
-.policy-container {
+/* ═══════════════════════════════════════════════════════════
+   serviceLists.css  —  all classes prefixed sl-
+═══════════════════════════════════════════════════════════ */
+
+/* ── Page wrapper ─────────────────────────────────────────── */
+.sl-page {
+    min-height: 100vh;
+    padding: 40px 0 60px;
+    overflow-x: hidden;
+    /* ← fixes horizontal scroll */
+}
+
+.sl-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+/* ── Page title ───────────────────────────────────────────── */
+.sl-page-title {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    text-transform: capitalize;
+    margin-bottom: 28px;
+}
+
+/* ── Two-column layout ────────────────────────────────────── */
+.sl-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+    /* ← minmax(0) prevents overflow */
+    gap: 28px;
+    align-items: start;
+}
+
+/* ══════════════════════════════════════════════════════════
+   LEFT — Service selection box
+══════════════════════════════════════════════════════════ */
+.sl-left {
     position: sticky;
-    top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+    top: 24px;
 }
 
-.policy-card {
-    border-radius: 12px;
-    padding: 18px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    height: 100%;
-}
-
-.policy-card ul {
-    padding-left: 18px;
-    margin: 0;
-    max-height: 240px;
-    overflow: auto;
-}
-
-.policy-card li {
-    font-size: 14px;
-    margin-bottom: 6px;
-    line-height: 1.4;
-    color: #4A4A4A;
-}
-
-.policy-card h6 {
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-.notincluded {
-    border-left: 4px solid #dc3545;
-}
-
-.responsibilities {
-    border-left: 4px solid #0d6efd;
-}
-
-.service-box {
-    padding: 20px;
+.sl-service-box {
     border-radius: 20px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
 }
 
-.service-subtext {
-    color: #4A4A4A;
-}
-
-.service-checkbox-container {
-    background: #f6e0e7;
-    padding: 22px;
-    border-radius: 12px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-}
-
-.service-desc {
-    font-size: 14px;
-    color: #555;
+.sl-box-header {
     margin-bottom: 16px;
 }
 
-.service-checkbox-list {
+.sl-box-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #1a1a2e;
+}
+
+.sl-box-subtext {
+    font-size: 0.88rem;
+    color: #555;
+    margin: 0;
+}
+
+/* ── Pet selection ────────────────────────────────────────── */
+.sl-pet-selection {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
+    margin-bottom: 16px;
+    padding: 14px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.4);
 }
 
-.service-checkbox-item {
+.sl-pet-field {
+    flex: 1 1 160px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sl-field-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.sl-select,
+.sl-input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.sl-select:focus,
+.sl-input:focus {
+    border-color: rgba(0, 0, 0, 0.35);
+}
+
+/* ── Checkbox list ────────────────────────────────────────── */
+.sl-checkbox-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 380px;
+    overflow-y: auto;
+    padding-right: 4px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+}
+
+.sl-checkbox-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sl-checkbox-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sl-checkbox-list::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+}
+
+.sl-checkbox-item {
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 10px 14px;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: 0.2s;
-    font-size: 14px;
+    font-size: 0.9rem;
+    border: 2px solid transparent;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    user-select: none;
 }
 
-.service-checkbox-item input {
-    cursor: pointer;
+.sl-checkbox-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
-.service-name {
+.sl-checkbox-selected {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.sl-checkbox-input {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    cursor: pointer;
+    accent-color: inherit;
+}
+
+.sl-service-name {
     flex: 1;
+    line-height: 1.35;
+    color: #2a2a2a;
 }
 
-.service-price {
+.sl-check-badge {
+    font-size: 1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+/* ── Proceed button ───────────────────────────────────────── */
+.sl-proceed-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 18px;
+}
+
+.sl-proceed-btn {
+    padding: 11px 24px;
+    border: none;
+    border-radius: 100px;
+    color: #fff;
+    font-size: 0.95rem;
     font-weight: 600;
-    color: #2e7d32;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    white-space: nowrap;
 }
 
-/* scrolling images */
+.sl-proceed-btn:hover {
+    opacity: 0.88;
+    transform: translateY(-2px);
+}
 
-.service-image-slider {
+/* ══════════════════════════════════════════════════════════
+   RIGHT — Slider + Policy cards
+══════════════════════════════════════════════════════════ */
+.sl-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ── Image slider ─────────────────────────────────────────── */
+.sl-slider {
     border-radius: 14px;
     overflow: hidden;
+    width: 100%;
+    /* ← explicit width so Swiper has a reference */
+    min-width: 0;
+    /* ← prevents flex/grid blowout */
 }
 
-.slider-image-wrapper {
-    height: 170px;
+/* Force Swiper container to respect parent width */
+.sl-slider .swiper {
+    width: 100%;
+    min-width: 0;
+}
+
+.sl-slide-img-wrap {
+    height: 180px;
     border-radius: 12px;
     overflow: hidden;
+    width: 100%;
 }
 
-.slider-image-wrapper img {
+.sl-slide-img-wrap img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 12px;
-    transition: transform 0.3s ease;
+    transition: transform 0.35s ease;
+    display: block;
 }
 
-.slider-image-wrapper:hover img {
-    transform: scale(1.05);
+.sl-slide-img-wrap:hover img {
+    transform: scale(1.06);
 }
 
-.pet-selection {
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+/* ── Policy grid ──────────────────────────────────────────── */
+.sl-policy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.sl-policy-card {
+    border-radius: 14px;
+    padding: 18px 20px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+.sl-not-included {
+    border-left: 4px solid #dc3545;
+}
+
+.sl-responsibilities {
+    border-left: 4px solid #0d6efd;
+}
+
+.sl-policy-heading {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.sl-policy-heading--danger {
+    color: #dc3545;
+}
+
+.sl-policy-heading--info {
+    color: #0d6efd;
+}
+
+.sl-policy-list {
+    list-style: disc;
+    padding-left: 18px;
+    margin: 0;
+    max-height: 220px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.12) transparent;
+}
+
+.sl-policy-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.sl-policy-list::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+}
+
+.sl-policy-list li {
+    font-size: 0.87rem;
+    margin-bottom: 7px;
+    line-height: 1.45;
+    color: #4a4a4a;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════ */
+
+/* ── Large tablet: ≤ 1024px ───────────────────────────────── */
+@media (max-width: 1024px) {
+    .sl-layout {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .sl-left {
+        position: static;
+    }
+}
+
+/* ── Tablet: ≤ 768px ──────────────────────────────────────── */
+@media (max-width: 768px) {
+    .sl-page {
+        padding: 28px 0 48px;
+    }
+
+    .sl-container {
+        padding: 0 16px;
+    }
+
+    .sl-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* On mobile, show right panel (images + policy) first */
+    .sl-right {
+        order: -1;
+    }
+
+    .sl-slide-img-wrap {
+        height: 150px;
+    }
+
+    .sl-policy-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .sl-checkbox-list {
+        max-height: 300px;
+    }
+}
+
+/* ── Small mobile: ≤ 540px ────────────────────────────────── */
+@media (max-width: 540px) {
+    .sl-page-title {
+        font-size: 1.25rem;
+        margin-bottom: 20px;
+    }
+
+    .sl-service-box {
+        padding: 18px 16px;
+    }
+
+    .sl-policy-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sl-policy-card {
+        padding: 14px 16px;
+    }
+
+    .sl-proceed-wrap {
+        justify-content: center;
+    }
+
+    .sl-proceed-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .sl-pet-selection {
+        flex-direction: column;
+    }
+
+    .sl-pet-field {
+        flex: 1 1 100%;
+    }
+
+    .sl-slide-img-wrap {
+        height: 130px;
+    }
+
+    .sl-checkbox-list {
+        max-height: 260px;
+    }
+
+    .sl-checkbox-item {
+        padding: 9px 12px;
+        font-size: 0.86rem;
+    }
+}
+
+/* ── Extra small: ≤ 360px ─────────────────────────────────── */
+@media (max-width: 360px) {
+    .sl-container {
+        padding: 0 12px;
+    }
+
+    .sl-service-box {
+        padding: 14px 12px;
+        border-radius: 14px;
+    }
+
+    .sl-slide-img-wrap {
+        height: 110px;
+    }
+
+    .sl-checkbox-item {
+        padding: 8px 10px;
+        font-size: 0.83rem;
+        gap: 8px;
+    }
+
+    .sl-checkbox-input {
+        width: 15px;
+        height: 15px;
+    }
+
+    .sl-proceed-btn {
+        font-size: 0.87rem;
+        padding: 10px 18px;
+    }
 }

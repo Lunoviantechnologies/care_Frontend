@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaMapMarkerAlt, FaSignInAlt, FaUserPlus } from "react-icons/fa";
 import careLogo from "../assets/careLogo.png";
+import "../styleSheets/navbar.css";
 
 const Navbar = () => {
     const [location, setLocation] = useState("");
@@ -53,6 +54,51 @@ const Navbar = () => {
 
                             <li className="nav-item">
                                 <Link className="nav-link" to="/">Home</Link>
+                            </li>
+
+                            {/* Services Dropdown */}
+                            <li className="nav-item dropdown">
+                                <a
+                                    className="nav-link dropdown-toggle"
+                                    href="#"
+                                    id="servicesDropdown"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                >
+                                    Services
+                                </a>
+
+                                <ul className="dropdown-menu">
+                                    <li>
+                                        <Link className="dropdown-item" to="/services/baby_care">
+                                            Baby Care
+                                        </Link>
+                                    </li>
+
+                                    <li>
+                                        <Link className="dropdown-item" to="/services/pet_care">
+                                            Pet Care
+                                        </Link>
+                                    </li>
+
+                                    <li>
+                                        <Link className="dropdown-item" to="/services/elder_care">
+                                            Elder Care
+                                        </Link>
+                                    </li>
+
+                                    <li>
+                                        <Link className="dropdown-item" to="/services/pregnancy_care">
+                                            Pregnancy Care
+                                        </Link>
+                                    </li>
+
+                                    <li>
+                                        <Link className="dropdown-item" to="/services/home_assistance_care">
+                                            Home Assistance
+                                        </Link>
+                                    </li>
+                                </ul>
                             </li>
 
                             <li className="nav-item">

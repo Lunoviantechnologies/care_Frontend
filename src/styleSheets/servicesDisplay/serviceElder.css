@@ -1,0 +1,839 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,700;1,300&family=DM+Sans:wght@400;500;600&display=swap");
+
+/* ── All classes prefixed with sec- (Service Elder Care) to avoid conflicts ── */
+
+/* ── CSS Variables (scoped to .sec-page) ─────────────────── */
+.sec-page {
+    --sec-bg: #fdf8f3;
+    --sec-surface: #ffffff;
+    --sec-primary: #2d6a4f;
+    --sec-primary-light: #52b788;
+    --sec-accent: #f4a261;
+    --sec-accent-deep: #e76f51;
+    --sec-text: #1a1a2e;
+    --sec-muted: #5a5a72;
+    --sec-border: #e8e0d5;
+    --sec-hero-bg: #eaf4f0;
+
+    --sec-font-display: "Fraunces", Georgia, serif;
+    --sec-font-body: "DM Sans", sans-serif;
+
+    --sec-radius-sm: 8px;
+    --sec-radius-md: 16px;
+    --sec-radius-lg: 24px;
+
+    --sec-shadow-soft: 0 4px 24px rgba(45, 106, 79, 0.08);
+    --sec-shadow-card: 0 2px 16px rgba(0, 0, 0, 0.07);
+
+    --sec-transition: 0.25s ease;
+
+    font-family: var(--sec-font-body);
+    color: var(--sec-text);
+    background-color: var(--sec-bg);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* ── Container ────────────────────────────────────────────── */
+.sec-container {
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ── Shared Section Eyebrow ───────────────────────────────── */
+.sec-section-eyebrow {
+    display: inline-block;
+    font-family: var(--sec-font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sec-primary);
+    background: rgba(82, 183, 136, 0.15);
+    border: 1px solid rgba(82, 183, 136, 0.35);
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin-bottom: 14px;
+}
+
+.sec-page h2 {
+    font-family: var(--sec-font-display);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 600;
+    color: var(--sec-text);
+    margin-bottom: 12px;
+}
+
+.sec-section-sub {
+    color: var(--sec-muted);
+    font-size: 1.05rem;
+    max-width: 520px;
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
+/* ── Shared Buttons ───────────────────────────────────────── */
+.sec-btn-primary {
+    background: var(--sec-accent);
+    color: #fff;
+    border: none;
+    padding: 14px 36px;
+    border-radius: 100px;
+    font-family: var(--sec-font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--sec-transition), transform var(--sec-transition);
+    box-shadow: 0 4px 16px rgba(244, 162, 97, 0.35);
+}
+
+.sec-btn-primary:hover {
+    background: var(--sec-accent-deep);
+    transform: translateY(-2px);
+}
+
+.sec-btn-secondary {
+    background: transparent;
+    color: #7c7b7b;
+    border: 2px solid rgba(118, 117, 117, 0.6);
+    padding: 14px 36px;
+    border-radius: 100px;
+    font-family: var(--sec-font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color var(--sec-transition), background var(--sec-transition),
+        transform var(--sec-transition);
+}
+
+.sec-btn-secondary:hover {
+    border-color: #aaa9a9;
+    background: rgba(133, 131, 131, 0.1);
+    transform: translateY(-2px);
+}
+
+.sec-btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    padding: 14px 36px;
+    border-radius: 100px;
+    font-family: var(--sec-font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color var(--sec-transition), background var(--sec-transition),
+        transform var(--sec-transition);
+}
+
+.sec-btn-outline:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HERO SECTION
+═══════════════════════════════════════════════════════════ */
+.sec-hero {
+    position: relative;
+    background-color: var(--sec-hero-bg);
+    padding: 100px 0 80px;
+    overflow: hidden;
+}
+
+.sec-hero-bg-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.sec-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.18;
+}
+
+.sec-shape-1 {
+    width: 420px;
+    height: 420px;
+    background: var(--sec-primary-light);
+    top: -120px;
+    right: -80px;
+}
+
+.sec-shape-2 {
+    width: 260px;
+    height: 260px;
+    background: var(--sec-accent);
+    bottom: -80px;
+    left: -60px;
+}
+
+.sec-shape-3 {
+    width: 140px;
+    height: 140px;
+    background: var(--sec-primary);
+    top: 60px;
+    left: 38%;
+}
+
+.sec-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.sec-eyebrow {
+    display: inline-block;
+    font-family: var(--sec-font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sec-primary);
+    background: rgba(82, 183, 136, 0.15);
+    border: 1px solid rgba(82, 183, 136, 0.35);
+    padding: 4px 16px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+}
+
+.sec-hero h1 {
+    font-family: var(--sec-font-display);
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--sec-text);
+    max-width: 760px;
+    margin: 0 auto 20px;
+}
+
+.sec-highlight {
+    color: var(--sec-primary);
+    font-style: italic;
+}
+
+.sec-hero-desc {
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: var(--sec-muted);
+    max-width: 680px;
+    margin: 0 auto 36px;
+    line-height: 1.75;
+}
+
+.sec-hero-btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   STATS SECTION
+═══════════════════════════════════════════════════════════ */
+.sec-stats {
+    background: var(--sec-primary);
+    padding: 60px 0 48px;
+    text-align: center;
+}
+
+.sec-stats-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.sec-stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.sec-stat-value {
+    font-family: var(--sec-font-display);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.sec-stat-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+    letter-spacing: 0.04em;
+    font-family: var(--sec-font-body);
+}
+
+.sec-stats-note {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    max-width: 560px;
+    margin: 0 auto;
+    font-family: var(--sec-font-body);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SERVICE DESCRIPTION SECTION
+═══════════════════════════════════════════════════════════ */
+.sec-about {
+    padding: 88px 0;
+    background: var(--sec-surface);
+}
+
+.sec-about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+}
+
+.sec-about-text .sec-section-eyebrow {
+    margin-bottom: 16px;
+}
+
+.sec-about-text h2 {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.sec-about-text p {
+    color: var(--sec-muted);
+    font-size: 1.05rem;
+    margin-bottom: 16px;
+    line-height: 1.75;
+}
+
+.sec-about-text p strong {
+    color: var(--sec-primary);
+    font-weight: 600;
+}
+
+.sec-about-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sec-about-checklist li {
+    color: var(--sec-primary);
+    font-weight: 600;
+    font-size: 0.97rem;
+    font-family: var(--sec-font-body);
+}
+
+.sec-about-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sec-about-img-placeholder {
+    background: linear-gradient(135deg, var(--sec-primary) 0%, var(--sec-primary-light) 100%);
+    border-radius: var(--sec-radius-lg);
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 16px 48px rgba(45, 106, 79, 0.22);
+}
+
+.sec-about-img-placeholder span {
+    font-size: 5rem;
+    line-height: 1;
+}
+
+.sec-about-img-placeholder p {
+    font-family: var(--sec-font-display);
+    font-size: 1.3rem;
+    font-style: italic;
+    font-weight: 300;
+    color: #fff;
+    margin: 0;
+}
+
+.sec-about-img {
+    width: 100%;
+    max-width: 380px;
+    border-radius: var(--sec-radius-lg);
+    object-fit: cover;
+    box-shadow: 0 16px 48px rgba(45, 106, 79, 0.22);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FEATURES SECTION
+═══════════════════════════════════════════════════════════ */
+.sec-features {
+    padding: 88px 0;
+    background: var(--sec-bg);
+    text-align: center;
+}
+
+.sec-features h2,
+.sec-benefits h2,
+.sec-testimonials h2,
+.sec-faqs h2 {
+    text-align: center;
+}
+
+.sec-features-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+}
+
+.sec-feature-card {
+    flex: 1 1 280px;
+    max-width: calc(33.333% - 16px);
+    background: var(--sec-surface);
+    border: 1px solid var(--sec-border);
+    border-radius: var(--sec-radius-md);
+    padding: 36px 28px;
+    text-align: center;
+    box-shadow: var(--sec-shadow-card);
+    transition: transform var(--sec-transition), box-shadow var(--sec-transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    align-self: stretch;
+}
+
+.sec-feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--sec-shadow-soft);
+}
+
+.sec-feature-icon {
+    display: block;
+    font-size: 2.8rem;
+    margin-bottom: 16px;
+    line-height: 1;
+}
+
+.sec-feature-card h3 {
+    font-family: var(--sec-font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--sec-primary);
+    margin-bottom: 10px;
+}
+
+.sec-feature-card p {
+    color: var(--sec-muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BENEFITS SECTION
+═══════════════════════════════════════════════════════════ */
+.sec-benefits {
+    padding: 88px 0;
+    background: var(--sec-surface);
+    text-align: center;
+}
+
+.sec-benefits-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.sec-benefit-card {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    background: var(--sec-bg);
+    border: 1px solid var(--sec-border);
+    border-radius: var(--sec-radius-md);
+    padding: 28px 24px;
+    text-align: left;
+    transition: box-shadow var(--sec-transition);
+}
+
+.sec-benefit-card:hover {
+    box-shadow: var(--sec-shadow-soft);
+}
+
+.sec-benefit-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+    line-height: 1;
+}
+
+.sec-benefit-card h3 {
+    font-family: var(--sec-font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--sec-text);
+    margin-bottom: 6px;
+}
+
+.sec-benefit-card p {
+    color: var(--sec-muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TESTIMONIALS SECTION
+═══════════════════════════════════════════════════════════ */
+.sec-testimonials {
+    padding: 88px 0;
+    background: var(--sec-bg);
+    text-align: center;
+}
+
+.sec-testimonials-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.sec-testimonial-card {
+    background: var(--sec-surface);
+    border: 1px solid var(--sec-border);
+    border-radius: var(--sec-radius-md);
+    padding: 28px 24px;
+    text-align: left;
+    box-shadow: var(--sec-shadow-card);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform var(--sec-transition), box-shadow var(--sec-transition);
+}
+
+.sec-testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sec-shadow-soft);
+}
+
+.sec-testimonial-stars {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+.sec-testimonial-text {
+    color: var(--sec-text);
+    font-size: 0.97rem;
+    line-height: 1.7;
+    font-style: italic;
+    flex: 1;
+}
+
+.sec-testimonial-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--sec-primary);
+    font-family: var(--sec-font-body);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CTA SECTION
+═══════════════════════════════════════════════════════════ */
+.sec-cta {
+    background: linear-gradient(135deg, #1b4332 0%, var(--sec-primary) 60%, var(--sec-primary-light) 100%);
+    padding: 88px 0;
+}
+
+.sec-cta-inner {
+    text-align: center;
+}
+
+.sec-cta h2 {
+    color: #ffffff;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.sec-cta p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    max-width: 540px;
+    margin: 0 auto 36px;
+}
+
+.sec-cta-btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FAQ SECTION
+═══════════════════════════════════════════════════════════ */
+.sec-faqs {
+    padding: 88px 0;
+    background: var(--sec-surface);
+    text-align: center;
+}
+
+.sec-faqs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+.sec-faq-item {
+    border: 1px solid var(--sec-border);
+    border-radius: var(--sec-radius-md);
+    overflow: hidden;
+    background: var(--sec-bg);
+}
+
+.sec-faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    font-family: var(--sec-font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--sec-text);
+    text-align: left;
+    transition: background var(--sec-transition);
+}
+
+.sec-faq-question:hover {
+    background: rgba(82, 183, 136, 0.06);
+}
+
+.sec-faq-question.sec-faq-open {
+    color: var(--sec-primary);
+    background: rgba(82, 183, 136, 0.08);
+}
+
+.sec-faq-icon {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--sec-primary);
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.sec-faq-answer {
+    padding: 0 24px 20px;
+    animation: secFadeIn 0.2s ease;
+}
+
+.sec-faq-answer p {
+    color: var(--sec-muted);
+    font-size: 0.97rem;
+    line-height: 1.75;
+}
+
+@keyframes secFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════ */
+
+/* ── Tablet: ≤ 1024px ─────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .sec-about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .sec-about-visual {
+        order: -1;
+    }
+
+    .sec-about-img-placeholder,
+    .sec-about-img {
+        max-width: 100%;
+    }
+
+    .sec-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+    }
+
+    .sec-feature-card {
+        flex: 1 1 calc(50% - 12px);
+        max-width: calc(50% - 12px);
+    }
+
+    .sec-benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sec-testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ── Mobile: ≤ 768px ──────────────────────────────────────── */
+@media (max-width: 768px) {
+    .sec-hero {
+        padding: 72px 0 56px;
+    }
+
+    .sec-about,
+    .sec-features,
+    .sec-benefits,
+    .sec-testimonials,
+    .sec-cta,
+    .sec-faqs {
+        padding: 64px 0;
+    }
+
+    .sec-stats {
+        padding: 48px 0 36px;
+    }
+
+    .sec-about-text h2 {
+        font-size: 1.7rem;
+    }
+
+    .sec-feature-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+        padding: 28px 20px;
+    }
+
+    .sec-testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sec-faqs-list {
+        max-width: 100%;
+    }
+}
+
+/* ── Small Mobile: ≤ 480px ────────────────────────────────── */
+@media (max-width: 480px) {
+    .sec-container {
+        padding: 0 16px;
+    }
+
+    .sec-hero {
+        padding: 56px 0 40px;
+    }
+
+    .sec-hero h1 {
+        font-size: 1.9rem;
+    }
+
+    .sec-hero-desc {
+        font-size: 0.97rem;
+    }
+
+    .sec-hero-btns,
+    .sec-cta-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sec-btn-primary,
+    .sec-btn-secondary,
+    .sec-btn-outline {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .sec-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .sec-stat-value {
+        font-size: 1.6rem;
+    }
+
+    .sec-about,
+    .sec-features,
+    .sec-benefits,
+    .sec-testimonials,
+    .sec-cta,
+    .sec-faqs {
+        padding: 48px 0;
+    }
+
+    .sec-benefit-card {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .sec-faq-question {
+        padding: 16px 18px;
+        font-size: 0.95rem;
+    }
+
+    .sec-faq-answer {
+        padding: 0 18px 16px;
+    }
+}
+
+/* ── Extra Small: ≤ 360px ─────────────────────────────────── */
+@media (max-width: 360px) {
+    .sec-stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .sec-stat-value {
+        font-size: 1.5rem;
+    }
+
+    .sec-stat-label {
+        font-size: 0.8rem;
+    }
+
+    .sec-feature-card {
+        padding: 20px 14px;
+    }
+
+    .sec-benefit-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}

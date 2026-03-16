@@ -15,7 +15,7 @@
 }
 
 /* ─── Base ─── */
-* {
+.home-background {
     font-family: 'DM Sans', sans-serif;
 }
 
@@ -80,23 +80,23 @@
 }
 
 /* ─── Typography ─── */
-h1,
-h2,
-h3 {
+.home-background h1,
+.home-background h2,
+.home-background h3 {
     font-family: 'Playfair Display', serif;
     color: var(--charcoal);
 }
 
-h1 {
+.home-background h1 {
     font-size: clamp(2rem, 4vw, 2.8rem);
     line-height: 1.25;
     letter-spacing: -0.5px;
 }
 
 /* ─── Hero tagline accent ─── */
-.hero-tagline {
+.home-background .hero-tagline {
     display: inline-block;
-    font-size: 0.78rem !important;
+    font-size: 0.78rem;
     font-weight: 600;
     letter-spacing: 2.5px;
     text-transform: uppercase;
@@ -190,6 +190,7 @@ h1 {
     z-index: 2;
 
     color: #fff;
+    text-align: center;
     font-weight: 600;
     font-size: 0.9rem;
     letter-spacing: 0.5px;
@@ -244,7 +245,7 @@ h1 {
 }
 
 /* ─── Stats Bar ─── */
-.stats-bar {
+.home-background .stats-bar {
     display: flex;
     gap: 0;
     background: rgba(255, 250, 242, 0.7);
@@ -324,7 +325,7 @@ h1 {
     pointer-events: none;
 }
 
-.app-title {
+.home-background .app-title {
     font-size: clamp(1.6rem, 3vw, 2.4rem);
     color: #fff;
     letter-spacing: 0.3px;
@@ -359,7 +360,7 @@ h1 {
     flex-wrap: wrap;
 }
 
-.feature-card {
+.home-background .feature-card {
     flex: 1;
     min-width: 200px;
     background: rgba(255, 250, 242, 0.75);
@@ -485,7 +486,7 @@ h1 {
     font-family: 'Playfair Display', serif;
 }
 
-.accordion {
+.home-background .accordion {
     box-shadow: 0 8px 30px rgba(140, 90, 30, 0.1);
     border-radius: 16px !important;
     overflow: hidden;

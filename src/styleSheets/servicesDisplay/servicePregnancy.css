@@ -1,0 +1,839 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,700;1,300&family=DM+Sans:wght@400;500;600&display=swap");
+
+/* ── All classes prefixed with sprc- (Service Pregnancy Care) to avoid conflicts ── */
+
+/* ── CSS Variables (scoped to .sprc-page) ────────────────── */
+.sprc-page {
+    --sprc-bg: #fdf8f3;
+    --sprc-surface: #ffffff;
+    --sprc-primary: #2d6a4f;
+    --sprc-primary-light: #52b788;
+    --sprc-accent: #f4a261;
+    --sprc-accent-deep: #e76f51;
+    --sprc-text: #1a1a2e;
+    --sprc-muted: #5a5a72;
+    --sprc-border: #e8e0d5;
+    --sprc-hero-bg: #fef0ec;
+
+    --sprc-font-display: "Fraunces", Georgia, serif;
+    --sprc-font-body: "DM Sans", sans-serif;
+
+    --sprc-radius-sm: 8px;
+    --sprc-radius-md: 16px;
+    --sprc-radius-lg: 24px;
+
+    --sprc-shadow-soft: 0 4px 24px rgba(45, 106, 79, 0.08);
+    --sprc-shadow-card: 0 2px 16px rgba(0, 0, 0, 0.07);
+
+    --sprc-transition: 0.25s ease;
+
+    font-family: var(--sprc-font-body);
+    color: var(--sprc-text);
+    background-color: var(--sprc-bg);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* ── Container ────────────────────────────────────────────── */
+.sprc-container {
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ── Shared Section Eyebrow ───────────────────────────────── */
+.sprc-section-eyebrow {
+    display: inline-block;
+    font-family: var(--sprc-font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sprc-primary);
+    background: rgba(82, 183, 136, 0.15);
+    border: 1px solid rgba(82, 183, 136, 0.35);
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin-bottom: 14px;
+}
+
+.sprc-page h2 {
+    font-family: var(--sprc-font-display);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 600;
+    color: var(--sprc-text);
+    margin-bottom: 12px;
+}
+
+.sprc-section-sub {
+    color: var(--sprc-muted);
+    font-size: 1.05rem;
+    max-width: 520px;
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
+/* ── Shared Buttons ───────────────────────────────────────── */
+.sprc-btn-primary {
+    background: var(--sprc-accent);
+    color: #fff;
+    border: none;
+    padding: 14px 36px;
+    border-radius: 100px;
+    font-family: var(--sprc-font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--sprc-transition), transform var(--sprc-transition);
+    box-shadow: 0 4px 16px rgba(244, 162, 97, 0.35);
+}
+
+.sprc-btn-primary:hover {
+    background: var(--sprc-accent-deep);
+    transform: translateY(-2px);
+}
+
+.sprc-btn-secondary {
+    background: transparent;
+    color: #606060;
+    border: 2px solid rgba(116, 116, 116, 0.6);
+    padding: 14px 36px;
+    border-radius: 100px;
+    font-family: var(--sprc-font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color var(--sprc-transition), background var(--sprc-transition),
+        transform var(--sprc-transition);
+}
+
+.sprc-btn-secondary:hover {
+    border-color: #929292;
+    background: rgba(121, 121, 121, 0.1);
+    transform: translateY(-2px);
+}
+
+.sprc-btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    padding: 14px 36px;
+    border-radius: 100px;
+    font-family: var(--sprc-font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color var(--sprc-transition), background var(--sprc-transition),
+        transform var(--sprc-transition);
+}
+
+.sprc-btn-outline:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HERO SECTION
+═══════════════════════════════════════════════════════════ */
+.sprc-hero {
+    position: relative;
+    background-color: var(--sprc-hero-bg);
+    padding: 100px 0 80px;
+    overflow: hidden;
+}
+
+.sprc-hero-bg-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.sprc-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.18;
+}
+
+.sprc-shape-1 {
+    width: 420px;
+    height: 420px;
+    background: var(--sprc-accent);
+    top: -120px;
+    right: -80px;
+}
+
+.sprc-shape-2 {
+    width: 260px;
+    height: 260px;
+    background: var(--sprc-primary-light);
+    bottom: -80px;
+    left: -60px;
+}
+
+.sprc-shape-3 {
+    width: 140px;
+    height: 140px;
+    background: var(--sprc-accent-deep);
+    top: 60px;
+    left: 38%;
+}
+
+.sprc-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.sprc-eyebrow {
+    display: inline-block;
+    font-family: var(--sprc-font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sprc-primary);
+    background: rgba(82, 183, 136, 0.15);
+    border: 1px solid rgba(82, 183, 136, 0.35);
+    padding: 4px 16px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+}
+
+.sprc-hero h1 {
+    font-family: var(--sprc-font-display);
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--sprc-text);
+    max-width: 760px;
+    margin: 0 auto 20px;
+}
+
+.sprc-highlight {
+    color: var(--sprc-primary);
+    font-style: italic;
+}
+
+.sprc-hero-desc {
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: var(--sprc-muted);
+    max-width: 680px;
+    margin: 0 auto 36px;
+    line-height: 1.75;
+}
+
+.sprc-hero-btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   STATS SECTION
+═══════════════════════════════════════════════════════════ */
+.sprc-stats {
+    background: var(--sprc-primary);
+    padding: 60px 0 48px;
+    text-align: center;
+}
+
+.sprc-stats-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.sprc-stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.sprc-stat-value {
+    font-family: var(--sprc-font-display);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.sprc-stat-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+    letter-spacing: 0.04em;
+    font-family: var(--sprc-font-body);
+}
+
+.sprc-stats-note {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    max-width: 560px;
+    margin: 0 auto;
+    font-family: var(--sprc-font-body);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SERVICE DESCRIPTION SECTION
+═══════════════════════════════════════════════════════════ */
+.sprc-about {
+    padding: 88px 0;
+    background: var(--sprc-surface);
+}
+
+.sprc-about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+}
+
+.sprc-about-text .sprc-section-eyebrow {
+    margin-bottom: 16px;
+}
+
+.sprc-about-text h2 {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.sprc-about-text p {
+    color: var(--sprc-muted);
+    font-size: 1.05rem;
+    margin-bottom: 16px;
+    line-height: 1.75;
+}
+
+.sprc-about-text p strong {
+    color: var(--sprc-primary);
+    font-weight: 600;
+}
+
+.sprc-about-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sprc-about-checklist li {
+    color: var(--sprc-primary);
+    font-weight: 600;
+    font-size: 0.97rem;
+    font-family: var(--sprc-font-body);
+}
+
+.sprc-about-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sprc-about-img-placeholder {
+    background: linear-gradient(135deg, var(--sprc-accent-deep) 0%, var(--sprc-accent) 100%);
+    border-radius: var(--sprc-radius-lg);
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 16px 48px rgba(231, 111, 81, 0.2);
+}
+
+.sprc-about-img-placeholder span {
+    font-size: 5rem;
+    line-height: 1;
+}
+
+.sprc-about-img-placeholder p {
+    font-family: var(--sprc-font-display);
+    font-size: 1.3rem;
+    font-style: italic;
+    font-weight: 300;
+    color: #fff;
+    margin: 0;
+}
+
+.sprc-about-img {
+    width: 100%;
+    max-width: 380px;
+    border-radius: var(--sprc-radius-lg);
+    object-fit: cover;
+    box-shadow: 0 16px 48px rgba(231, 111, 81, 0.2);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FEATURES SECTION
+═══════════════════════════════════════════════════════════ */
+.sprc-features {
+    padding: 88px 0;
+    background: var(--sprc-bg);
+    text-align: center;
+}
+
+.sprc-features h2,
+.sprc-benefits h2,
+.sprc-testimonials h2,
+.sprc-faqs h2 {
+    text-align: center;
+}
+
+.sprc-features-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+}
+
+.sprc-feature-card {
+    flex: 1 1 280px;
+    max-width: calc(33.333% - 16px);
+    background: var(--sprc-surface);
+    border: 1px solid var(--sprc-border);
+    border-radius: var(--sprc-radius-md);
+    padding: 36px 28px;
+    text-align: center;
+    box-shadow: var(--sprc-shadow-card);
+    transition: transform var(--sprc-transition), box-shadow var(--sprc-transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    align-self: stretch;
+}
+
+.sprc-feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--sprc-shadow-soft);
+}
+
+.sprc-feature-icon {
+    display: block;
+    font-size: 2.8rem;
+    margin-bottom: 16px;
+    line-height: 1;
+}
+
+.sprc-feature-card h3 {
+    font-family: var(--sprc-font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--sprc-primary);
+    margin-bottom: 10px;
+}
+
+.sprc-feature-card p {
+    color: var(--sprc-muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BENEFITS SECTION
+═══════════════════════════════════════════════════════════ */
+.sprc-benefits {
+    padding: 88px 0;
+    background: var(--sprc-surface);
+    text-align: center;
+}
+
+.sprc-benefits-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.sprc-benefit-card {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    background: var(--sprc-bg);
+    border: 1px solid var(--sprc-border);
+    border-radius: var(--sprc-radius-md);
+    padding: 28px 24px;
+    text-align: left;
+    transition: box-shadow var(--sprc-transition);
+}
+
+.sprc-benefit-card:hover {
+    box-shadow: var(--sprc-shadow-soft);
+}
+
+.sprc-benefit-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+    line-height: 1;
+}
+
+.sprc-benefit-card h3 {
+    font-family: var(--sprc-font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--sprc-text);
+    margin-bottom: 6px;
+}
+
+.sprc-benefit-card p {
+    color: var(--sprc-muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TESTIMONIALS SECTION
+═══════════════════════════════════════════════════════════ */
+.sprc-testimonials {
+    padding: 88px 0;
+    background: var(--sprc-bg);
+    text-align: center;
+}
+
+.sprc-testimonials-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.sprc-testimonial-card {
+    background: var(--sprc-surface);
+    border: 1px solid var(--sprc-border);
+    border-radius: var(--sprc-radius-md);
+    padding: 28px 24px;
+    text-align: left;
+    box-shadow: var(--sprc-shadow-card);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform var(--sprc-transition), box-shadow var(--sprc-transition);
+}
+
+.sprc-testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sprc-shadow-soft);
+}
+
+.sprc-testimonial-stars {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+.sprc-testimonial-text {
+    color: var(--sprc-text);
+    font-size: 0.97rem;
+    line-height: 1.7;
+    font-style: italic;
+    flex: 1;
+}
+
+.sprc-testimonial-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--sprc-primary);
+    font-family: var(--sprc-font-body);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CTA SECTION
+═══════════════════════════════════════════════════════════ */
+.sprc-cta {
+    background: linear-gradient(135deg, #1b4332 0%, var(--sprc-primary) 60%, var(--sprc-primary-light) 100%);
+    padding: 88px 0;
+}
+
+.sprc-cta-inner {
+    text-align: center;
+}
+
+.sprc-cta h2 {
+    color: #ffffff;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.sprc-cta p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    max-width: 540px;
+    margin: 0 auto 36px;
+}
+
+.sprc-cta-btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FAQ SECTION
+═══════════════════════════════════════════════════════════ */
+.sprc-faqs {
+    padding: 88px 0;
+    background: var(--sprc-surface);
+    text-align: center;
+}
+
+.sprc-faqs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+.sprc-faq-item {
+    border: 1px solid var(--sprc-border);
+    border-radius: var(--sprc-radius-md);
+    overflow: hidden;
+    background: var(--sprc-bg);
+}
+
+.sprc-faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    font-family: var(--sprc-font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--sprc-text);
+    text-align: left;
+    transition: background var(--sprc-transition);
+}
+
+.sprc-faq-question:hover {
+    background: rgba(82, 183, 136, 0.06);
+}
+
+.sprc-faq-question.sprc-faq-open {
+    color: var(--sprc-primary);
+    background: rgba(82, 183, 136, 0.08);
+}
+
+.sprc-faq-icon {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--sprc-primary);
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.sprc-faq-answer {
+    padding: 0 24px 20px;
+    animation: sprcFadeIn 0.2s ease;
+}
+
+.sprc-faq-answer p {
+    color: var(--sprc-muted);
+    font-size: 0.97rem;
+    line-height: 1.75;
+}
+
+@keyframes sprcFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════ */
+
+/* ── Tablet: ≤ 1024px ─────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .sprc-about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .sprc-about-visual {
+        order: -1;
+    }
+
+    .sprc-about-img-placeholder,
+    .sprc-about-img {
+        max-width: 100%;
+    }
+
+    .sprc-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+    }
+
+    .sprc-feature-card {
+        flex: 1 1 calc(50% - 12px);
+        max-width: calc(50% - 12px);
+    }
+
+    .sprc-benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sprc-testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ── Mobile: ≤ 768px ──────────────────────────────────────── */
+@media (max-width: 768px) {
+    .sprc-hero {
+        padding: 72px 0 56px;
+    }
+
+    .sprc-about,
+    .sprc-features,
+    .sprc-benefits,
+    .sprc-testimonials,
+    .sprc-cta,
+    .sprc-faqs {
+        padding: 64px 0;
+    }
+
+    .sprc-stats {
+        padding: 48px 0 36px;
+    }
+
+    .sprc-about-text h2 {
+        font-size: 1.7rem;
+    }
+
+    .sprc-feature-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+        padding: 28px 20px;
+    }
+
+    .sprc-testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sprc-faqs-list {
+        max-width: 100%;
+    }
+}
+
+/* ── Small Mobile: ≤ 480px ────────────────────────────────── */
+@media (max-width: 480px) {
+    .sprc-container {
+        padding: 0 16px;
+    }
+
+    .sprc-hero {
+        padding: 56px 0 40px;
+    }
+
+    .sprc-hero h1 {
+        font-size: 1.9rem;
+    }
+
+    .sprc-hero-desc {
+        font-size: 0.97rem;
+    }
+
+    .sprc-hero-btns,
+    .sprc-cta-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sprc-btn-primary,
+    .sprc-btn-secondary,
+    .sprc-btn-outline {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .sprc-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .sprc-stat-value {
+        font-size: 1.6rem;
+    }
+
+    .sprc-about,
+    .sprc-features,
+    .sprc-benefits,
+    .sprc-testimonials,
+    .sprc-cta,
+    .sprc-faqs {
+        padding: 48px 0;
+    }
+
+    .sprc-benefit-card {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .sprc-faq-question {
+        padding: 16px 18px;
+        font-size: 0.95rem;
+    }
+
+    .sprc-faq-answer {
+        padding: 0 18px 16px;
+    }
+}
+
+/* ── Extra Small: ≤ 360px ─────────────────────────────────── */
+@media (max-width: 360px) {
+    .sprc-stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .sprc-stat-value {
+        font-size: 1.5rem;
+    }
+
+    .sprc-stat-label {
+        font-size: 0.8rem;
+    }
+
+    .sprc-feature-card {
+        padding: 20px 14px;
+    }
+
+    .sprc-benefit-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}

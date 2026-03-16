@@ -1,0 +1,839 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,700;1,300&family=DM+Sans:wght@400;500;600&display=swap");
+
+/* ── All classes prefixed with shac- (Service Home Assist Care) to avoid conflicts ── */
+
+/* ── CSS Variables (scoped to .shac-page) ────────────────── */
+.shac-page {
+    --shac-bg: #fdf8f3;
+    --shac-surface: #ffffff;
+    --shac-primary: #2d6a4f;
+    --shac-primary-light: #52b788;
+    --shac-accent: #f4a261;
+    --shac-accent-deep: #e76f51;
+    --shac-text: #1a1a2e;
+    --shac-muted: #5a5a72;
+    --shac-border: #e8e0d5;
+    --shac-hero-bg: #fff8f0;
+
+    --shac-font-display: "Fraunces", Georgia, serif;
+    --shac-font-body: "DM Sans", sans-serif;
+
+    --shac-radius-sm: 8px;
+    --shac-radius-md: 16px;
+    --shac-radius-lg: 24px;
+
+    --shac-shadow-soft: 0 4px 24px rgba(45, 106, 79, 0.08);
+    --shac-shadow-card: 0 2px 16px rgba(0, 0, 0, 0.07);
+
+    --shac-transition: 0.25s ease;
+
+    font-family: var(--shac-font-body);
+    color: var(--shac-text);
+    background-color: var(--shac-bg);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* ── Container ────────────────────────────────────────────── */
+.shac-container {
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ── Shared Section Eyebrow ───────────────────────────────── */
+.shac-section-eyebrow {
+    display: inline-block;
+    font-family: var(--shac-font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--shac-primary);
+    background: rgba(82, 183, 136, 0.15);
+    border: 1px solid rgba(82, 183, 136, 0.35);
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin-bottom: 14px;
+}
+
+.shac-page h2 {
+    font-family: var(--shac-font-display);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 600;
+    color: var(--shac-text);
+    margin-bottom: 12px;
+}
+
+.shac-section-sub {
+    color: var(--shac-muted);
+    font-size: 1.05rem;
+    max-width: 520px;
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
+/* ── Shared Buttons ───────────────────────────────────────── */
+.shac-btn-primary {
+    background: var(--shac-accent);
+    color: #fff;
+    border: none;
+    padding: 14px 36px;
+    border-radius: 100px;
+    font-family: var(--shac-font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--shac-transition), transform var(--shac-transition);
+    box-shadow: 0 4px 16px rgba(244, 162, 97, 0.35);
+}
+
+.shac-btn-primary:hover {
+    background: var(--shac-accent-deep);
+    transform: translateY(-2px);
+}
+
+.shac-btn-secondary {
+    background: transparent;
+    color: #686767;
+    border: 2px solid rgba(139, 137, 137, 0.6);
+    padding: 14px 36px;
+    border-radius: 100px;
+    font-family: var(--shac-font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color var(--shac-transition), background var(--shac-transition),
+        transform var(--shac-transition);
+}
+
+.shac-btn-secondary:hover {
+    border-color: #b4b2b2;
+    background: rgba(151, 150, 150, 0.1);
+    transform: translateY(-2px);
+}
+
+.shac-btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    padding: 14px 36px;
+    border-radius: 100px;
+    font-family: var(--shac-font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color var(--shac-transition), background var(--shac-transition),
+        transform var(--shac-transition);
+}
+
+.shac-btn-outline:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HERO SECTION
+═══════════════════════════════════════════════════════════ */
+.shac-hero {
+    position: relative;
+    background-color: var(--shac-hero-bg);
+    padding: 100px 0 80px;
+    overflow: hidden;
+}
+
+.shac-hero-bg-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.shac-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.18;
+}
+
+.shac-shape-1 {
+    width: 420px;
+    height: 420px;
+    background: var(--shac-accent);
+    top: -120px;
+    right: -80px;
+}
+
+.shac-shape-2 {
+    width: 260px;
+    height: 260px;
+    background: var(--shac-primary-light);
+    bottom: -80px;
+    left: -60px;
+}
+
+.shac-shape-3 {
+    width: 140px;
+    height: 140px;
+    background: var(--shac-accent-deep);
+    top: 60px;
+    left: 38%;
+}
+
+.shac-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.shac-eyebrow {
+    display: inline-block;
+    font-family: var(--shac-font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--shac-primary);
+    background: rgba(82, 183, 136, 0.15);
+    border: 1px solid rgba(82, 183, 136, 0.35);
+    padding: 4px 16px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+}
+
+.shac-hero h1 {
+    font-family: var(--shac-font-display);
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--shac-text);
+    max-width: 760px;
+    margin: 0 auto 20px;
+}
+
+.shac-highlight {
+    color: var(--shac-primary);
+    font-style: italic;
+}
+
+.shac-hero-desc {
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: var(--shac-muted);
+    max-width: 680px;
+    margin: 0 auto 36px;
+    line-height: 1.75;
+}
+
+.shac-hero-btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   STATS SECTION
+═══════════════════════════════════════════════════════════ */
+.shac-stats {
+    background: var(--shac-primary);
+    padding: 60px 0 48px;
+    text-align: center;
+}
+
+.shac-stats-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.shac-stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.shac-stat-value {
+    font-family: var(--shac-font-display);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.shac-stat-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+    letter-spacing: 0.04em;
+    font-family: var(--shac-font-body);
+}
+
+.shac-stats-note {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    max-width: 560px;
+    margin: 0 auto;
+    font-family: var(--shac-font-body);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SERVICE DESCRIPTION SECTION
+═══════════════════════════════════════════════════════════ */
+.shac-about {
+    padding: 88px 0;
+    background: var(--shac-surface);
+}
+
+.shac-about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+}
+
+.shac-about-text .shac-section-eyebrow {
+    margin-bottom: 16px;
+}
+
+.shac-about-text h2 {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.shac-about-text p {
+    color: var(--shac-muted);
+    font-size: 1.05rem;
+    margin-bottom: 16px;
+    line-height: 1.75;
+}
+
+.shac-about-text p strong {
+    color: var(--shac-primary);
+    font-weight: 600;
+}
+
+.shac-about-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.shac-about-checklist li {
+    color: var(--shac-primary);
+    font-weight: 600;
+    font-size: 0.97rem;
+    font-family: var(--shac-font-body);
+}
+
+.shac-about-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shac-about-img-placeholder {
+    background: linear-gradient(135deg, var(--shac-accent-deep) 0%, var(--shac-accent) 100%);
+    border-radius: var(--shac-radius-lg);
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 16px 48px rgba(244, 162, 97, 0.22);
+}
+
+.shac-about-img-placeholder span {
+    font-size: 5rem;
+    line-height: 1;
+}
+
+.shac-about-img-placeholder p {
+    font-family: var(--shac-font-display);
+    font-size: 1.3rem;
+    font-style: italic;
+    font-weight: 300;
+    color: #fff;
+    margin: 0;
+}
+
+.shac-about-img {
+    width: 100%;
+    max-width: 380px;
+    border-radius: var(--shac-radius-lg);
+    object-fit: cover;
+    box-shadow: 0 16px 48px rgba(244, 162, 97, 0.22);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FEATURES SECTION
+═══════════════════════════════════════════════════════════ */
+.shac-features {
+    padding: 88px 0;
+    background: var(--shac-bg);
+    text-align: center;
+}
+
+.shac-features h2,
+.shac-benefits h2,
+.shac-testimonials h2,
+.shac-faqs h2 {
+    text-align: center;
+}
+
+.shac-features-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+}
+
+.shac-feature-card {
+    flex: 1 1 280px;
+    max-width: calc(33.333% - 16px);
+    background: var(--shac-surface);
+    border: 1px solid var(--shac-border);
+    border-radius: var(--shac-radius-md);
+    padding: 36px 28px;
+    text-align: center;
+    box-shadow: var(--shac-shadow-card);
+    transition: transform var(--shac-transition), box-shadow var(--shac-transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    align-self: stretch;
+}
+
+.shac-feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shac-shadow-soft);
+}
+
+.shac-feature-icon {
+    display: block;
+    font-size: 2.8rem;
+    margin-bottom: 16px;
+    line-height: 1;
+}
+
+.shac-feature-card h3 {
+    font-family: var(--shac-font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--shac-primary);
+    margin-bottom: 10px;
+}
+
+.shac-feature-card p {
+    color: var(--shac-muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BENEFITS SECTION
+═══════════════════════════════════════════════════════════ */
+.shac-benefits {
+    padding: 88px 0;
+    background: var(--shac-surface);
+    text-align: center;
+}
+
+.shac-benefits-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.shac-benefit-card {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    background: var(--shac-bg);
+    border: 1px solid var(--shac-border);
+    border-radius: var(--shac-radius-md);
+    padding: 28px 24px;
+    text-align: left;
+    transition: box-shadow var(--shac-transition);
+}
+
+.shac-benefit-card:hover {
+    box-shadow: var(--shac-shadow-soft);
+}
+
+.shac-benefit-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+    line-height: 1;
+}
+
+.shac-benefit-card h3 {
+    font-family: var(--shac-font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--shac-text);
+    margin-bottom: 6px;
+}
+
+.shac-benefit-card p {
+    color: var(--shac-muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TESTIMONIALS SECTION
+═══════════════════════════════════════════════════════════ */
+.shac-testimonials {
+    padding: 88px 0;
+    background: var(--shac-bg);
+    text-align: center;
+}
+
+.shac-testimonials-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.shac-testimonial-card {
+    background: var(--shac-surface);
+    border: 1px solid var(--shac-border);
+    border-radius: var(--shac-radius-md);
+    padding: 28px 24px;
+    text-align: left;
+    box-shadow: var(--shac-shadow-card);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform var(--shac-transition), box-shadow var(--shac-transition);
+}
+
+.shac-testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shac-shadow-soft);
+}
+
+.shac-testimonial-stars {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+.shac-testimonial-text {
+    color: var(--shac-text);
+    font-size: 0.97rem;
+    line-height: 1.7;
+    font-style: italic;
+    flex: 1;
+}
+
+.shac-testimonial-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--shac-primary);
+    font-family: var(--shac-font-body);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CTA SECTION
+═══════════════════════════════════════════════════════════ */
+.shac-cta {
+    background: linear-gradient(135deg, #1b4332 0%, var(--shac-primary) 60%, var(--shac-primary-light) 100%);
+    padding: 88px 0;
+}
+
+.shac-cta-inner {
+    text-align: center;
+}
+
+.shac-cta h2 {
+    color: #ffffff;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.shac-cta p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    max-width: 540px;
+    margin: 0 auto 36px;
+}
+
+.shac-cta-btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FAQ SECTION
+═══════════════════════════════════════════════════════════ */
+.shac-faqs {
+    padding: 88px 0;
+    background: var(--shac-surface);
+    text-align: center;
+}
+
+.shac-faqs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+.shac-faq-item {
+    border: 1px solid var(--shac-border);
+    border-radius: var(--shac-radius-md);
+    overflow: hidden;
+    background: var(--shac-bg);
+}
+
+.shac-faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    font-family: var(--shac-font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--shac-text);
+    text-align: left;
+    transition: background var(--shac-transition);
+}
+
+.shac-faq-question:hover {
+    background: rgba(82, 183, 136, 0.06);
+}
+
+.shac-faq-question.shac-faq-open {
+    color: var(--shac-primary);
+    background: rgba(82, 183, 136, 0.08);
+}
+
+.shac-faq-icon {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--shac-primary);
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.shac-faq-answer {
+    padding: 0 24px 20px;
+    animation: shacFadeIn 0.2s ease;
+}
+
+.shac-faq-answer p {
+    color: var(--shac-muted);
+    font-size: 0.97rem;
+    line-height: 1.75;
+}
+
+@keyframes shacFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════ */
+
+/* ── Tablet: ≤ 1024px ─────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .shac-about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .shac-about-visual {
+        order: -1;
+    }
+
+    .shac-about-img-placeholder,
+    .shac-about-img {
+        max-width: 100%;
+    }
+
+    .shac-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+    }
+
+    .shac-feature-card {
+        flex: 1 1 calc(50% - 12px);
+        max-width: calc(50% - 12px);
+    }
+
+    .shac-benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .shac-testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ── Mobile: ≤ 768px ──────────────────────────────────────── */
+@media (max-width: 768px) {
+    .shac-hero {
+        padding: 72px 0 56px;
+    }
+
+    .shac-about,
+    .shac-features,
+    .shac-benefits,
+    .shac-testimonials,
+    .shac-cta,
+    .shac-faqs {
+        padding: 64px 0;
+    }
+
+    .shac-stats {
+        padding: 48px 0 36px;
+    }
+
+    .shac-about-text h2 {
+        font-size: 1.7rem;
+    }
+
+    .shac-feature-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+        padding: 28px 20px;
+    }
+
+    .shac-testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .shac-faqs-list {
+        max-width: 100%;
+    }
+}
+
+/* ── Small Mobile: ≤ 480px ────────────────────────────────── */
+@media (max-width: 480px) {
+    .shac-container {
+        padding: 0 16px;
+    }
+
+    .shac-hero {
+        padding: 56px 0 40px;
+    }
+
+    .shac-hero h1 {
+        font-size: 1.9rem;
+    }
+
+    .shac-hero-desc {
+        font-size: 0.97rem;
+    }
+
+    .shac-hero-btns,
+    .shac-cta-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .shac-btn-primary,
+    .shac-btn-secondary,
+    .shac-btn-outline {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .shac-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .shac-stat-value {
+        font-size: 1.6rem;
+    }
+
+    .shac-about,
+    .shac-features,
+    .shac-benefits,
+    .shac-testimonials,
+    .shac-cta,
+    .shac-faqs {
+        padding: 48px 0;
+    }
+
+    .shac-benefit-card {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .shac-faq-question {
+        padding: 16px 18px;
+        font-size: 0.95rem;
+    }
+
+    .shac-faq-answer {
+        padding: 0 18px 16px;
+    }
+}
+
+/* ── Extra Small: ≤ 360px ─────────────────────────────────── */
+@media (max-width: 360px) {
+    .shac-stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .shac-stat-value {
+        font-size: 1.5rem;
+    }
+
+    .shac-stat-label {
+        font-size: 0.8rem;
+    }
+
+    .shac-feature-card {
+        padding: 20px 14px;
+    }
+
+    .shac-benefit-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}

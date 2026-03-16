@@ -1,0 +1,9 @@
+.navbar .dropdown-menu {
+    border-radius: 10px;
+    padding: 10px 0;
+}
+
+.navbar .dropdown-item:hover {
+    background-color: #e9f7ef;
+    color: #198754;
+}

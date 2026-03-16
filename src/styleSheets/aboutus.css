@@ -43,7 +43,7 @@
     overflow-x: hidden;
 }
 
-.container {
+.about-page .container {
     width: 100%;
     max-width: 1160px;
     margin: 0 auto;
@@ -208,7 +208,7 @@
     padding: 60px 0;
 }
 
-.stats-grid {
+.about-page .stats-grid {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -216,14 +216,14 @@
     text-align: center;
 }
 
-.stat-item {
+.about-page .stat-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 6px;
 }
 
-.stat-value {
+.about-page .stat-value {
     font-family: var(--font-display);
     font-size: clamp(1.8rem, 3.5vw, 2.8rem);
     font-weight: 700;
@@ -231,14 +231,14 @@
     line-height: 1;
 }
 
-.stat-label {
+.about-page .stat-label {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.75) !important;
     letter-spacing: 0.04em;
 }
 
 /* ── Services Section ─────────────────────────────────────── */
-.about-services {
+.about-page .about-services {
     padding: 88px 0;
     background: var(--clr-bg);
 }
@@ -253,7 +253,7 @@
     margin-bottom: 12px;
 }
 
-.section-sub {
+.about-page .section-sub {
     text-align: center;
     color: var(--clr-muted);
     font-size: 1.05rem;
@@ -267,14 +267,12 @@
     flex-wrap: wrap;
     gap: 28px;
     justify-content: center;
+    align-items: stretch;
 }
 
 .about-services .service-card {
     flex: 1 1 280px;
     max-width: calc(33.333% - 20px);
-}
-
-.about-services .service-card {
     background: var(--clr-surface);
     border: 1px solid var(--clr-border);
     border-radius: var(--radius-md);
@@ -282,6 +280,12 @@
     text-align: center;
     box-shadow: var(--shadow-card);
     transition: transform var(--transition), box-shadow var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    height: auto;
+    align-self: stretch;
 }
 
 .about-services .service-card:hover {
@@ -289,7 +293,7 @@
     box-shadow: var(--shadow-soft);
 }
 
-.service-icon {
+.about-page .service-icon {
     display: block;
     font-size: 3rem;
     margin-bottom: 16px;
@@ -301,21 +305,23 @@
     font-weight: 600;
     color: var(--clr-primary);
     margin-bottom: 10px;
+    margin-right: 5px;
 }
 
 .about-services .service-card p {
     color: var(--clr-muted);
+    font-weight: bold;
     font-size: 0.97rem;
     line-height: 1.65;
 }
 
 /* ── Values Section ───────────────────────────────────────── */
-.about-values {
+.about-page .about-values {
     padding: 88px 0;
     background: var(--clr-surface);
 }
 
-.values-grid {
+.about-page .values-grid {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -323,7 +329,7 @@
     margin-top: 0;
 }
 
-.value-card {
+.about-page .value-card {
     display: flex;
     gap: 20px;
     align-items: flex-start;
@@ -338,7 +344,7 @@
     box-shadow: var(--shadow-soft);
 }
 
-.value-icon {
+.about-page .value-icon {
     font-size: 2rem;
     flex-shrink: 0;
     margin-top: 2px;
@@ -390,7 +396,7 @@
     flex-wrap: wrap;
 }
 
-.btn-primary {
+.about-page .btn-primary {
     background: var(--clr-accent);
     color: #fff;
     border: none;
@@ -404,12 +410,12 @@
     box-shadow: 0 4px 16px rgba(244, 162, 97, 0.35);
 }
 
-.btn-primary:hover {
+.about-page .btn-primary:hover {
     background: var(--clr-accent-deep);
     transform: translateY(-2px);
 }
 
-.btn-secondary {
+.about-page .btn-secondary {
     background: transparent;
     color: #fff;
     border: 2px solid rgba(255, 255, 255, 0.6);
@@ -423,7 +429,7 @@
         transform var(--transition);
 }
 
-.btn-secondary:hover {
+.about-page .btn-secondary:hover {
     border-color: #fff;
     background: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
@@ -433,7 +439,7 @@
    Responsive Breakpoints
    ============================================================ */
 
-/* ── Tablet: ≤ 1024px ─────────────────────────────────────── */
+/* ── Large Tablet: ≤ 1024px ───────────────────────────────── */
 @media (max-width: 1024px) {
     .mission-grid {
         grid-template-columns: 1fr;
@@ -449,22 +455,26 @@
         padding: 36px 28px;
     }
 
-    .stats-grid {
+    .about-page .stats-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 32px;
     }
 
     .about-services .services-grid {
-        /* 2 cards per row on tablet */
         gap: 20px;
     }
 
     .about-services .service-card {
+        flex: 1 1 calc(50% - 10px);
         max-width: calc(50% - 10px);
+    }
+
+    .about-page .values-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* ── Mobile: ≤ 768px ──────────────────────────────────────── */
+/* ── Tablet: ≤ 768px ──────────────────────────────────────── */
 @media (max-width: 768px) {
     .about-hero {
         padding: 72px 0 56px;
@@ -481,18 +491,24 @@
         padding: 48px 0;
     }
 
-    .values-grid {
-        grid-template-columns: 1fr;
+    .about-page .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
     }
 
-    .services-grid {
+    .about-services .services-grid {
         gap: 16px;
     }
 
     .about-services .service-card {
-        max-width: 100%;
-        flex: 1 1 100%;
+        flex: 1 1 calc(50% - 8px);
+        max-width: calc(50% - 8px);
         padding: 28px 20px;
+    }
+
+    .about-page .values-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
     }
 
     .value-card {
@@ -502,25 +518,91 @@
     .mission-card {
         padding: 32px 24px;
     }
+
+    .about-cta h2 {
+        font-size: 1.8rem;
+    }
 }
 
 /* ── Small Mobile: ≤ 480px ────────────────────────────────── */
 @media (max-width: 480px) {
-    .container {
+    .about-page .container {
         padding: 0 16px;
+    }
+
+    .about-hero {
+        padding: 56px 0 40px;
     }
 
     .hero-eyebrow {
         font-size: 0.72rem;
     }
 
-    .stats-grid {
+    .about-mission,
+    .about-services,
+    .about-values,
+    .about-cta {
+        padding: 48px 0;
+    }
+
+    .about-stats {
+        padding: 36px 0;
+    }
+
+    .about-page .stats-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
     }
 
-    .stat-value {
+    .about-page .stat-value {
         font-size: 1.8rem;
+    }
+
+    .about-services .services-grid {
+        gap: 12px;
+    }
+
+    .about-services .service-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+        padding: 24px 18px;
+    }
+
+    .about-page .service-icon {
+        font-size: 2.4rem;
+    }
+
+    .about-services .service-card h3 {
+        font-size: 1.15rem;
+    }
+
+    .mission-grid {
+        gap: 28px;
+    }
+
+    .mission-card {
+        padding: 28px 20px;
+    }
+
+    .mission-icon {
+        font-size: 3rem;
+    }
+
+    .mission-card p {
+        font-size: 1.2rem;
+    }
+
+    .about-page .values-grid {
+        gap: 12px;
+    }
+
+    .value-card {
+        padding: 18px 14px;
+        gap: 14px;
+    }
+
+    .about-page .value-icon {
+        font-size: 1.6rem;
     }
 
     .cta-buttons {
@@ -528,9 +610,36 @@
         align-items: center;
     }
 
-    .btn-primary,
-    .btn-secondary {
+    .about-page .btn-primary,
+    .about-page .btn-secondary {
         width: 100%;
         max-width: 320px;
+        padding: 12px 28px;
+    }
+}
+
+/* ── Extra Small: ≤ 360px ─────────────────────────────────── */
+@media (max-width: 360px) {
+    .about-page .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .about-page .stat-value {
+        font-size: 1.5rem;
+    }
+
+    .about-page .stat-label {
+        font-size: 0.8rem;
+    }
+
+    .about-services .service-card {
+        padding: 20px 14px;
+    }
+
+    .value-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
     }
 }

@@ -19,8 +19,15 @@ import elder4 from "../assets/elder4.jpg";
 import elder5 from "../assets/elder5.jpg";
 
 import pregnant1 from "../assets/pregnant1.jpeg";
+import pregnant2 from "../assets/pregnant2.jpg";
+import pregnant3 from "../assets/pregnant3.jpg";
+import pregnant4 from "../assets/pregnant4.jpg";
 
 import kitchen1 from "../assets/kitchen1.jpg";
+import kitchen2 from "../assets/kitchen2.jpg";
+import kitchen3 from "../assets/kitchen3.jpg";
+import kitchen4 from "../assets/kitchen4.jpg";
+import kitchen5 from "../assets/kitchen5.jpg";
 
 import "../styleSheets/home.css";
 import { useNavigate } from "react-router-dom";
@@ -36,6 +43,8 @@ const Home = () => {
         [baby1, baby2, baby3, baby4, baby5],
         [pet1, pet2, pet3, pet5, pet6],
         [elder1, elder2, elder3, elder4, elder5],
+        [kitchen1, kitchen2, kitchen3, kitchen4, kitchen5],
+        [pregnant1, pregnant2, pregnant3, pregnant4],
     ];
 
     const navigate = useNavigate();

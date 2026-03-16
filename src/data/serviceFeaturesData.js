@@ -104,6 +104,71 @@ export const servicesData = {
                 "Ensure vaccination"
             ]
         }
+    ],
+
+    kitchen: [
+        {
+            id: 4,
+            name: "Home Assistance Help",
+            price: 300,
+            rating: 4.3,
+
+            included: [
+                "Vegetable cutting and food preparation",
+                "Preparing simple home meals",
+                "Cleaning utensils used during cooking",
+                "Maintaining kitchen cleanliness and hygiene",
+                "Organizing groceries and kitchen items",
+                "Food preparation assistance during small gatherings",
+                "Helping serve food during home events",
+                "Cleaning kitchen after celebrations"
+            ],
+
+            notIncluded: [
+                "No professional chef services",
+                "No catering for large events",
+                "No specialized medical diet preparation"
+            ],
+
+            responsibilities: [
+                "Provide cooking ingredients and groceries",
+                "Provide utensils and kitchen equipment",
+                "Inform worker about dietary preferences",
+                "Inform about vegetarian or regional cooking preferences"
+            ]
+        }
+    ],
+
+    pregnancy: [
+        {
+            id: 5,
+            name: "Pregnancy Support Care",
+            price: 350,
+            rating: 4.6,
+
+            included: [
+                "Helping mother with light household tasks",
+                "Preparing simple meals or drinks",
+                "Supporting rest and comfort routines",
+                "Helping organize baby items",
+                "Assistance with daily activities inside the home",
+                "Preparing for baby delivery arrangements"
+            ],
+
+            notIncluded: [
+                "No administering medicines",
+                "No medical treatment",
+                "No massage therapy",
+                "No handling medical equipment"
+            ],
+
+            responsibilities: [
+                "Inform caregiver about health conditions",
+                "Provide required household materials",
+                "Contact doctor for medical concerns",
+                "Ensure safe home environment"
+            ]
+        }
     ]
 
 };

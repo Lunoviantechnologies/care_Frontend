@@ -11,6 +11,11 @@ import CheckoutPage from "../features/checkout/CheckoutPage";
 import PaymentPage from "../features/payments/PaymentPage";
 import AboutUs from "../pages/AboutUs";
 import ContactUs from "../pages/ContactUs";
+import ServiceBabyCare from "../pages/ServiceBabyCare";
+import ServicePetCare from "../pages/ServicePetCare";
+import ServiceElderCare from "../pages/ServiceElderCare";
+import ServicePregnancyCare from "../pages/ServicePregnancyCare";
+import ServiceHomeAssistCare from "../pages/ServiceHomeAssistCare";
 
 const AppRoutes = createBrowserRouter([
     {
@@ -21,6 +26,31 @@ const AppRoutes = createBrowserRouter([
             { path: "login", element: <Login /> },
             { path: "register", element: <Register /> },
             { path: "about_us", element: <AboutUs /> },
+            {
+                path: "services",
+                children: [
+                    {
+                        path: "baby_care",
+                        element: <ServiceBabyCare />
+                    },
+                    {
+                        path: "pet_care",
+                        element: <ServicePetCare />
+                    },
+                    {
+                        path: "elder_care",
+                        element: <ServiceElderCare />
+                    },
+                    {
+                        path: "pregnancy_care",
+                        element: <ServicePregnancyCare />
+                    },
+                    {
+                        path: "home_assistance_care",
+                        element: <ServiceHomeAssistCare />
+                    },
+                ]
+            },
             { path: "contact_us", element: <ContactUs /> },
             { path: "services/:type", element: <ServiceLists /> },
             { path: "booking", element: <BookingForm /> },
