@@ -16,6 +16,7 @@ import ServicePetCare from "../pages/ServicePetCare";
 import ServiceElderCare from "../pages/ServiceElderCare";
 import ServicePregnancyCare from "../pages/ServicePregnancyCare";
 import ServiceHomeAssistCare from "../pages/ServiceHomeAssistCare";
+import LiveMap from "../features/tracking/LiveMap";
 
 const AppRoutes = createBrowserRouter([
     {
@@ -56,7 +57,8 @@ const AppRoutes = createBrowserRouter([
             { path: "booking", element: <BookingForm /> },
             { path: "cart", element: <Cart /> },
             { path: "checkout", element: <CheckoutPage /> },
-            { path: "payment", element: <PaymentPage /> }
+            { path: "payment", element: <PaymentPage /> },
+            { path: "live_tracking", element: <LiveMap /> },
         ]
     }
 ]);

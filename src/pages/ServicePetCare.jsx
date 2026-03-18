@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "../styleSheets/servicesDisplay/servicePet.css";
 
 // Import your actual images from assets
-// import petCareHero from "../assets/pet-care-hero.jpg";
+import petCareHero from "../assets/pet4.jpg";
+import petOverlay from "../assets/pet6.png";
 
 const stats = [
     { value: "6,000+", label: "Happy Pet Owners" },
@@ -125,30 +126,48 @@ const ServicePetCare = () => {
 
             {/* ── Hero Section ── */}
             <section className="spc-hero" aria-labelledby="spc-hero-heading">
+
+                {/* Background decorative blobs */}
                 <div className="spc-hero-bg-shapes" aria-hidden="true">
                     <span className="spc-shape spc-shape-1" />
                     <span className="spc-shape spc-shape-2" />
                     <span className="spc-shape spc-shape-3" />
                 </div>
-                <div className="spc-container spc-hero-content">
-                    <span className="spc-eyebrow">Pet Care Services</span>
-                    <h1 id="spc-hero-heading">
-                        Professional <span className="spc-highlight">Pet Care</span>{" "}
-                        Services Near You
-                    </h1>
-                    <p className="spc-hero-desc">
-                        Need a reliable pet sitter? Our platform connects pet owners with
-                        trusted pet caregivers who provide feeding, walking, supervision,
-                        and pet safety monitoring for your beloved companions.
-                    </p>
-                    <div className="spc-hero-btns">
-                        <button className="spc-btn-primary" type="button">
-                            Book Pet Caregiver
-                        </button>
-                        <button className="spc-btn-secondary" type="button">
-                            Find Pet Sitter
-                        </button>
+
+                {/* Two-column layout: text left, image right */}
+                <div className="spc-hero-inner">
+
+                    {/* ── Left: Content ── */}
+                    <div className="spc-hero-content">
+                        <span className="spc-eyebrow">Pet Care Services</span>
+                        <h1 id="spc-hero-heading">
+                            Professional <span className="spc-highlight">Pet Care</span>{" "}
+                            Services Near You in India
+                        </h1>
+                        <p className="spc-hero-desc">
+                            Need a reliable pet sitter? Our platform connects pet owners with
+                            trusted pet caregivers who provide feeding, walking, supervision,
+                            and pet safety monitoring for your beloved companions across 50+ cities.
+                        </p>
+                        <div className="spc-hero-btns">
+                            <button className="spc-btn-primary" type="button">
+                                Book Pet Caregiver
+                            </button>
+                            <button className="spc-btn-secondary" type="button">
+                                Find Pet Sitter Near Me
+                            </button>
+                        </div>
                     </div>
+
+                    {/* ── Right: Pet PNG ── */}
+                    <div className="spc-hero-visual" aria-hidden="true">
+                        <img
+                            src={petOverlay}
+                            alt="pet care illustration"
+                            className="spc-hero-pet-img"
+                        />
+                    </div>
+
                 </div>
             </section>
 
@@ -197,12 +216,7 @@ const ServicePetCare = () => {
                         </ul>
                     </div>
                     <div className="spc-about-visual" aria-hidden="true">
-                        {/* Replace with your actual image:
-                        <img src={petCareHero} alt="Professional pet care services" className="spc-about-img" /> */}
-                        <div className="spc-about-img-placeholder">
-                            <span>🐾</span>
-                            <p>Pet Care Near You</p>
-                        </div>
+                        <img src={petCareHero} alt="Professional pet care services" className="spc-about-img" />
                     </div>
                 </div>
             </section>

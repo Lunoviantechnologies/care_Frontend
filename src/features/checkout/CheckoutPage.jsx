@@ -22,11 +22,8 @@ const CheckoutPage = () => {
   };
 
   const handleCOD = () => {
-
     alert("Your booking is confirmed. Caregiver will arrive at scheduled time.");
-
-    navigate("/order-success");
-
+    navigate("/live_tracking");
   };
 
   return (
@@ -73,12 +70,12 @@ const CheckoutPage = () => {
             {/* Cash on Delivery */}
             <div
               className="card payment-card p-4 border-0 mb-3"
-              onClick={() => alert("Order Placed")}
+              onClick={handleCOD}
               style={{ cursor: "pointer" }}
             >
               <div className="d-flex align-items-center">
                 <FaMoneyBillWave size={28} className="text-warning me-3" />
-                <div onClick={handleCOD}>
+                <div>
                   <h5 className="mb-1">Cash On Delivery</h5>
                   <p className="text-muted mb-0">
                     Pay in cash after the service is completed.

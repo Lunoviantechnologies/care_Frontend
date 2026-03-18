@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "../styleSheets/servicesDisplay/serviceBaby.css";
 
 // Import your actual images from assets
-// import babyCareHero from "../assets/baby-care-hero.jpg";
-// import babyCareBanner from "../assets/baby-care-banner.jpg";
+import babyCareHero from "../assets/baby2.jpg";
+import babyCareBanner from "../assets/baby1.jpg";
+import babyOverlay from "../assets/baby7.png";
 
 const stats = [
     { value: "12,500+", label: "Happy Families" },
@@ -124,32 +125,46 @@ const ServiceBabyCare = () => {
 
             {/* ── Hero Section ── */}
             <section className="sbc-hero" aria-labelledby="sbc-hero-heading">
+
+                {/* Background decorative blobs */}
                 <div className="sbc-hero-bg-shapes" aria-hidden="true">
                     <span className="sbc-shape sbc-shape-1" />
                     <span className="sbc-shape sbc-shape-2" />
                     <span className="sbc-shape sbc-shape-3" />
                 </div>
-                <div className="sbc-container sbc-hero-content">
-                    <span className="sbc-eyebrow">Baby Care Services</span>
-                    <h1 id="sbc-hero-heading">
-                        Professional <span className="sbc-highlight">Baby Care</span>{" "}
-                        Services at Home in India
-                    </h1>
-                    <p className="sbc-hero-desc">
-                        Looking for trusted babysitters near you? Our platform connects
-                        families with verified baby caregivers and professional babysitters
-                        who provide safe and nurturing care for newborns, infants, and
-                        toddlers. Book experienced caregivers for feeding assistance, diaper
-                        changes, sleep routines, and child supervision at home.
-                    </p>
-                    <div className="sbc-hero-btns">
-                        <button className="sbc-btn-primary" type="button">
-                            Book a Babysitter
-                        </button>
-                        <button className="sbc-btn-secondary" type="button">
-                            Find a Caregiver Near Me
-                        </button>
+
+                {/* Two-column layout: text left, image right */}
+                <div className="sbc-hero-inner">
+
+                    {/* ── Left: Content ── */}
+                    <div className="sbc-hero-content">
+                        <span className="sbc-eyebrow">Baby Care Services</span>
+                        <h1 id="sbc-hero-heading">
+                            Professional <span className="sbc-highlight">Baby Care</span>{" "}
+                            Services at Home in India
+                        </h1>
+                        <p className="sbc-hero-desc">
+                            Find trusted babysitters near you. Connect with verified babysitters and professional childcare providers for safe, reliable care for newborns, infants, and toddlers. Book affordable in-home babysitting services for feeding, diaper changes, sleep routines, and child supervision.
+                        </p>
+                        <div className="sbc-hero-btns">
+                            <button className="sbc-btn-primary" type="button">
+                                Book a Babysitter
+                            </button>
+                            <button className="sbc-btn-secondary" type="button">
+                                Find a Caregiver Near Me
+                            </button>
+                        </div>
                     </div>
+
+                    {/* ── Right: Baby PNG ── */}
+                    <div className="sbc-hero-visual" aria-hidden="true">
+                        <img
+                            src={babyOverlay}
+                            alt="baby care illustration"
+                            className="sbc-hero-baby-img"
+                        />
+                    </div>
+
                 </div>
             </section>
 
@@ -198,14 +213,7 @@ const ServiceBabyCare = () => {
                         </ul>
                     </div>
                     <div className="sbc-about-visual" aria-hidden="true">
-                        {/* Replace src with your actual image import */}
-                        <div className="sbc-about-img-placeholder">
-                            <span>🍼</span>
-                            <p>Baby Care at Home</p>
-                        </div>
-                        {/*
                         <img src={babyCareHero} alt="Professional baby care at home" className="sbc-about-img" />
-                        */}
                     </div>
                 </div>
             </section>

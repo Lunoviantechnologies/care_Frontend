@@ -1,5 +1,6 @@
 import React from "react";
 import "../styleSheets/aboutus.css";
+import { useNavigate } from "react-router-dom";
 
 const stats = [
     { value: "10,000+", label: "Families Served" },
@@ -12,30 +13,35 @@ const services = [
     {
         icon: "🍼",
         title: "Baby Care",
+        path: "/services/baby_care",
         description:
             "Certified nannies and babysitters trained in infant care, early childhood development, and emergency response.",
     },
     {
         icon: "🧓",
         title: "Elder Care",
+        path: "/services/elder_care",
         description:
             "Compassionate companions and trained attendants for seniors — from daily assistance to specialized medical support.",
     },
     {
         icon: "🐾",
         title: "Pet Care",
+        path: "/services/pet_care",
         description:
             "Trusted pet sitters and dog walkers who treat your furry family members with love and professional care.",
     },
     {
         icon: "🍽️",
         title: "Home Assistance",
+        path: "/services/home_assistance_care",
         description:
             "Reliable helpers for everyday kitchen and household tasks — including chopping, cooking prep, cleaning, and serving — so your home runs smoothly.",
     },
     {
         icon: "🤰",
         title: "Pregnancy Care",
+        path: "/services/pregnancy_care",
         description:
             "Dedicated support for expectant mothers with trained attendants for prenatal assistance, comfort care, and postnatal recovery at home.",
     },
@@ -69,6 +75,9 @@ const values = [
 ];
 
 const AboutUs = () => {
+
+    const navigate = useNavigate();
+
     return (
         <main className="about-page" aria-label="About Us">
             {/* Hero Section */}
@@ -146,7 +155,7 @@ const AboutUs = () => {
                     </p>
                     <ul className="services-grid" role="list">
                         {services.map((service) => (
-                            <li key={service.title} className="service-card">
+                            <li key={service.title} className="service-card" onClick={() => navigate(service.path)}>
                                 <span className="service-icon" aria-hidden="true">
                                     {service.icon}
                                 </span>

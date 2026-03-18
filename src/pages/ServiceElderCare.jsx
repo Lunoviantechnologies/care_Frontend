@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "../styleSheets/servicesDisplay/serviceElder.css";
 
 // Import your actual images from assets
-// import elderCareHero from "../assets/elder-care-hero.jpg";
+import elderCareHero from "../assets/elder1.jpg";
+import elderOverlay from "../assets/elder6.png";
 
 const stats = [
     { value: "9,800+", label: "Seniors Supported" },
@@ -123,31 +124,49 @@ const ServiceElderCare = () => {
 
             {/* ── Hero Section ── */}
             <section className="sec-hero" aria-labelledby="sec-hero-heading">
+
+                {/* Background decorative blobs */}
                 <div className="sec-hero-bg-shapes" aria-hidden="true">
                     <span className="sec-shape sec-shape-1" />
                     <span className="sec-shape sec-shape-2" />
                     <span className="sec-shape sec-shape-3" />
                 </div>
-                <div className="sec-container sec-hero-content">
-                    <span className="sec-eyebrow">Elder Care Services</span>
-                    <h1 id="sec-hero-heading">
-                        Trusted <span className="sec-highlight">Elder Care</span>{" "}
-                        Services at Home
-                    </h1>
-                    <p className="sec-hero-desc">
-                        Provide your loved ones with compassionate elderly care services at
-                        home. Our trained caregivers offer assistance with mobility support,
-                        medication reminders, companionship, and daily activities to ensure
-                        senior citizens live comfortably and safely.
-                    </p>
-                    <div className="sec-hero-btns">
-                        <button className="sec-btn-primary" type="button">
-                            Book Elder Caregiver
-                        </button>
-                        <button className="sec-btn-secondary" type="button">
-                            Get Senior Care Assistance
-                        </button>
+
+                {/* Two-column layout: text left, image right */}
+                <div className="sec-hero-inner">
+
+                    {/* ── Left: Content ── */}
+                    <div className="sec-hero-content">
+                        <span className="sec-eyebrow">Elder Care Services</span>
+                        <h1 id="sec-hero-heading">
+                            Trusted <span className="sec-highlight">Elder Care</span>{" "}
+                            Services at Home in India
+                        </h1>
+                        <p className="sec-hero-desc">
+                            Provide your loved ones with compassionate elderly care services at
+                            home. Our trained caregivers offer assistance with mobility support,
+                            medication reminders, companionship, and daily activities to ensure
+                            senior citizens live comfortably and safely.
+                        </p>
+                        <div className="sec-hero-btns">
+                            <button className="sec-btn-primary" type="button">
+                                Book Elder Caregiver
+                            </button>
+                            <button className="sec-btn-secondary" type="button">
+                                Get Senior Care Assistance
+                            </button>
+                        </div>
                     </div>
+
+                    {/* ── Right: Elder PNG ── */}
+                    <div className="sec-hero-visual" aria-hidden="true">
+                        <img
+                            src={elderOverlay}
+                            alt="elder care illustration"
+                            className="sec-hero-elder-img"
+                        />
+                    </div>
+
                 </div>
             </section>
 
@@ -197,12 +216,7 @@ const ServiceElderCare = () => {
                         </ul>
                     </div>
                     <div className="sec-about-visual" aria-hidden="true">
-                        {/* Replace with your actual image:
-                        <img src={elderCareHero} alt="Elder care at home" className="sec-about-img" /> */}
-                        <div className="sec-about-img-placeholder">
-                            <span>🧓</span>
-                            <p>Elder Care at Home</p>
-                        </div>
+                        <img src={elderCareHero} alt="Elder care at home" className="sec-about-img" />
                     </div>
                 </div>
             </section>
@@ -326,6 +340,7 @@ const ServiceElderCare = () => {
                     </ul>
                 </div>
             </section>
+
         </main>
     );
 };

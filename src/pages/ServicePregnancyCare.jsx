@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "../styleSheets/servicesDisplay/servicePregnancy.css";
 
 // Import your actual images from assets
-// import pregnancyCareHero from "../assets/pregnancy-care-hero.jpg";
+import pregnancyCareHero from "../assets/pregnant2.jpg";
+import pregnancyOverlay from "../assets/pregnant6.png";
 
 const stats = [
     { value: "4,500+", label: "Mothers Supported" },
@@ -124,32 +125,50 @@ const ServicePregnancyCare = () => {
 
             {/* ── Hero Section ── */}
             <section className="sprc-hero" aria-labelledby="sprc-hero-heading">
+
+                {/* Background decorative blobs */}
                 <div className="sprc-hero-bg-shapes" aria-hidden="true">
                     <span className="sprc-shape sprc-shape-1" />
                     <span className="sprc-shape sprc-shape-2" />
                     <span className="sprc-shape sprc-shape-3" />
                 </div>
-                <div className="sprc-container sprc-hero-content">
-                    <span className="sprc-eyebrow">Pregnancy Care Services</span>
-                    <h1 id="sprc-hero-heading">
-                        Professional{" "}
-                        <span className="sprc-highlight">Pregnancy Care</span>{" "}
-                        Services at Home
-                    </h1>
-                    <p className="sprc-hero-desc">
-                        Receive dedicated support during pregnancy with our professional
-                        maternity care services. Our trained caregivers assist with daily
-                        activities, nutrition reminders, and emotional support for expecting
-                        mothers throughout every stage of their journey.
-                    </p>
-                    <div className="sprc-hero-btns">
-                        <button className="sprc-btn-primary" type="button">
-                            Book Pregnancy Caregiver
-                        </button>
-                        <button className="sprc-btn-secondary" type="button">
-                            Get Maternity Support
-                        </button>
+
+                {/* Two-column layout: text left, image right */}
+                <div className="sprc-hero-inner">
+
+                    {/* ── Left: Content ── */}
+                    <div className="sprc-hero-content">
+                        <span className="sprc-eyebrow">Pregnancy Care Services</span>
+                        <h1 id="sprc-hero-heading">
+                            Professional{" "}
+                            <span className="sprc-highlight">Pregnancy Care</span>{" "}
+                            Services at Home in India
+                        </h1>
+                        <p className="sprc-hero-desc">
+                            Receive dedicated support during pregnancy with our professional
+                            maternity care services. Our trained caregivers assist with daily
+                            activities, nutrition reminders, and emotional support for expecting
+                            mothers throughout every stage of their journey.
+                        </p>
+                        <div className="sprc-hero-btns">
+                            <button className="sprc-btn-primary" type="button">
+                                Book Pregnancy Caregiver
+                            </button>
+                            <button className="sprc-btn-secondary" type="button">
+                                Get Maternity Support
+                            </button>
+                        </div>
                     </div>
+
+                    {/* ── Right: Pregnancy PNG ── */}
+                    <div className="sprc-hero-visual" aria-hidden="true">
+                        <img
+                            src={pregnancyOverlay}
+                            alt="pregnancy care illustration"
+                            className="sprc-hero-pregnancy-img"
+                        />
+                    </div>
+
                 </div>
             </section>
 
@@ -200,12 +219,7 @@ const ServicePregnancyCare = () => {
                         </ul>
                     </div>
                     <div className="sprc-about-visual" aria-hidden="true">
-                        {/* Replace with your actual image:
-                        <img src={pregnancyCareHero} alt="Pregnancy care at home" className="sprc-about-img" /> */}
-                        <div className="sprc-about-img-placeholder">
-                            <span>🤰</span>
-                            <p>Maternity Care at Home</p>
-                        </div>
+                        <img src={pregnancyCareHero} alt="Pregnancy care at home" className="sprc-about-img" />
                     </div>
                 </div>
             </section>
@@ -216,8 +230,7 @@ const ServicePregnancyCare = () => {
                     <span className="sprc-section-eyebrow">What's Included</span>
                     <h2 id="sprc-features-heading">Pregnancy Care Service Features</h2>
                     <p className="sprc-section-sub">
-                        Comprehensive prenatal support tailored for every stage of your
-                        pregnancy.
+                        Comprehensive prenatal support tailored for every stage of your pregnancy.
                     </p>
                     <ul className="sprc-features-grid" role="list">
                         {features.map((feature) => (
@@ -241,8 +254,7 @@ const ServicePregnancyCare = () => {
                         Why Choose Our Pregnancy Care Services?
                     </h2>
                     <p className="sprc-section-sub">
-                        Trusted, experienced, and compassionate care for every expecting
-                        mother.
+                        Trusted, experienced, and compassionate care for every expecting mother.
                     </p>
                     <ul className="sprc-benefits-grid" role="list">
                         {benefits.map((benefit) => (
@@ -261,10 +273,7 @@ const ServicePregnancyCare = () => {
             </section>
 
             {/* ── Testimonials ── */}
-            <section
-                className="sprc-testimonials"
-                aria-labelledby="sprc-testimonials-heading"
-            >
+            <section className="sprc-testimonials" aria-labelledby="sprc-testimonials-heading">
                 <div className="sprc-container">
                     <span className="sprc-section-eyebrow">What Mothers Say</span>
                     <h2 id="sprc-testimonials-heading">Customer Testimonials</h2>
@@ -274,10 +283,7 @@ const ServicePregnancyCare = () => {
                     <ul className="sprc-testimonials-grid" role="list">
                         {testimonials.map((t) => (
                             <li key={t.name} className="sprc-testimonial-card">
-                                <span
-                                    className="sprc-testimonial-stars"
-                                    aria-hidden="true"
-                                >
+                                <span className="sprc-testimonial-stars" aria-hidden="true">
                                     ⭐⭐⭐⭐⭐
                                 </span>
                                 <p className="sprc-testimonial-text">"{t.text}"</p>
@@ -296,8 +302,7 @@ const ServicePregnancyCare = () => {
                     </h2>
                     <p>
                         Join 4,500+ mothers across India who trust our compassionate
-                        maternity care services at home. Safe, verified, and available near
-                        you.
+                        maternity care services at home. Safe, verified, and available near you.
                     </p>
                     <div className="sprc-cta-btns">
                         <button className="sprc-btn-primary" type="button">
@@ -328,10 +333,7 @@ const ServicePregnancyCare = () => {
                                     type="button"
                                 >
                                     <span>{faq.question}</span>
-                                    <span
-                                        className="sprc-faq-icon"
-                                        aria-hidden="true"
-                                    >
+                                    <span className="sprc-faq-icon" aria-hidden="true">
                                         {openFaq === index ? "−" : "+"}
                                     </span>
                                 </button>
@@ -345,6 +347,7 @@ const ServicePregnancyCare = () => {
                     </ul>
                 </div>
             </section>
+
         </main>
     );
 };

@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "../styleSheets/servicesDisplay/serviceHomeAssist.css";
 
 // Import your actual images from assets
-import kitchenCareHero from "../assets/kitchen1.jpg";
+import kitchenCareHero from "../assets/kitchen3.jpg";
+import kitchenOverlay from "../assets/kitchen6.png"; // Replace with your actual kitchen overlay/PNG image
 
 const stats = [
     { value: "8,200+", label: "Homes Served" },
@@ -124,31 +125,49 @@ const ServiceHomeAssistCare = () => {
 
             {/* ── Hero Section ── */}
             <section className="shac-hero" aria-labelledby="shac-hero-heading">
+
+                {/* Background decorative blobs */}
                 <div className="shac-hero-bg-shapes" aria-hidden="true">
                     <span className="shac-shape shac-shape-1" />
                     <span className="shac-shape shac-shape-2" />
                     <span className="shac-shape shac-shape-3" />
                 </div>
-                <div className="shac-container shac-hero-content">
-                    <span className="shac-eyebrow">Home Assistance Services</span>
-                    <h1 id="shac-hero-heading">
-                        Professional{" "}
-                        <span className="shac-highlight">Kitchen Assistance</span>{" "}
-                        Services at Home
-                    </h1>
-                    <p className="shac-hero-desc">
-                        Hire experienced kitchen helpers for meal preparation, cooking
-                        assistance, and household kitchen support. Let our trained
-                        professionals keep your kitchen running smoothly every day.
-                    </p>
-                    <div className="shac-hero-btns">
-                        <button className="shac-btn-primary" type="button">
-                            Book Kitchen Helper
-                        </button>
-                        <button className="shac-btn-secondary" type="button">
-                            Hire Home Assistant
-                        </button>
+
+                {/* Two-column layout: text left, image right */}
+                <div className="shac-hero-inner">
+
+                    {/* ── Left: Content ── */}
+                    <div className="shac-hero-content">
+                        <span className="shac-eyebrow">Home Assistance Services</span>
+                        <h1 id="shac-hero-heading">
+                            Professional{" "}
+                            <span className="shac-highlight">Kitchen Assistance</span>{" "}
+                            Services at Home in India
+                        </h1>
+                        <p className="shac-hero-desc">
+                            Hire experienced kitchen helpers for meal preparation, cooking
+                            assistance, and household kitchen support. Let our trained
+                            professionals keep your kitchen running smoothly every day.
+                        </p>
+                        <div className="shac-hero-btns">
+                            <button className="shac-btn-primary" type="button">
+                                Book Kitchen Helper
+                            </button>
+                            <button className="shac-btn-secondary" type="button">
+                                Hire Home Assistant
+                            </button>
+                        </div>
                     </div>
+
+                    {/* ── Right: Kitchen PNG ── */}
+                    <div className="shac-hero-visual" aria-hidden="true">
+                        <img
+                            src={kitchenOverlay}
+                            alt="kitchen assistance illustration"
+                            className="shac-hero-kitchen-img"
+                        />
+                    </div>
+
                 </div>
             </section>
 
@@ -199,12 +218,7 @@ const ServiceHomeAssistCare = () => {
                         </ul>
                     </div>
                     <div className="shac-about-visual" aria-hidden="true">
-                        {/* Replace with your actual image:
-                        <img src={kitchenCareHero} alt="Kitchen assistance at home" className="shac-about-img" /> */}
-                        <div className="shac-about-img-placeholder">
-                            <span>🍽️</span>
-                            <p>Kitchen Help at Home</p>
-                        </div>
+                        <img src={kitchenCareHero} alt="Kitchen assistance at home" className="shac-about-img" />
                     </div>
                 </div>
             </section>
@@ -258,10 +272,7 @@ const ServiceHomeAssistCare = () => {
             </section>
 
             {/* ── Testimonials ── */}
-            <section
-                className="shac-testimonials"
-                aria-labelledby="shac-testimonials-heading"
-            >
+            <section className="shac-testimonials" aria-labelledby="shac-testimonials-heading">
                 <div className="shac-container">
                     <span className="shac-section-eyebrow">What Households Say</span>
                     <h2 id="shac-testimonials-heading">Customer Testimonials</h2>
@@ -271,10 +282,7 @@ const ServiceHomeAssistCare = () => {
                     <ul className="shac-testimonials-grid" role="list">
                         {testimonials.map((t) => (
                             <li key={t.name} className="shac-testimonial-card">
-                                <span
-                                    className="shac-testimonial-stars"
-                                    aria-hidden="true"
-                                >
+                                <span className="shac-testimonial-stars" aria-hidden="true">
                                     ⭐⭐⭐⭐⭐
                                 </span>
                                 <p className="shac-testimonial-text">"{t.text}"</p>
@@ -293,8 +301,7 @@ const ServiceHomeAssistCare = () => {
                     </h2>
                     <p>
                         Join 8,200+ households across India who trust our kitchen
-                        assistance services for reliable, hygienic, and affordable home
-                        support.
+                        assistance services for reliable, hygienic, and affordable home support.
                     </p>
                     <div className="shac-cta-btns">
                         <button className="shac-btn-primary" type="button">
@@ -325,10 +332,7 @@ const ServiceHomeAssistCare = () => {
                                     type="button"
                                 >
                                     <span>{faq.question}</span>
-                                    <span
-                                        className="shac-faq-icon"
-                                        aria-hidden="true"
-                                    >
+                                    <span className="shac-faq-icon" aria-hidden="true">
                                         {openFaq === index ? "−" : "+"}
                                     </span>
                                 </button>
