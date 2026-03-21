@@ -548,6 +548,9 @@
         padding: 40px 28px;
         text-align: center;
     }
+    .store-btn {
+        margin-bottom: 7px;
+    }
 
     .app-subtitle {
         margin: 0 auto 20px;

@@ -286,7 +286,7 @@ const ServiceLists = () => {
                                 <div className="sl-proceed-wrap">
                                     <button
                                         className="sl-proceed-btn"
-                                        onClick={() => navigate("/booking")}
+                                        onClick={() => navigate("/dashboard/booking")}
                                         style={{ backgroundColor: currentTheme.title }}
                                     >
                                         Proceed to Booking ({cartItems.length} selected)

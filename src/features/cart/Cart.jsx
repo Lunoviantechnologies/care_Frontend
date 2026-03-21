@@ -15,12 +15,9 @@ const Cart = () => {
 
                 <div key={index} className="card p-3 mb-3">
 
-                    <h5>{item.serviceType} Service</h5>
-
+                    <h5>{item.serviceName} Service</h5>
                     <p>Date: {item.bookingDetails.date}</p>
-
                     <p>Time: {item.bookingDetails.time}</p>
-
                     <p>₹{item.price}</p>
 
                 </div>
@@ -29,7 +26,7 @@ const Cart = () => {
 
             <button
                 className="btn btn-primary"
-                onClick={() => navigate("/checkout")}
+                onClick={() => navigate("/dashboard/checkout")}
             >
                 Proceed To Checkout
             </button>

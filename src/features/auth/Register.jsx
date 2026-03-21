@@ -11,6 +11,7 @@ import "swiper/css";
 
 import { useNavigate } from "react-router-dom";
 import { registerCoustomer } from "../../api/allApis";
+import { toast } from "react-toastify";
 
 export default function Register() {
 
@@ -18,7 +19,7 @@ export default function Register() {
 
     const [form, setForm] = useState({
         name: "",
-        mobile: "",
+        phone: "",
         email: "",
         password: "",
         address: "",
@@ -41,10 +42,12 @@ export default function Register() {
 
         try{
             const res = await registerCoustomer(form);
-            console.log("register response: ", res.data);
+            console.log("register response: ", res);
 
+            toast.success(res.statusText);
             navigate("/login");
         } catch (err) {
+            toast.error(res.statusText);
             console.log("register error: ", err);
         };
 
@@ -75,17 +78,17 @@ export default function Register() {
 
                         <input
                             type="text"
-                            name="mobile"
+                            name="phone"
                             placeholder="Mobile Number"
                             className="register-input"
                             maxLength={10}
-                            value={form.mobile}
+                            value={form.phone}
                             onChange={(e) => {
                                 const value = e.target.value;
 
                                 // allow only numbers
                                 if (/^\d*$/.test(value)) {
-                                    setForm({ ...form, mobile: value });
+                                    setForm({ ...form, phone: value });
                                 }
                             }}
                         />

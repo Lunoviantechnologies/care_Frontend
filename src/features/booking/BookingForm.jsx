@@ -64,7 +64,7 @@ const BookingForm = () => {
             );
         });
 
-        navigate("/checkout");
+        navigate("/dashboard/checkout");
     };
 
     return (

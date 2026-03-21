@@ -11,7 +11,11 @@ import "swiper/css";
 
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginSuccess } from "./authSlice";
+import { customerLogin } from "../../api/allApis";
+import { toast } from "react-toastify";
 
 export default function Login() {
 
@@ -19,7 +23,19 @@ export default function Login() {
     const [loginType, setLoginType] = useState("password");
     const [mobile, setMobile] = useState("");
     const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+    const [auth, setAuth] = useState({
+        "phone": "",
+        "password": ""
+    });
 
+    const { accessToken } = useSelector((state) => state.auth);
+
+    // 🔒 Protect route
+    if (accessToken) {
+        return <Navigate to="/dashboard" />;
+    };
+
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const slides = [
@@ -65,8 +81,30 @@ export default function Login() {
         setOtp(newOtp);
     };
 
-    const handlePassLogin = () => {
-        navigate("/");
+    const handlePassLogin = async () => {
+        // console.log("login data: ", auth);
+
+        try {
+            const res = await customerLogin(auth);
+            console.log("login response : ", res);
+
+            const loginData = res.data.data;
+
+            dispatch(loginSuccess(loginData));
+
+            // ✅ Role-based navigation
+            if (loginData.role === "customer") {
+                navigate("/dashboard");
+                toast.success("Login successfull");
+            } else {
+                navigate("/");
+            }
+
+        } catch (err) {
+            console.error("login error: ", err);
+            const message = err?.response?.data?.detail || err?.response?.data?.message || "Invalid credentials";
+            toast.error(message);
+        }
     };
 
     return (
@@ -114,28 +152,43 @@ export default function Login() {
                     {loginType === "password" ? (
 
                         <>
-                            <input type="text" placeholder="Email or Mobile Number" className="login-input" />
+                            <form onSubmit={(e) => {
+                                e.preventDefault();
+                                handlePassLogin();
+                            }}>
 
-                            <div className="password-box">
                                 <input
-                                    type={showPassword ? "text" : "password"}
-                                    placeholder="Password"
+                                    type="text"
+                                    placeholder="Enter Mobile Number"
                                     className="login-input"
+                                    onChange={(e) => setAuth({ ...auth, phone: e.target.value })}
                                 />
 
-                                <span
-                                    className="eye"
-                                    onClick={() => setShowPassword(!showPassword)}
-                                >
-                                    {showPassword ? <FaEyeSlash /> : <FaEye />}
-                                </span>
-                            </div>
+                                <div className="password-box">
+                                    <input
+                                        type={showPassword ? "text" : "password"}
+                                        placeholder="Password"
+                                        className="login-input"
+                                        onChange={(e) => setAuth({ ...auth, password: e.target.value })}
+                                    />
 
-                            <p className="forgot">
-                                Forgot Password?
-                            </p>
+                                    <span
+                                        className="eye"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                    >
+                                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                    </span>
+                                </div>
 
-                            <button className="login-btn" onClick={handlePassLogin} >Login</button>
+                                <p className="forgot" onClick={() => navigate("/forget_password")}>
+                                    Forgot Password?
+                                </p>
+
+                                <button type="submit" className="login-btn">
+                                    Login
+                                </button>
+
+                            </form>
 
                             <div className="or">OR</div>
 

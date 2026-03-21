@@ -17,48 +17,73 @@ import ServiceElderCare from "../pages/ServiceElderCare";
 import ServicePregnancyCare from "../pages/ServicePregnancyCare";
 import ServiceHomeAssistCare from "../pages/ServiceHomeAssistCare";
 import LiveMap from "../features/tracking/LiveMap";
+import ForgotPassword from "../features/auth/ForgotPassword";
+import ProtectedRoute from "./ProtectedRoute";
+import DashboardLayout from "../pages/DashboardLayout";
+import Dashboard from "../pages/Dashboard";
+import PublicRoute from "./PublicRoute";
 
 const AppRoutes = createBrowserRouter([
     {
         path: "/",
         element: <App />,
         children: [
-            { index: true, element: <Home /> },
-            { path: "login", element: <Login /> },
-            { path: "register", element: <Register /> },
+            {
+                index: true,
+                element: (
+                    <PublicRoute>
+                        <Home />
+                    </PublicRoute>
+                ),
+            },
+            {
+                path: "login",
+                element: (
+                    <PublicRoute>
+                        <Login />
+                    </PublicRoute>
+                ),
+            },
+            {
+                path: "register",
+                element: (
+                    <PublicRoute>
+                        <Register />
+                    </PublicRoute>
+                ),
+            },
+
+            { path: "forget_password", element: <ForgotPassword /> },
             { path: "about_us", element: <AboutUs /> },
+            { path: "contact_us", element: <ContactUs /> },
+
             {
                 path: "services",
                 children: [
-                    {
-                        path: "baby_care",
-                        element: <ServiceBabyCare />
-                    },
-                    {
-                        path: "pet_care",
-                        element: <ServicePetCare />
-                    },
-                    {
-                        path: "elder_care",
-                        element: <ServiceElderCare />
-                    },
-                    {
-                        path: "pregnancy_care",
-                        element: <ServicePregnancyCare />
-                    },
-                    {
-                        path: "home_assistance_care",
-                        element: <ServiceHomeAssistCare />
-                    },
-                ]
+                    { path: "baby_care", element: <ServiceBabyCare /> },
+                    { path: "pet_care", element: <ServicePetCare /> },
+                    { path: "elder_care", element: <ServiceElderCare /> },
+                    { path: "pregnancy_care", element: <ServicePregnancyCare /> },
+                    { path: "home_assistance_care", element: <ServiceHomeAssistCare /> },
+                ],
             },
-            { path: "contact_us", element: <ContactUs /> },
-            { path: "services/:type", element: <ServiceLists /> },
+        ],
+    },
+    {
+        path: "/dashboard",
+        element: (
+            <ProtectedRoute>
+                <DashboardLayout />
+            </ProtectedRoute>
+        ),
+        children: [
+            { path: "", element: <Dashboard /> },
             { path: "booking", element: <BookingForm /> },
             { path: "cart", element: <Cart /> },
             { path: "checkout", element: <CheckoutPage /> },
             { path: "payment", element: <PaymentPage /> },
             { path: "live_tracking", element: <LiveMap /> },
+            { path: "services/:type", element: <ServiceLists /> },
         ]
     }
 ]);

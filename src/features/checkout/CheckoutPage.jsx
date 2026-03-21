@@ -23,7 +23,7 @@ const CheckoutPage = () => {
 
   const handleCOD = () => {
     alert("Your booking is confirmed. Caregiver will arrive at scheduled time.");
-    navigate("/live_tracking");
+    navigate("/dashboard/live_tracking");
   };
 
   return (
@@ -53,7 +53,7 @@ const CheckoutPage = () => {
             {/* Pay Online */}
             <div
               className="card payment-card p-4 border-0 mb-3"
-              onClick={() => navigate("/payment")}
+              onClick={() => navigate("/dashboard/payment")}
               style={{ cursor: "pointer" }}
             >
               <div className="d-flex align-items-center">
