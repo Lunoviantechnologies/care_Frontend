@@ -2,17 +2,17 @@
 
 /* ── Variables (mirrors home.css) ── */
 :root {
-    --db-cream: #FDF6EC;
-    --db-warm-100: #F9EDD8;
-    --db-warm-200: #F0DEC0;
-    --db-caramel: #C8944A;
-    --db-caramel-dark: #A87438;
-    --db-charcoal: #2E2A24;
-    --db-muted: #8A7F72;
-    --db-surface: rgba(255, 250, 242, 0.82);
-    --db-border: rgba(200, 148, 74, 0.18);
-    --db-shadow: 0 8px 32px rgba(140, 90, 30, 0.10);
-    --db-shadow-hover: 0 20px 50px rgba(140, 90, 30, 0.18);
+    --db-cream: #F0F4FF;
+    --db-warm-100: #E4EAFF;
+    --db-warm-200: #C9D5FF;
+    --db-caramel: #4A6CF7;
+    --db-caramel-dark: #3451D1;
+    --db-charcoal: #1A1F3C;
+    --db-muted: #6B7280;
+    --db-surface: rgba(240, 244, 255, 0.85);
+    --db-border: rgba(74, 108, 247, 0.18);
+    --db-shadow: 0 8px 32px rgba(74, 108, 247, 0.10);
+    --db-shadow-hover: 0 20px 50px rgba(74, 108, 247, 0.18);
     --db-radius: 20px;
     --db-font-display: 'Playfair Display', serif;
     --db-font-body: 'DM Sans', sans-serif;
@@ -29,11 +29,14 @@
     overflow-x: hidden;
 }
 
-/* ── Background decorations ── */
+/* ── Background decorations — hero area only (absolute, not fixed) ── */
 .db__bg-dots {
-    position: fixed;
-    inset: 0;
-    background-image: radial-gradient(circle, #d4b88a 1px, transparent 1px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 600px;
+    background-image: radial-gradient(circle, #a8baff 1px, transparent 1px);
     background-size: 30px 30px;
     opacity: 0.16;
     pointer-events: none;
@@ -41,7 +44,7 @@
 }
 
 .db__bg-ring {
-    position: fixed;
+    position: absolute;
     border-radius: 50%;
     pointer-events: none;
     z-index: 0;
@@ -52,15 +55,15 @@
     height: 480px;
     top: -160px;
     right: -160px;
-    border: 64px solid rgba(200, 148, 74, 0.07);
+    border: 64px solid rgba(74, 108, 247, 0.07);
 }
 
 .db__bg-ring--2 {
     width: 320px;
     height: 320px;
-    bottom: -100px;
+    top: 200px;
     left: -100px;
-    border: 48px solid rgba(200, 148, 74, 0.06);
+    border: 48px solid rgba(74, 108, 247, 0.06);
 }
 
 /* ── Inner layout ── */
@@ -96,8 +99,8 @@
     letter-spacing: 2.5px;
     text-transform: uppercase;
     color: var(--db-caramel);
-    background: rgba(200, 148, 74, 0.10);
-    border: 1px solid rgba(200, 148, 74, 0.25);
+    background: rgba(74, 108, 247, 0.10);
+    border: 1px solid rgba(74, 108, 247, 0.25);
     display: inline-block;
     padding: 4px 14px;
     border-radius: 50px;
@@ -207,13 +210,13 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-    background: var(--svc-bg, #fff8ee);
-    border: 1px solid rgba(200, 148, 74, 0.14);
+    background: var(--svc-bg, #eef1ff);
+    border: 1px solid rgba(74, 108, 247, 0.14);
     border-radius: var(--db-radius);
     padding: 26px 22px 22px;
     cursor: pointer;
     text-align: left;
-    box-shadow: 0 6px 24px rgba(140, 90, 30, 0.07);
+    box-shadow: 0 6px 24px rgba(74, 108, 247, 0.07);
     transition: transform var(--db-transition), box-shadow var(--db-transition);
     animation: db-fade-up 0.45s ease both;
     outline: none;
@@ -232,7 +235,7 @@
 
 .db__svc-card:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 24px 56px rgba(140, 90, 30, 0.17);
+    box-shadow: 0 24px 56px rgba(74, 108, 247, 0.17);
 }
 
 .db__svc-card:hover::before {
@@ -328,17 +331,16 @@
     overflow: hidden;
     cursor: pointer;
     height: 200px;
-    /* taller = more impact */
     display: block;
-    box-shadow: 0 8px 28px rgba(140, 90, 30, 0.13);
+    box-shadow: 0 8px 28px rgba(74, 108, 247, 0.13);
     transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1),
         box-shadow 0.32s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(200, 148, 74, 0.12);
+    border: 1px solid rgba(74, 108, 247, 0.12);
 }
 
 .db__svc-slide:hover {
     transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 20px 48px rgba(140, 90, 30, 0.22);
+    box-shadow: 0 20px 48px rgba(74, 108, 247, 0.22);
 }
 
 /* ── Image ── */
@@ -368,7 +370,7 @@
     inset: 0;
     background: linear-gradient(180deg,
             transparent 35%,
-            rgba(30, 20, 8, 0.72) 100%);
+            rgba(20, 24, 60, 0.72) 100%);
     transition: opacity 0.3s ease;
 }
 
@@ -396,15 +398,13 @@
     color: #fff;
     letter-spacing: 0.4px;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-
-    /* pill on hover */
     background: transparent;
     padding: 3px 0;
     transition: background 0.25s ease, padding 0.25s ease;
 }
 
 .db__svc-slide:hover .db__svc-slide-label {
-    background: var(--slide-accent, #C8944A);
+    background: var(--slide-accent, #4A6CF7);
     padding: 3px 10px;
     border-radius: 50px;
 }
@@ -423,21 +423,20 @@
 /* ─── App Download Section ─── */
 .db-app-download-section {
     position: relative;
-    background: linear-gradient(135deg, #3b2f1e 0%, #5a3f22 50%, #3d2c18 100%);
+    background: linear-gradient(135deg, #1a1f3c 0%, #2c3470 50%, #1e2450 100%);
     padding: 30px 50px;
     border-radius: 24px;
     margin-top: 70px;
     overflow: hidden;
 }
 
-/* decorative ring inside CTA */
 .db-app-download-section::before {
     content: "";
     position: absolute;
     width: 380px;
     height: 380px;
     border-radius: 50%;
-    border: 60px solid rgba(200, 148, 74, 0.12);
+    border: 60px solid rgba(74, 108, 247, 0.15);
     top: -140px;
     right: -100px;
     pointer-events: none;
@@ -449,7 +448,7 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(200, 148, 74, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(74, 108, 247, 0.18) 0%, transparent 70%);
     bottom: -60px;
     left: 40px;
     pointer-events: none;
@@ -459,6 +458,7 @@
     font-size: clamp(1.6rem, 3vw, 2.4rem);
     color: #fff;
     letter-spacing: 0.3px;
+    font-family: var(--db-font-display);
 }
 
 .db-app-subtitle {
@@ -467,6 +467,17 @@
     max-width: 400px;
     line-height: 1.7;
     margin-top: 10px;
+}
+
+.db-section-eyebrow {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 50px;
+    margin-bottom: 12px;
 }
 
 .db-store-btn {
@@ -492,16 +503,16 @@
 }
 
 .db .accordion {
-    box-shadow: 0 8px 30px rgba(140, 90, 30, 0.1);
+    box-shadow: 0 8px 30px rgba(74, 108, 247, 0.08);
     border-radius: 16px !important;
     overflow: hidden;
-    border: 1px solid rgba(200, 148, 74, 0.15) !important;
+    border: 1px solid rgba(74, 108, 247, 0.15) !important;
 }
 
 .accordion-item {
     border: none !important;
-    border-bottom: 1px solid rgba(200, 148, 74, 0.1) !important;
-    background: rgba(255, 250, 242, 0.85) !important;
+    border-bottom: 1px solid rgba(74, 108, 247, 0.10) !important;
+    background: rgba(240, 244, 255, 0.85) !important;
 }
 
 .accordion-item:last-child {
@@ -511,7 +522,7 @@
 .accordion-button {
     font-weight: 600;
     font-size: 0.95rem;
-    color: var(--charcoal) !important;
+    color: var(--db-charcoal) !important;
     background: transparent !important;
     box-shadow: none !important;
 }
@@ -521,7 +532,7 @@
 }
 
 .accordion-button:not(.collapsed) {
-    color: var(--caramel) !important;
+    color: var(--db-caramel) !important;
 }
 
 .accordion-button::after {
@@ -537,7 +548,7 @@
 }
 
 .accordion-body {
-    color: var(--muted);
+    color: var(--db-muted);
     line-height: 1.7;
     font-size: 0.9rem;
     background: transparent;
@@ -645,7 +656,7 @@
         grid-template-columns: 1fr;
     }
 
-     .db__svc-slide {
+    .db__svc-slide {
         height: 145px;
     }
 }

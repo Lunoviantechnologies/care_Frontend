@@ -82,7 +82,7 @@ const Home = () => {
                                 <div
                                     className="service-card"
                                     style={{ backgroundImage: `url(${baby1})` }}
-                                    onClick={() => handleClickService("baby")}
+                                    onClick={() => handleClickService("baby_care")}
                                 >
                                     <span>Baby Care</span>
                                 </div>
@@ -90,7 +90,7 @@ const Home = () => {
                                 <div
                                     className="service-card"
                                     style={{ backgroundImage: `url(${pet1})` }}
-                                    onClick={() => handleClickService("pet")}
+                                    onClick={() => handleClickService("pet_care")}
                                 >
                                     <span>Pet Care</span>
                                 </div>
@@ -98,7 +98,7 @@ const Home = () => {
                                 <div
                                     className="service-card"
                                     style={{ backgroundImage: `url(${elder1})` }}
-                                    onClick={() => handleClickService("elder")}
+                                    onClick={() => handleClickService("elder_care")}
                                 >
                                     <span>Elder Care</span>
                                 </div>
@@ -106,7 +106,7 @@ const Home = () => {
                                 <div
                                     className="service-card"
                                     style={{ backgroundImage: `url(${pregnant1})` }}
-                                    onClick={() => handleClickService("pregnancy")}
+                                    onClick={() => handleClickService("pregnancy_care")}
                                 >
                                     <span>Pregnancy Care</span>
                                 </div>
@@ -114,7 +114,7 @@ const Home = () => {
                                 <div
                                     className="service-card"
                                     style={{ backgroundImage: `url(${kitchen1})` }}
-                                    onClick={() => handleClickService("kitchen")}
+                                    onClick={() => handleClickService("kitchen_care")}
                                 >
                                     <span>Home Assistance</span>
                                 </div>

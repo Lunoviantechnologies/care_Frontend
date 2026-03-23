@@ -165,6 +165,12 @@
     background: #157347;
 }
 
+.login-error-text {
+  color: red;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
 .otp-btn {
     width: 100%;
     padding: 12px;

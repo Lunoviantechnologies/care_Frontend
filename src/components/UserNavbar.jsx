@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { FaBell, FaShoppingCart, FaUserCircle, FaBars, FaTimes, FaChevronDown, FaTachometerAlt, FaQuestionCircle, FaUser, FaCog, FaGift, FaSignOutAlt,} from "react-icons/fa";
+import { FaBell, FaShoppingCart, FaUserCircle, FaBars, FaTimes, FaChevronDown, FaTachometerAlt, FaQuestionCircle, FaUser, FaCog, FaGift, FaSignOutAlt, FaCalendarCheck } from "react-icons/fa";
+import { IoMdWallet } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/auth/authSlice";
 import careLogo from "../assets/careLogo.png";
@@ -68,10 +69,10 @@ const UserNavbar = () => {
                         <Link to="/dashboard" className={isActive("/dashboard")}>
                             Dashboard
                         </Link>
-                        <Link to="/dashboard/my_bookings" className={isActive("/help")}>
+                        <Link to="/dashboard/booking_history" className={isActive("/dashboard/booking_history")}>
                             My Bookings
                         </Link>
-                        <Link to="/dashboard/help" className={isActive("/help")}>
+                        <Link to="/dashboard/help" className={isActive("/dashboard/help")}>
                             Help
                         </Link>
                     </nav>
@@ -91,6 +92,14 @@ const UserNavbar = () => {
                                 </span>
                             )}
                         </button>
+                        
+                        {/* wallet */}
+                        <Link
+                            to="/dashboard/wallet"
+                            className="uc-nav__icon-btn"
+                        >
+                            <IoMdWallet />
+                        </Link>
 
                         {/* 🛒 Cart */}
                         <Link
@@ -132,7 +141,7 @@ const UserNavbar = () => {
                                     aria-label="Profile menu"
                                 >
                                     <Link
-                                        to="/profile"
+                                        to="/dashboard/profile"
                                         className="uc-nav__dropdown-item"
                                         role="menuitem"
                                         onClick={() => setProfileOpen(false)}
@@ -140,7 +149,7 @@ const UserNavbar = () => {
                                         <FaUser aria-hidden="true" /> Profile
                                     </Link>
                                     <Link
-                                        to="/settings"
+                                        to="/dashboard/settings"
                                         className="uc-nav__dropdown-item"
                                         role="menuitem"
                                         onClick={() => setProfileOpen(false)}
@@ -148,7 +157,7 @@ const UserNavbar = () => {
                                         <FaCog aria-hidden="true" /> Settings
                                     </Link>
                                     <Link
-                                        to="/rewards"
+                                        to="/dashboard/rewards"
                                         className="uc-nav__dropdown-item"
                                         role="menuitem"
                                         onClick={() => setProfileOpen(false)}
@@ -198,14 +207,28 @@ const UserNavbar = () => {
                         <FaTachometerAlt aria-hidden="true" /> Dashboard
                     </Link>
                     <Link
-                        to="/help"
+                        to="/dashboard/booking_history"
+                        className="uc-nav__mobile-link"
+                        onClick={() => setMenuOpen(false)}
+                    >
+                        <FaCalendarCheck aria-hidden="true" /> My Bookings
+                    </Link>
+                    <Link
+                        to="/dashboard/help"
                         className="uc-nav__mobile-link"
                         onClick={() => setMenuOpen(false)}
                     >
                         <FaQuestionCircle aria-hidden="true" /> Help
                     </Link>
                     <Link
-                        to="/cart"
+                        to="/dashboard/wallet"
+                        className="uc-nav__mobile-link"
+                        onClick={() => setMenuOpen(false)}
+                    >
+                        <IoMdWallet aria-hidden="true" /> Wallet
+                    </Link>
+                    <Link
+                        to="/dashboard/cart"
                         className="uc-nav__mobile-link"
                         onClick={() => setMenuOpen(false)}
                     >
@@ -215,21 +238,21 @@ const UserNavbar = () => {
                     <hr className="uc-nav__mobile-hr" />
 
                     <Link
-                        to="/profile"
+                        to="/dashboard/profile"
                         className="uc-nav__mobile-link"
                         onClick={() => setMenuOpen(false)}
                     >
                         <FaUser aria-hidden="true" /> Profile
                     </Link>
                     <Link
-                        to="/settings"
+                        to="/dashboard/settings"
                         className="uc-nav__mobile-link"
                         onClick={() => setMenuOpen(false)}
                     >
                         <FaCog aria-hidden="true" /> Settings
                     </Link>
                     <Link
-                        to="/rewards"
+                        to="/dashboard/rewards"
                         className="uc-nav__mobile-link"
                         onClick={() => setMenuOpen(false)}
                     >

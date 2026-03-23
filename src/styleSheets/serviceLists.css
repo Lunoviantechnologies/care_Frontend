@@ -7,7 +7,6 @@
     min-height: 100vh;
     padding: 40px 0 60px;
     overflow-x: hidden;
-    /* ← fixes horizontal scroll */
 }
 
 .sl-container {
@@ -29,8 +28,7 @@
 /* ── Two-column layout ────────────────────────────────────── */
 .sl-layout {
     display: grid;
-    grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
-    /* ← minmax(0) prevents overflow */
+    grid-template-columns: minmax(0, 400px) minmax(0, 1fr);
     gap: 28px;
     align-items: start;
 }
@@ -141,12 +139,13 @@
     cursor: pointer;
     font-size: 0.9rem;
     border: 2px solid transparent;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.18s;
     user-select: none;
 }
 
 .sl-checkbox-item:hover {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    transform: translateX(3px);
 }
 
 .sl-checkbox-selected {
@@ -199,62 +198,117 @@
 }
 
 /* ══════════════════════════════════════════════════════════
-   RIGHT — Slider + Policy cards
+   RIGHT — Dual stacked image sliders
 ══════════════════════════════════════════════════════════ */
 .sl-right {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
+    min-width: 0;
 }
 
-/* ── Image slider ─────────────────────────────────────────── */
-.sl-slider {
-    border-radius: 14px;
-    overflow: hidden;
-    width: 100%;
-    /* ← explicit width so Swiper has a reference */
+/* ── Slider wrapper ───────────────────────────────────────── */
+.sl-slider-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     min-width: 0;
-    /* ← prevents flex/grid blowout */
+    width: 100%;
+}
+
+.sl-slider-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.75;
 }
 
 /* Force Swiper container to respect parent width */
-.sl-slider .swiper {
+.sl-slider-wrap .swiper {
     width: 100%;
     min-width: 0;
 }
 
+/* ── Slide image wrapper ──────────────────────────────────── */
 .sl-slide-img-wrap {
-    height: 180px;
-    border-radius: 12px;
+    position: relative;
+    border-radius: 14px;
     overflow: hidden;
     width: 100%;
+}
+
+.sl-slide-img-wrap--top {
+    height: 200px;
+}
+
+.sl-slide-img-wrap--bottom {
+    height: 200px;
 }
 
 .sl-slide-img-wrap img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 12px;
-    transition: transform 0.35s ease;
+    border-radius: 14px;
+    transition: transform 0.45s ease, filter 0.35s ease;
     display: block;
+    filter: brightness(0.95) saturate(1.05);
 }
 
 .sl-slide-img-wrap:hover img {
-    transform: scale(1.06);
+    transform: scale(1.07);
+    filter: brightness(1.05) saturate(1.12);
 }
 
-/* ── Policy grid ──────────────────────────────────────────── */
+/* Shimmer overlay on slide */
+.sl-slide-shimmer {
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    background: linear-gradient(120deg,
+            transparent 30%,
+            rgba(255, 255, 255, 0.12) 50%,
+            transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.sl-slide-img-wrap:hover .sl-slide-shimmer {
+    opacity: 1;
+}
+
+/* ══════════════════════════════════════════════════════════
+   BOTTOM — Full-width policy section
+══════════════════════════════════════════════════════════ */
+.sl-policy-section {
+    margin-top: 36px;
+}
+
+.sl-policy-section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    margin-bottom: 16px;
+}
+
 .sl-policy-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 18px;
 }
 
 .sl-policy-card {
-    border-radius: 14px;
-    padding: 18px 20px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-    height: 100%;
+    border-radius: 16px;
+    padding: 22px 24px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.09);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.sl-policy-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.13);
 }
 
 .sl-not-included {
@@ -266,9 +320,9 @@
 }
 
 .sl-policy-heading {
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
 }
 
 .sl-policy-heading--danger {
@@ -283,19 +337,8 @@
     list-style: disc;
     padding-left: 18px;
     margin: 0;
-    max-height: 220px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.12) transparent;
-}
-
-.sl-policy-list::-webkit-scrollbar {
-    width: 4px;
-}
-
-.sl-policy-list::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.12);
-    border-radius: 4px;
+    columns: 2;
+    column-gap: 20px;
 }
 
 .sl-policy-list li {
@@ -303,6 +346,7 @@
     margin-bottom: 7px;
     line-height: 1.45;
     color: #4a4a4a;
+    break-inside: avoid;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -336,18 +380,25 @@
         gap: 20px;
     }
 
-    /* On mobile, show right panel (images + policy) first */
     .sl-right {
         order: -1;
     }
 
-    .sl-slide-img-wrap {
+    .sl-slide-img-wrap--top {
         height: 150px;
+    }
+
+    .sl-slide-img-wrap--bottom {
+        height: 130px;
     }
 
     .sl-policy-grid {
         grid-template-columns: 1fr 1fr;
         gap: 12px;
+    }
+
+    .sl-policy-list {
+        columns: 1;
     }
 
     .sl-checkbox-list {
@@ -371,7 +422,7 @@
     }
 
     .sl-policy-card {
-        padding: 14px 16px;
+        padding: 16px 18px;
     }
 
     .sl-proceed-wrap {
@@ -391,8 +442,12 @@
         flex: 1 1 100%;
     }
 
-    .sl-slide-img-wrap {
+    .sl-slide-img-wrap--top {
         height: 130px;
+    }
+
+    .sl-slide-img-wrap--bottom {
+        height: 110px;
     }
 
     .sl-checkbox-list {
@@ -416,8 +471,12 @@
         border-radius: 14px;
     }
 
-    .sl-slide-img-wrap {
+    .sl-slide-img-wrap--top {
         height: 110px;
+    }
+
+    .sl-slide-img-wrap--bottom {
+        height: 95px;
     }
 
     .sl-checkbox-item {

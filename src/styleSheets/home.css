@@ -2,16 +2,16 @@
 
 /* ─── CSS Variables ─── */
 :root {
-    --cream: #FDF6EC;
-    --warm-100: #F9EDD8;
-    --warm-200: #F0DEC0;
-    --warm-300: #E2C9A0;
-    --caramel: #C8944A;
-    --caramel-dark: #A87438;
-    --charcoal: #2E2A24;
-    --muted: #8A7F72;
-    --card-shadow: 0 16px 40px rgba(140, 90, 30, 0.13);
-    --card-shadow-hover: 0 28px 60px rgba(140, 90, 30, 0.22);
+    --cream: #F0F4FF;
+    --warm-100: #E4EAFF;
+    --warm-200: #C9D5FF;
+    --warm-300: #A8BAFF;
+    --caramel: #4A6CF7;
+    --caramel-dark: #3451D1;
+    --charcoal: #1A1F3C;
+    --muted: #6B7280;
+    --card-shadow: 0 16px 40px rgba(74, 108, 247, 0.10);
+    --card-shadow-hover: 0 28px 60px rgba(74, 108, 247, 0.18);
 }
 
 /* ─── Base ─── */
@@ -27,48 +27,51 @@
     min-height: 100vh;
 }
 
-/* Layered SVG wave at top */
+/* ─── Hero-only background patterns ─── */
+/* Wave and dot patterns scoped only to the hero area using .row.align-items-center as target */
+/* We use a wrapper approach: apply pseudo-elements on .home-background but position them absolute,
+   sized to cover only the hero height (roughly top 600px) */
+
 .home-background::before {
     content: "";
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 520px;
+    height: 600px;
     background:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23f0dfc2' fill-opacity='0.45' d='M0,128L60,138.7C120,149,240,171,360,160C480,149,600,107,720,96C840,85,960,107,1080,133.3C1200,160,1320,192,1380,208L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z'/%3E%3C/svg%3E") top center / cover no-repeat,
-        radial-gradient(ellipse 80% 60% at 80% 0%, #f5e6cb 0%, transparent 70%),
-        radial-gradient(ellipse 50% 40% at 0% 30%, #faebd6 0%, transparent 60%);
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23c9d5ff' fill-opacity='0.45' d='M0,128L60,138.7C120,149,240,171,360,160C480,149,600,107,720,96C840,85,960,107,1080,133.3C1200,160,1320,192,1380,208L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z'/%3E%3C/svg%3E") top center / cover no-repeat,
+        radial-gradient(ellipse 80% 60% at 80% 0%, #d6e0ff 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 0% 30%, #e4eaff 0%, transparent 60%);
     z-index: 0;
     pointer-events: none;
 }
 
-/* Dot grid texture */
+/* Dot grid texture — hero section only */
 .home-background::after {
     content: "";
-    position: fixed;
-    inset: 0;
-    background-image: radial-gradient(circle, #d4b88a 1px, transparent 1px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 600px;
+    background-image: radial-gradient(circle, #a8baff 1px, transparent 1px);
     background-size: 30px 30px;
     opacity: 0.18;
     z-index: 0;
     pointer-events: none;
 }
 
-/* .row.align-items-center {
-    align-items: flex-start !important;
-} */
-
-/* Decorative ring — top right */
+/* Decorative ring — top right, hero only */
 .home-background .container::after {
     content: "";
-    position: fixed;
+    position: absolute;
     top: -120px;
     right: -140px;
     width: 420px;
     height: 420px;
     border-radius: 50%;
-    border: 56px solid rgba(200, 148, 74, 0.08);
+    border: 56px solid rgba(74, 108, 247, 0.08);
     z-index: 0;
     pointer-events: none;
 }
@@ -101,8 +104,8 @@
     letter-spacing: 2.5px;
     text-transform: uppercase;
     color: var(--caramel);
-    background: rgba(200, 148, 74, 0.1);
-    border: 1px solid rgba(200, 148, 74, 0.25);
+    background: rgba(74, 108, 247, 0.1);
+    border: 1px solid rgba(74, 108, 247, 0.25);
     padding: 5px 14px;
     border-radius: 50px;
     margin-bottom: 18px;
@@ -112,12 +115,12 @@
 /* ─── Service Selection Panel ─── */
 
 .service-panel {
-    background: rgba(255, 250, 242, 0.85);
+    background: rgba(240, 244, 255, 0.85);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(200, 148, 74, 0.18);
+    border: 1px solid rgba(74, 108, 247, 0.18);
     border-radius: 20px;
     padding: 28px;
-    box-shadow: 0 8px 40px rgba(140, 90, 30, 0.08);
+    box-shadow: 0 8px 40px rgba(74, 108, 247, 0.08);
 }
 
 .service-panel h5 {
@@ -155,7 +158,7 @@
 
     transition: transform 0.35s ease, box-shadow 0.35s ease;
 
-    box-shadow: 0 12px 30px rgba(120, 80, 30, 0.18);
+    box-shadow: 0 12px 30px rgba(74, 108, 247, 0.18);
 }
 
 /* overlay */
@@ -202,7 +205,7 @@
 
 .service-card:hover {
     transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 18px 45px rgba(120, 80, 30, 0.28);
+    box-shadow: 0 18px 45px rgba(74, 108, 247, 0.28);
 }
 
 /* ─── Image Slider ─── */
@@ -217,7 +220,7 @@
 .slider-item {
     overflow: hidden;
     border-radius: 14px;
-    box-shadow: 0 8px 24px rgba(120, 80, 20, 0.14);
+    box-shadow: 0 8px 24px rgba(74, 108, 247, 0.12);
 }
 
 /* First image in each slide — taller / accent */
@@ -248,12 +251,12 @@
 .home-background .stats-bar {
     display: flex;
     gap: 0;
-    background: rgba(255, 250, 242, 0.7);
+    background: rgba(240, 244, 255, 0.8);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(200, 148, 74, 0.15);
+    border: 1px solid rgba(74, 108, 247, 0.15);
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(140, 90, 30, 0.07);
+    box-shadow: 0 4px 20px rgba(74, 108, 247, 0.07);
 }
 
 .stat-item {
@@ -270,7 +273,7 @@
     top: 20%;
     height: 60%;
     width: 1px;
-    background: rgba(200, 148, 74, 0.2);
+    background: rgba(74, 108, 247, 0.2);
 }
 
 .stat-number {
@@ -286,14 +289,14 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1.2px;
-    color: #6b5d4d !important;
+    color: #6b7280 !important;
     margin-top: 4px;
 }
 
 /* ─── App Download Section ─── */
 .app-download-section {
     position: relative;
-    background: linear-gradient(135deg, #3b2f1e 0%, #5a3f22 50%, #3d2c18 100%);
+    background: linear-gradient(135deg, #1a1f3c 0%, #2c3470 50%, #1e2450 100%);
     padding: 30px 50px;
     border-radius: 24px;
     margin-top: 70px;
@@ -307,7 +310,7 @@
     width: 380px;
     height: 380px;
     border-radius: 50%;
-    border: 60px solid rgba(200, 148, 74, 0.12);
+    border: 60px solid rgba(74, 108, 247, 0.15);
     top: -140px;
     right: -100px;
     pointer-events: none;
@@ -319,7 +322,7 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(200, 148, 74, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(74, 108, 247, 0.18) 0%, transparent 70%);
     bottom: -60px;
     left: 40px;
     pointer-events: none;
@@ -363,19 +366,19 @@
 .home-background .feature-card {
     flex: 1;
     min-width: 200px;
-    background: rgba(255, 250, 242, 0.75);
+    background: rgba(240, 244, 255, 0.85);
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(200, 148, 74, 0.14);
+    border: 1px solid rgba(74, 108, 247, 0.14);
     border-radius: 18px;
     padding: 28px 24px;
     text-align: center;
-    box-shadow: 0 6px 24px rgba(140, 90, 30, 0.07);
+    box-shadow: 0 6px 24px rgba(74, 108, 247, 0.07);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 16px 40px rgba(140, 90, 30, 0.13);
+    box-shadow: 0 16px 40px rgba(74, 108, 247, 0.13);
 }
 
 .feature-icon {
@@ -399,11 +402,11 @@
 
 /* ─── Testimonials ─── */
 .testimonial-card {
-    background: rgba(255, 250, 242, 0.8);
-    border: 1px solid rgba(200, 148, 74, 0.15);
+    background: rgba(240, 244, 255, 0.85);
+    border: 1px solid rgba(74, 108, 247, 0.15);
     border-radius: 18px;
     padding: 28px;
-    box-shadow: 0 6px 24px rgba(140, 90, 30, 0.07);
+    box-shadow: 0 6px 24px rgba(74, 108, 247, 0.07);
     transition: transform 0.3s ease;
 }
 
@@ -421,7 +424,7 @@
 
 .testimonial-text {
     font-size: 0.9rem;
-    color: #5a5040;
+    color: #4a5168;
     line-height: 1.7;
     font-style: italic;
 }
@@ -454,6 +457,28 @@
     line-height: 1.65;
 }
 
+/* ─── Section Eyebrow ─── */
+.section-eyebrow {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--caramel);
+    background: rgba(74, 108, 247, 0.08);
+    border: 1px solid rgba(74, 108, 247, 0.2);
+    padding: 4px 14px;
+    border-radius: 50px;
+    margin-bottom: 12px;
+}
+
+/* ─── Section Heading ─── */
+.section-heading {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: var(--charcoal);
+    margin-bottom: 12px;
+}
+
 /* ─── CTA Button ─── */
 .btn-caramel {
     background: linear-gradient(135deg, var(--caramel), var(--caramel-dark));
@@ -465,7 +490,7 @@
     font-size: 0.9rem;
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
-    box-shadow: 0 6px 20px rgba(168, 116, 56, 0.35);
+    box-shadow: 0 6px 20px rgba(74, 108, 247, 0.30);
     cursor: pointer;
     display: inline-block;
     text-decoration: none;
@@ -473,7 +498,7 @@
 
 .btn-caramel:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 28px rgba(168, 116, 56, 0.45);
+    box-shadow: 0 10px 28px rgba(74, 108, 247, 0.42);
     color: #fff;
 }
 
@@ -487,16 +512,16 @@
 }
 
 .home-background .accordion {
-    box-shadow: 0 8px 30px rgba(140, 90, 30, 0.1);
+    box-shadow: 0 8px 30px rgba(74, 108, 247, 0.08);
     border-radius: 16px !important;
     overflow: hidden;
-    border: 1px solid rgba(200, 148, 74, 0.15) !important;
+    border: 1px solid rgba(74, 108, 247, 0.15) !important;
 }
 
 .accordion-item {
     border: none !important;
-    border-bottom: 1px solid rgba(200, 148, 74, 0.1) !important;
-    background: rgba(255, 250, 242, 0.85) !important;
+    border-bottom: 1px solid rgba(74, 108, 247, 0.1) !important;
+    background: rgba(240, 244, 255, 0.85) !important;
 }
 
 .accordion-item:last-child {
@@ -548,6 +573,7 @@
         padding: 40px 28px;
         text-align: center;
     }
+
     .store-btn {
         margin-bottom: 7px;
     }

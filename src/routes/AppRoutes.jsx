@@ -36,6 +36,11 @@ import AdminSettings from "../admin/features/settings/AdminSettings";
 import AdminReviews from "../admin/features/reviews/AdminReviews";
 import AdminAnalytics from "../admin/features/dashboard/AdminAnalytics";
 import AdminLayout from "../admin/pages/AdminLayout";
+import BookingHistory from "../features/booking/BookingHistory";
+import ProfilePage from "../features/profile/ProfilePage";
+import Help from "../components/Help";
+import Settings from "../components/settings/Settings";
+import Wallet from "../features/wallet/wallet";
 
 const AppRoutes = createBrowserRouter([
     {
@@ -95,11 +100,16 @@ const AppRoutes = createBrowserRouter([
         children: [
             { path: "", element: <Dashboard /> },
             { path: "booking", element: <BookingForm /> },
+            { path: "booking_history", element: <BookingHistory /> },
             { path: "cart", element: <Cart /> },
             { path: "checkout", element: <CheckoutPage /> },
             { path: "payment", element: <PaymentPage /> },
             { path: "live_tracking", element: <LiveMap /> },
             { path: "services/:type", element: <ServiceLists /> },
+            { path: "profile", element: <ProfilePage /> },
+            { path: "help", element: <Help /> },
+            { path: "settings", element: <Settings /> },
+            { path: "wallet", element: <Wallet /> },
         ]
     },
 

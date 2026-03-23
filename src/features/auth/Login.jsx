@@ -27,6 +27,7 @@ export default function Login() {
         "phone": "",
         "password": ""
     });
+    const [error, setError] = useState("");
 
     const { accessToken } = useSelector((state) => state.auth);
 
@@ -154,14 +155,28 @@ export default function Login() {
                         <>
                             <form onSubmit={(e) => {
                                 e.preventDefault();
+                                if (!auth.phone || auth.phone.length !== 10) {
+                                    setError("Mobile number must be 10 digits");
+                                    return;
+                                };
                                 handlePassLogin();
                             }}>
 
+                                {error && <p className="login-error-text">{error}</p>}
+
                                 <input
-                                    type="text"
+                                    type="tel"
                                     placeholder="Enter Mobile Number"
                                     className="login-input"
-                                    onChange={(e) => setAuth({ ...auth, phone: e.target.value })}
+                                    maxLength={10}
+                                    value={auth.phone || ""}
+                                    onChange={(e) => {
+                                        const value = e.target.value.replace(/\D/g, "");
+                                        setAuth({ ...auth, phone: value });
+                                        if (value.length === 10) {
+                                            setError(""); // clear error when valid
+                                        }
+                                    }}
                                 />
 
                                 <div className="password-box">

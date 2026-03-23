@@ -1,6 +1,8 @@
 import babyAssist from "../../assets/baby1.jpg";
+import baby2 from "../../assets/baby2.jpg";
 import babySleep from "../../assets/baby3.webp";
 import babyBurp from "../../assets/baby4.jpg";
+import baby5 from "../../assets/baby5.jpg";
 import babySooth from "../../assets/soothing.webp";
 
 import pet1 from "../../assets/pet1.jpg";
@@ -41,7 +43,7 @@ const ServiceLists = () => {
         baby: {
             pageBg: "#ffe4ec",
             serviceBox: "#fff5f8",
-            policyBg: "#ffdce8",
+            policyBg: "#fbc5d8",
             title: "#e00950",
             checkboxBg: "#f9d7e2",
             checkboxHover: "#f3c0d2",
@@ -91,7 +93,7 @@ const ServiceLists = () => {
     };
 
     const serviceImages = {
-        baby: [babyAssist, babyBurp, babySleep, babySooth],
+        baby: [babyAssist, babyBurp, babySleep, babySooth, baby2, baby5],
         pet: [pet3, pet2, pet1, pet5],
         elder: [elder1, elder2, elder3, elder4],
         kitchen: [kitchen1, kitchen2, kitchen3, kitchen4],
@@ -142,6 +144,10 @@ const ServiceLists = () => {
         }
     };
 
+    const images = serviceImages[type] || [];
+    // Reversed image array for the second slider
+    const reversedImages = [...images].reverse();
+
     return (
         <div
             className="sl-page"
@@ -157,17 +163,15 @@ const ServiceLists = () => {
                     {pageTitle}
                 </h2>
 
+                {/* ══ TOP: Left + Right columns ══ */}
                 <div className="sl-layout">
 
-                    {/* ══════════════════════════════════════
-                        LEFT — Service selection box
-                    ══════════════════════════════════════ */}
+                    {/* ── LEFT — Service selection box ── */}
                     <div className="sl-left">
                         <div
                             className="sl-service-box"
                             style={{ backgroundColor: currentTheme.serviceBox }}
                         >
-                            {/* Header */}
                             <div className="sl-box-header">
                                 <h6 className="sl-box-title">What help do you need?</h6>
                                 <p className="sl-box-subtext">
@@ -175,11 +179,9 @@ const ServiceLists = () => {
                                 </p>
                             </div>
 
-                            {/* Pet type selector — only for pet service */}
+                            {/* Pet type selector */}
                             {type === "pet" && (
                                 <div className="sl-pet-selection">
-
-                                    {/* Pet type dropdown */}
                                     <div className="sl-pet-field">
                                         <label className="sl-field-label">Select Pet Type</label>
                                         <select
@@ -199,7 +201,6 @@ const ServiceLists = () => {
                                         </select>
                                     </div>
 
-                                    {/* Breed dropdown */}
                                     {petType && petType !== "others" && (
                                         <div className="sl-pet-field">
                                             <label className="sl-field-label">Select Breed</label>
@@ -211,15 +212,12 @@ const ServiceLists = () => {
                                             >
                                                 <option value="">Choose Breed</option>
                                                 {petBreeds[petType]?.map((breed, i) => (
-                                                    <option key={i} value={breed}>
-                                                        {breed}
-                                                    </option>
+                                                    <option key={i} value={breed}>{breed}</option>
                                                 ))}
                                             </select>
                                         </div>
                                     )}
 
-                                    {/* Custom pet input */}
                                     {petType === "others" && (
                                         <div className="sl-pet-field">
                                             <label className="sl-field-label">Enter Pet Type</label>
@@ -233,17 +231,16 @@ const ServiceLists = () => {
                                             />
                                         </div>
                                     )}
-
                                 </div>
                             )}
 
                             {/* Checkbox list */}
                             <div className="sl-checkbox-list">
                                 {services[0]?.included.map((service, index) => {
+                                    const uniqueId = `${type}-${index}`;
                                     const isSelected = cartItems.find(
-                                        (item) => item.serviceId === index
+                                        (item) => item.serviceId === uniqueId
                                     );
-
                                     return (
                                         <label
                                             key={index}
@@ -260,11 +257,7 @@ const ServiceLists = () => {
                                                 className="sl-checkbox-input"
                                                 checked={!!isSelected}
                                                 onChange={() =>
-                                                    handleSelect({
-                                                        id: index,
-                                                        name: service,
-                                                        price: 0,
-                                                    })
+                                                    handleSelect({ id: uniqueId, name: service, price: 0 })
                                                 }
                                             />
                                             <span className="sl-service-name">{service}</span>
@@ -281,7 +274,6 @@ const ServiceLists = () => {
                                 })}
                             </div>
 
-                            {/* Proceed button */}
                             {cartItems.length > 0 && (
                                 <div className="sl-proceed-wrap">
                                     <button
@@ -296,18 +288,19 @@ const ServiceLists = () => {
                         </div>
                     </div>
 
-                    {/* ══════════════════════════════════════
-                        RIGHT — Image slider + Policy cards
-                    ══════════════════════════════════════ */}
-                    <div className="sl-right" style={{ minWidth: 0 }}>
+                    {/* ── RIGHT — Two stacked image sliders ── */}
+                    <div className="sl-right">
 
-                        {/* Image slider */}
-                        <div className="sl-slider">
+                        {/* Slider 1 — forward direction */}
+                        <div className="sl-slider-wrap">
+                            <div className="sl-slider-label" style={{ color: currentTheme.title }}>
+                                Our Caregivers in Action
+                            </div>
                             <Swiper
                                 modules={[Autoplay]}
                                 spaceBetween={12}
                                 slidesPerView={2}
-                                autoplay={{ delay: 2000, disableOnInteraction: false }}
+                                autoplay={{ delay: 2000, disableOnInteraction: false, reverseDirection: false }}
                                 loop={true}
                                 style={{ width: "100%" }}
                                 breakpoints={{
@@ -315,53 +308,88 @@ const ServiceLists = () => {
                                     480: { slidesPerView: 2, spaceBetween: 12 },
                                 }}
                             >
-                                {serviceImages[type]?.map((img, index) => (
-                                    <SwiperSlide key={index}>
-                                        <div className="sl-slide-img-wrap">
+                                {images.map((img, index) => (
+                                    <SwiperSlide key={`fwd-${index}`}>
+                                        <div className="sl-slide-img-wrap sl-slide-img-wrap--top">
                                             <img src={img} alt={`${type} service ${index + 1}`} />
+                                            <div className="sl-slide-shimmer" />
                                         </div>
                                     </SwiperSlide>
                                 ))}
                             </Swiper>
                         </div>
 
-                        {/* Policy cards */}
-                        <div className="sl-policy-grid">
-
-                            {/* Not included */}
-                            <div
-                                className="sl-policy-card sl-not-included"
-                                style={{ backgroundColor: currentTheme.policyBg }}
-                            >
-                                <h6 className="sl-policy-heading sl-policy-heading--danger">
-                                    ⚠ Services Not Covered
-                                </h6>
-                                <ul className="sl-policy-list">
-                                    {services[0]?.notIncluded.map((item, i) => (
-                                        <li key={i}>{item}</li>
-                                    ))}
-                                </ul>
+                        {/* Slider 2 — reverse direction */}
+                        <div className="sl-slider-wrap">
+                            <div className="sl-slider-label" style={{ color: currentTheme.title }}>
+                                Moments of Care
                             </div>
-
-                            {/* Responsibilities */}
-                            <div
-                                className="sl-policy-card sl-responsibilities"
-                                style={{ backgroundColor: currentTheme.policyBg }}
+                            <Swiper
+                                modules={[Autoplay]}
+                                spaceBetween={12}
+                                slidesPerView={2}
+                                autoplay={{ delay: 1700, disableOnInteraction: false, reverseDirection: true }}
+                                loop={true}
+                                style={{ width: "100%" }}
+                                breakpoints={{
+                                    0: { slidesPerView: 1, spaceBetween: 10 },
+                                    480: { slidesPerView: 2, spaceBetween: 12 },
+                                }}
                             >
-                                <h6 className="sl-policy-heading sl-policy-heading--info">
-                                    📌 Customer Guidelines
-                                </h6>
-                                <ul className="sl-policy-list">
-                                    {services[0]?.responsibilities.map((item, i) => (
-                                        <li key={i}>{item}</li>
-                                    ))}
-                                </ul>
-                            </div>
-
+                                {reversedImages.map((img, index) => (
+                                    <SwiperSlide key={`rev-${index}`}>
+                                        <div className="sl-slide-img-wrap sl-slide-img-wrap--bottom">
+                                            <img src={img} alt={`${type} service reverse ${index + 1}`} />
+                                            <div className="sl-slide-shimmer" />
+                                        </div>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
                         </div>
 
                     </div>
+                </div>
 
+                {/* ══ BOTTOM: Full-width policy cards ══ */}
+                <div className="sl-policy-section">
+
+                    <div className="sl-policy-section-title" style={{ color: currentTheme.title }}>
+                        Before You Book
+                    </div>
+
+                    <div className="sl-policy-grid">
+
+                        {/* Not included */}
+                        <div
+                            className="sl-policy-card sl-not-included"
+                            style={{ backgroundColor: currentTheme.policyBg }}
+                        >
+                            <h6 className="sl-policy-heading sl-policy-heading--danger">
+                                ⚠ Services Not Covered
+                            </h6>
+                            <ul className="sl-policy-list">
+                                {services[0]?.notIncluded.map((item, i) => (
+                                    <li key={i}>{item}</li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* Responsibilities */}
+                        <div
+                            className="sl-policy-card sl-responsibilities"
+                            style={{ backgroundColor: currentTheme.policyBg }}
+                        >
+                            <h6 className="sl-policy-heading sl-policy-heading--info">
+                                📌 Customer Guidelines
+                            </h6>
+                            <ul className="sl-policy-list">
+                                {services[0]?.responsibilities.map((item, i) => (
+                                    <li key={i}>{item}</li>
+                                ))}
+                            </ul>
+                        </div>
+
+                    </div>
                 </div>
 
             </div>
