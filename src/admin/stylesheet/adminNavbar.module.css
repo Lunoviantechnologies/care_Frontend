@@ -1,0 +1,99 @@
+.navbar {
+  height: 60px;
+  padding: 0 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* THEMES */
+.babyTheme {
+  background-color: #e8b7c8;
+}
+
+.petTheme {
+  background-color: #f4d36b;
+}
+
+.elderTheme {
+  background-color: #c8b9e6;
+}
+
+.kitchenTheme {
+  background-color: #ffa94d;
+}
+
+.pregnancyTheme {
+  background-color: #ff8fa3;
+}
+
+/* LEFT */
+.navLeft {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+}
+
+.menuToggle {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: white;
+  cursor: pointer;
+}
+
+.serviceSwitcher {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+.serviceDropdown {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 180px;
+  background: white;
+  color: black;
+  border-radius: 10px;
+}
+
+/* RIGHT */
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile {
+  position: relative;
+  cursor: pointer;
+}
+
+.profileDropdown {
+  position: absolute;
+  right: 0;
+  top: 35px;
+  width: 150px;
+  background: white;
+  color: black;
+  border-radius: 10px;
+}
+
+/* IMPORTANT: Rename badge */
+.notificationBadge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: red;
+  color: white;
+  font-size: 10px;
+  padding: 3px 6px;
+  border-radius: 50%;
+}

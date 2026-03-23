@@ -1,0 +1,149 @@
+/* Base Layout */
+.dashboard {
+  padding: 20px;
+}
+
+.dashboardTitle {
+  margin-bottom: 25px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-size: 26px;
+}
+
+/* Grid */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* Cards */
+.statCard {
+  padding: 25px;
+  border-radius: 18px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.statCard:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.statCard::after {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  top: -40px;
+  right: -40px;
+}
+
+/* ================= THEMES ================= */
+
+/* Baby */
+.babyDashboard .statCard {
+  background: linear-gradient(135deg, #e8b7c8, #c27ba0);
+}
+
+/* Pet */
+.petDashboard .statCard {
+  background: linear-gradient(135deg, #f4d36b, #d4a017);
+}
+
+/* Elder */
+.elderDashboard .statCard {
+  background: linear-gradient(135deg, #c8b9e6, #8e7cc3);
+}
+
+/* Kitchen */
+.kitchenDashboard .statCard {
+  background: linear-gradient(135deg, #ffa94d, #e67700);
+}
+
+.kitchenDashboard .chartBox,
+.kitchenDashboard .activityBox {
+  border-top: 4px solid #ffa94d;
+}
+
+/* Pregnancy */
+.pregnancyDashboard .statCard {
+  background: linear-gradient(135deg, #ff8fa3, #d6336c);
+}
+
+.pregnancyDashboard .chartBox,
+.pregnancyDashboard .activityBox {
+  border-top: 4px solid #ff8fa3;
+}
+
+/* ================= LOWER SECTION ================= */
+
+.dashboardBottom {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.chartBox,
+.activityBox {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+}
+
+.chartBox:hover,
+.activityBox:hover {
+  transform: translateY(-4px);
+}
+
+.chartBox h3,
+.activityBox h3 {
+  margin-bottom: 15px;
+}
+
+.activityBox ul {
+  list-style: none;
+  padding: 0;
+}
+
+.activityBox li {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+/* Extra Widget */
+.extraWidget {
+  margin-top: 30px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.extraWidget h3 {
+  margin-bottom: 10px;
+}
+
+.extraWidget ul {
+  padding-left: 20px;
+}
+
+.extraWidget li {
+  margin-bottom: 6px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboardBottom {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,133 @@
+/* =============================
+   CONTAINER
+============================= */
+
+.container {
+  padding: 30px;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+/* HEADER */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* CARD */
+
+.tableCard {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  padding: 20px;
+}
+
+/* ITEM */
+
+.item {
+  margin-bottom: 20px;
+}
+
+/* BADGES (single source now) */
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.pending {
+  background: #fef9c3;
+  color: #a16207;
+}
+
+.completed {
+  background: #ede9fe;
+  color: #5b21b6;
+}
+
+/* EMPTY */
+
+.emptyState {
+  text-align: center;
+  padding: 40px;
+  color: #9ca3af;
+}
+
+/* =============================
+   OPTIONAL SHARED UI
+============================= */
+
+.card {
+  background: #f1f5f9;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.primaryBtn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background: #3b82f6;
+  color: white;
+  cursor: pointer;
+}
+
+/* PAGINATION */
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  background: #e5e7eb;
+}
+
+/* MODAL */
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalCard {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  width: 350px;
+}
+
+/* =============================
+   ANIMATION
+============================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

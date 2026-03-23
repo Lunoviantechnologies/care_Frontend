@@ -1,0 +1,22 @@
+.review-positive{
+color:#16a34a;
+font-weight:500;
+}
+
+.review-negative{
+color:#dc2626;
+font-weight:500;
+}
+
+.danger-btn{
+background:#ef4444;
+color:white;
+border:none;
+padding:6px 12px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.danger-btn:hover{
+background:#dc2626;
+}

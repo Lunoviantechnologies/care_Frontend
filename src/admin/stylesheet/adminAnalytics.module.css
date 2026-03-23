@@ -1,0 +1,79 @@
+.container {
+    padding: 30px;
+    min-height: 100vh;
+    background: #f8fafc;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* KPI */
+
+.analyticsContainer {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.analyticsCard {
+    background: white;
+    padding: 18px 24px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    min-width: 160px;
+    flex: 1;
+}
+
+.analyticsCard h4 {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 6px;
+}
+
+.analyticsCard p {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* CHARTS */
+
+.chartsContainer {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.chartCard {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.chartCard h4 {
+    margin-bottom: 10px;
+}
+
+.chartCard p {
+    margin: 6px 0;
+    font-size: 14px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+    .analyticsContainer {
+        flex-direction: column;
+    }
+
+    .chartsContainer {
+        flex-direction: column;
+    }
+}

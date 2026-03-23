@@ -1,5 +1,5 @@
 import React from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/Home";
 import Login from "../features/auth/Login";
@@ -22,6 +22,20 @@ import ProtectedRoute from "./ProtectedRoute";
 import DashboardLayout from "../pages/DashboardLayout";
 import Dashboard from "../pages/Dashboard";
 import PublicRoute from "./PublicRoute";
+import AdminLogin from "../admin/features/adminauth/AdminLogin";
+import AdminProtectedRoute from "./AdminProtectedRoute";
+import AdminSelectService from "../admin/features/services/AdminSelectService";
+import AdminDashboard from "../admin/features/dashboard/AdminDashboard";
+import AdminWorkers from "../admin/features/workers/AdminWorkers";
+import AdminBookings from "../admin/features/bookings/AdminBookings";
+import AdminComplaints from "../admin/features/complaints/AdminComplaints";
+import AdminSafety from "../admin/features/safety/AdminSafety";
+import AdminReports from "../admin/features/reports/AdminReports";
+import AdminProfiles from "../admin/features/profiles/AdminProfiles";
+import AdminSettings from "../admin/features/settings/AdminSettings";
+import AdminReviews from "../admin/features/reviews/AdminReviews";
+import AdminAnalytics from "../admin/features/dashboard/AdminAnalytics";
+import AdminLayout from "../admin/pages/AdminLayout";
 
 const AppRoutes = createBrowserRouter([
     {
@@ -67,6 +81,8 @@ const AppRoutes = createBrowserRouter([
                     { path: "home_assistance_care", element: <ServiceHomeAssistCare /> },
                 ],
             },
+
+            { path: "/admin_login", element: <AdminLogin /> },
         ],
     },
     {
@@ -85,7 +101,31 @@ const AppRoutes = createBrowserRouter([
             { path: "live_tracking", element: <LiveMap /> },
             { path: "services/:type", element: <ServiceLists /> },
         ]
-    }
+    },
+
+    {
+        path: "/admin",
+        element: (
+            <AdminProtectedRoute>
+                <AdminLayout />
+            </AdminProtectedRoute>
+        ),
+        children: [
+            { index: true, element: <Navigate to="admin/baby/dashboard" replace /> },
+            { path: "service", element: <AdminSelectService /> },
+
+            { path: ":serviceType/dashboard", element: <AdminDashboard /> },
+            { path: ":serviceType/workers", element: <AdminWorkers /> },
+            { path: ":serviceType/bookings", element: <AdminBookings /> },
+            { path: ":serviceType/complaints", element: <AdminComplaints /> },
+            { path: ":serviceType/safety", element: <AdminSafety /> },
+            { path: ":serviceType/reports", element: <AdminReports /> },
+            { path: ":serviceType/profile", element: <AdminProfiles /> },
+            { path: ":serviceType/settings", element: <AdminSettings /> },
+            { path: ":serviceType/reviews", element: <AdminReviews /> },
+            { path: ":serviceType/analytics", element: <AdminAnalytics /> },
+        ],
+    },
 ]);
 
 export default AppRoutes;

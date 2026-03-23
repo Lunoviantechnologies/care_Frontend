@@ -1,0 +1,67 @@
+.container {
+    margin-top: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.title {
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+/* Table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+/* Badge */
+.badge {
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: white;
+}
+
+/* Status Colors */
+.confirmed {
+    background: #2ecc71;
+}
+
+.pending {
+    background: #f39c12;
+}
+
+.rejected {
+    background: #e74c3c;
+}
+
+/* Theme per service */
+.baby {
+    border-top: 4px solid #c27ba0;
+}
+
+.pet {
+    border-top: 4px solid #d4a017;
+}
+
+.elder {
+    border-top: 4px solid #8e7cc3;
+}
+
+.kitchen {
+    border-top: 4px solid #ffa94d;
+}
+
+.pregnancy {
+    border-top: 4px solid #ff8fa3;
+}

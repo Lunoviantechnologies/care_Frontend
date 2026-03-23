@@ -1,0 +1,273 @@
+/* =========================
+   MAIN PAGE
+========================= */
+
+.page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #2563eb, #9333ea);
+    background-size: 300% 300%;
+    animation: gradientMove 8s infinite alternate;
+    font-family: Arial, sans-serif;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container {
+    width: 950px;
+    height: 480px;
+    display: flex;
+    border-radius: 18px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================
+   LEFT PANEL (SLIDER)
+========================= */
+
+.servicePanel {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-image 1s ease;
+    animation: zoomImage 8s ease-in-out infinite alternate;
+}
+
+/* FIXED animation name */
+@keyframes zoomImage {
+    0% {
+        background-size: 100%;
+    }
+
+    100% {
+        background-size: 115%;
+    }
+}
+
+/* DARK OVERLAY */
+
+.servicePanel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+/* TEXT CONTENT */
+
+.overlay {
+    position: relative;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    max-width: 360px;
+    animation: fadeText 0.8s ease;
+}
+
+.overlay h2 {
+    font-size: 34px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.overlay p {
+    font-size: 16px;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+/* =========================
+   DOTS
+========================= */
+
+.dots {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transition: 0.3s;
+}
+
+.active {
+    background: white;
+    transform: scale(1.3);
+}
+
+/* =========================
+   RIGHT PANEL
+========================= */
+
+.loginPanel {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+}
+
+/* =========================
+   LOGIN CARD
+========================= */
+
+.loginBox {
+    width: 340px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.logo {
+    font-size: 38px;
+    margin-bottom: 12px;
+}
+
+.loginBox h2 {
+    margin-bottom: 10px;
+}
+
+/* =========================
+   STEP (INPUT + BUTTON)
+========================= */
+
+.step input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.step input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.step button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 18px;
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.step button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.step button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* =========================
+   OTP INPUTS
+========================= */
+
+.otpBox {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.otpBox input {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+/* =========================
+   TEXT / TIMER
+========================= */
+
+.timer {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.resend {
+    margin-top: 10px;
+    color: #4f46e5;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeText {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .servicePanel {
+        height: 200px;
+    }
+
+    .loginPanel {
+        padding: 20px 0;
+    }
+}

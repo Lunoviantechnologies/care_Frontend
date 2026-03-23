@@ -1,0 +1,95 @@
+/* CONTAINER */
+
+.container {
+    padding: 30px;
+    min-height: 100vh;
+    background: #f8fafc;
+}
+
+/* HEADER */
+
+.header {
+    margin-bottom: 25px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* TABLE CARD */
+
+.tableCard {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+/* TABLE */
+
+.tableWrapper {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th {
+    text-align: left;
+    padding: 12px;
+    color: #6b7280;
+}
+
+.table td {
+    padding: 12px;
+    border-top: 1px solid #eee;
+}
+
+/* REVIEW COLORS */
+
+.positive {
+    color: #16a34a;
+    font-weight: 500;
+}
+
+.negative {
+    color: #dc2626;
+    font-weight: 500;
+}
+
+/* BUTTON */
+
+.dangerBtn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    background: #ef4444;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.dangerBtn:hover {
+    background: #dc2626;
+}
+
+/* EMPTY */
+
+.emptyState {
+    text-align: center;
+    padding: 40px;
+    color: #9ca3af;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+    .table th,
+    .table td {
+        font-size: 13px;
+    }
+}
