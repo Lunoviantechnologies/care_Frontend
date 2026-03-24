@@ -36,6 +36,8 @@ import "swiper/css";
 
 import "../../styleSheets/serviceLists.css";
 import { useState } from "react";
+import { setBookingDetails, setServiceType } from "../booking/bookingSlice";
+import { toast } from "react-toastify";
 
 const ServiceLists = () => {
 
@@ -148,6 +150,18 @@ const ServiceLists = () => {
     // Reversed image array for the second slider
     const reversedImages = [...images].reverse();
 
+    const handleProceedBooking = () => {
+        if (cartItems.length === 0) {
+            toast.info("Please select at least one service");
+            return;
+        }
+        navigate("/dashboard/booking");
+        dispatch(setServiceType(type));
+        dispatch(setBookingDetails({ petType, petBreed, customPet }));
+    };
+
+    const selectedIds = new Set(cartItems.map(i => i.serviceId));
+
     return (
         <div
             className="sl-page"
@@ -236,11 +250,9 @@ const ServiceLists = () => {
 
                             {/* Checkbox list */}
                             <div className="sl-checkbox-list">
-                                {services[0]?.included.map((service, index) => {
-                                    const uniqueId = `${type}-${index}`;
-                                    const isSelected = cartItems.find(
-                                        (item) => item.serviceId === uniqueId
-                                    );
+                                {services?.[0]?.included?.map((service, index) => {
+                                    const uniqueId = service.id || `${type}-${service}`;
+                                    const isSelected = selectedIds.has(uniqueId);
                                     return (
                                         <label
                                             key={index}
@@ -255,7 +267,7 @@ const ServiceLists = () => {
                                             <input
                                                 type="checkbox"
                                                 className="sl-checkbox-input"
-                                                checked={!!isSelected}
+                                                checked={isSelected}
                                                 onChange={() =>
                                                     handleSelect({ id: uniqueId, name: service, price: 0 })
                                                 }
@@ -278,7 +290,7 @@ const ServiceLists = () => {
                                 <div className="sl-proceed-wrap">
                                     <button
                                         className="sl-proceed-btn"
-                                        onClick={() => navigate("/dashboard/booking")}
+                                        onClick={handleProceedBooking}
                                         style={{ backgroundColor: currentTheme.title }}
                                     >
                                         Proceed to Booking ({cartItems.length} selected)
@@ -368,7 +380,7 @@ const ServiceLists = () => {
                                 ⚠ Services Not Covered
                             </h6>
                             <ul className="sl-policy-list">
-                                {services[0]?.notIncluded.map((item, i) => (
+                                {services?.[0]?.notIncluded?.map((item, i) => (
                                     <li key={i}>{item}</li>
                                 ))}
                             </ul>
@@ -383,7 +395,7 @@ const ServiceLists = () => {
                                 📌 Customer Guidelines
                             </h6>
                             <ul className="sl-policy-list">
-                                {services[0]?.responsibilities.map((item, i) => (
+                                {services?.[0]?.responsibilities?.map((item, i) => (
                                     <li key={i}>{item}</li>
                                 ))}
                             </ul>

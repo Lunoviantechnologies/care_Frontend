@@ -1,11 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   FaArrowLeft, FaCreditCard, FaMoneyBillWave,
   FaBaby, FaPaw, FaUserNurse, FaHeartbeat, FaUtensils,
   FaCalendarAlt, FaClock, FaUser, FaStickyNote, FaExclamationTriangle
 } from "react-icons/fa";
 import "../../styleSheets/checkoutPage.css";
+import { toast } from "react-toastify";
+import { clearCart } from "../cart/cartSlice";
+import { resetBooking } from "../booking/bookingSlice";
+import { useEffect } from "react";
+import { payOnline } from "../../api/allApis";
 
 const CheckoutPage = () => {
 
@@ -81,22 +86,40 @@ const CheckoutPage = () => {
   };
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const { cartItems, totalAmount } = useSelector((state) => state.cart);
-  const serviceType = cartItems[0]?.serviceType;
-  const bookingDetails = cartItems[0]?.bookingDetails;
+  const { bookingDetails, serviceType } = useSelector((state) => state.booking);
 
   const theme = themeMap[serviceType] || themeMap.baby;
   const ServiceIcon = theme.icon;
   const limitations = limitationsMap[serviceType] || [];
 
-  if (cartItems.length === 0) {
-    navigate("/");
-    return null;
-  }
+  useEffect(() => {
+    if (cartItems.length === 0) {
+      navigate("/");
+    }
+  }, [cartItems]);
 
   const handleCOD = () => {
-    alert("Your booking is confirmed. Caregiver will arrive at the scheduled time.");
+    toast.success("Your booking is confirmed. Caregiver will arrive at the scheduled time.");
+
+    dispatch(clearCart());
+    dispatch(resetBooking());
+
     navigate("/dashboard/live_tracking");
+  };
+
+  const handleOnlinePay = async () => {
+    console.log("total amount: ", totalAmount + 100);
+
+    try{
+      const res = await payOnline({amount: totalAmount + 100});
+      console.log("pay online res: ", res);
+    } catch(error){
+      console.log(error);
+    }
+    // navigate("/dashboard/payment");
   };
 
   return (
@@ -131,7 +154,7 @@ const CheckoutPage = () => {
 
             <button
               className="co-payment-card"
-              onClick={() => navigate("/dashboard/payment")}
+              onClick={handleOnlinePay}
             >
               <div className="co-payment-icon co-payment-icon--online">
                 <FaCreditCard />

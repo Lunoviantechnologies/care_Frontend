@@ -1,10 +1,10 @@
 import axios from "axios";
-import baseUrl from "./baseUrl";
+import { API } from "./baseUrl";
 
 // register customer api
-export const registerCoustomer = async (data) => {
+export const registerCustomer = async (data) => {
     try {
-        const res = await axios.post(`${baseUrl}/customer/create`, data);
+        const res = await axios.post(`${API.AUTH}/customer/create`, data);
         return res;
     } catch (error) {
         throw error;
@@ -14,7 +14,17 @@ export const registerCoustomer = async (data) => {
 // Login Customer
 export const customerLogin = async (payload) => {
     try {
-        const res = await axios.post(`${baseUrl}/customer/login`, payload);
+        const res = await axios.post(`${API.AUTH}/customer/login`, payload);
+        return res;
+    } catch (error) {
+        throw error;
+    }
+};
+
+// Pay online 
+export const payOnline = async (payload) => {
+    try {
+        const res = await axios.post(`${API.PAYMENT}/payments/initiate`, payload);
         return res;
     } catch (error) {
         throw error;

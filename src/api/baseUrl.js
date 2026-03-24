@@ -1,3 +1,7 @@
-const baseUrl = import.meta.env.VITE_API_URL;  
-
-export default baseUrl;
+export const API = {
+    AUTH: import.meta.env.VITE_AUTH_API,
+    BOOKING: import.meta.env.VITE_BOOKING_API,
+    PAYMENT: import.meta.env.VITE_PAYMENT_API,
+    TRACKING: import.meta.env.VITE_TRACKING_API,
+    AI: import.meta.env.VITE_AI_API,
+};

@@ -10,7 +10,7 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
 import { useNavigate } from "react-router-dom";
-import { registerCoustomer } from "../../api/allApis";
+import { registerCustomer } from "../../api/allApis";
 import { toast } from "react-toastify";
 
 export default function Register() {
@@ -41,13 +41,13 @@ export default function Register() {
         console.log(form);
 
         try{
-            const res = await registerCoustomer(form);
+            const res = await registerCustomer(form);
             console.log("register response: ", res);
 
             toast.success(res.statusText);
             navigate("/login");
         } catch (err) {
-            toast.error(res.statusText);
+            // toast.error(res.statusText);
             console.log("register error: ", err);
         };
 

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaBell, FaShoppingCart, FaUserCircle, FaBars, FaTimes, FaChevronDown, FaTachometerAlt, FaQuestionCircle, FaUser, FaCog, FaGift, FaSignOutAlt, FaCalendarCheck } from "react-icons/fa";
 import { IoMdWallet } from "react-icons/io";
+import { RiLockPasswordFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/auth/authSlice";
 import careLogo from "../assets/careLogo.png";
@@ -157,6 +158,14 @@ const UserNavbar = () => {
                                         <FaCog aria-hidden="true" /> Settings
                                     </Link>
                                     <Link
+                                        to="/dashboard/change_password"
+                                        className="uc-nav__dropdown-item"
+                                        role="menuitem"
+                                        onClick={() => setProfileOpen(false)}
+                                    >
+                                        <RiLockPasswordFill aria-hidden="true" /> Change Password
+                                    </Link>
+                                    <Link
                                         to="/dashboard/rewards"
                                         className="uc-nav__dropdown-item"
                                         role="menuitem"
@@ -250,6 +259,13 @@ const UserNavbar = () => {
                         onClick={() => setMenuOpen(false)}
                     >
                         <FaCog aria-hidden="true" /> Settings
+                    </Link>
+                    <Link
+                        to="/dashboard/change_password"
+                        className="uc-nav__mobile-link"
+                        onClick={() => setMenuOpen(false)}
+                    >
+                        <RiLockPasswordFill aria-hidden="true" /> Change Password
                     </Link>
                     <Link
                         to="/dashboard/rewards"

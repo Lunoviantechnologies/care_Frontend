@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     cartItems: [],
     totalAmount: 0,
-    totalQuantity: 0
+    totalQuantity: 0,
 };
 
 const cartSlice = createSlice({
@@ -12,7 +12,6 @@ const cartSlice = createSlice({
     reducers: {
 
         addToCart: (state, action) => {
-
             const item = action.payload;
 
             const existingItem = state.cartItems.find(
@@ -20,26 +19,22 @@ const cartSlice = createSlice({
             );
 
             if (existingItem) {
-
                 existingItem.quantity += 1;
-
             } else {
-
                 state.cartItems.push({
-                    ...item,
+                    serviceId: item.serviceId,
+                    serviceName: item.serviceName,
+                    serviceType: item.serviceType,
+                    price: item.price,
                     quantity: 1,
-                    bookingDetails: item.bookingDetails || null
                 });
-
             }
 
             state.totalQuantity += 1;
             state.totalAmount += item.price;
         },
 
-
         removeFromCart: (state, action) => {
-
             const serviceId = action.payload;
 
             const existingItem = state.cartItems.find(
@@ -54,12 +49,9 @@ const cartSlice = createSlice({
             state.cartItems = state.cartItems.filter(
                 (item) => item.serviceId !== serviceId
             );
-
         },
 
-
         increaseQuantity: (state, action) => {
-
             const serviceId = action.payload;
 
             const item = state.cartItems.find(
@@ -71,12 +63,9 @@ const cartSlice = createSlice({
                 state.totalQuantity += 1;
                 state.totalAmount += item.price;
             }
-
         },
 
-
         decreaseQuantity: (state, action) => {
-
             const serviceId = action.payload;
 
             const item = state.cartItems.find(
@@ -94,35 +83,16 @@ const cartSlice = createSlice({
                     (i) => i.serviceId !== serviceId
                 );
             }
-
         },
-
-
-        updateBookingDetails: (state, action) => {
-
-            const { serviceId, bookingDetails } = action.payload;
-
-            const item = state.cartItems.find(
-                (i) => i.serviceId === serviceId
-            );
-
-            if (item) {
-                item.bookingDetails = bookingDetails;
-            }
-
-        },
-
 
         clearCart: (state) => {
-
             state.cartItems = [];
             state.totalAmount = 0;
             state.totalQuantity = 0;
-
-        }
-
-    }
+        },
+    },
 });
 
-export const { addToCart, removeFromCart, increaseQuantity, decreaseQuantity, updateBookingDetails, clearCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart, } = cartSlice.actions;
+
 export default cartSlice.reducer;

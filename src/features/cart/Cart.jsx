@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { removeFromCart } from "./cartSlice";
+import { Link, useNavigate } from "react-router-dom";
+import { clearCart, removeFromCart } from "./cartSlice";
 import {
     FaArrowLeft, FaTrashAlt, FaShoppingCart,
     FaBaby, FaPaw, FaUserNurse, FaHeartbeat, FaUtensils,
-    FaCalendarAlt, FaClock, FaArrowRight
+    FaCalendarAlt, FaClock, FaArrowRight,
 } from "react-icons/fa";
 import "../../styleSheets/cart.css";
 
@@ -17,11 +17,13 @@ const serviceTheme = {
 };
 
 const Cart = () => {
+
     const { cartItems, totalAmount } = useSelector((state) => state.cart);
+    const { bookingDetails } = useSelector((state) => state.booking);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    // Derive page theme from first item
     const serviceType = cartItems[0]?.serviceType;
     const theme = serviceTheme[serviceType] || serviceTheme.baby;
 
@@ -34,25 +36,40 @@ const Cart = () => {
 
                 {/* ── Header ── */}
                 <div className="ct-header">
-                    <button className="ct-back-btn" onClick={() => navigate(-1)}>
-                        <FaArrowLeft />
-                        <span>Back</span>
-                    </button>
-                    <div className="ct-header-title">
-                        <div
-                            className="ct-header-icon"
-                            style={{
-                                backgroundColor: cartItems.length ? theme.light : "#e8eaf6",
-                                color: cartItems.length ? theme.accent : "#5c6bc0",
-                            }}
-                        >
-                            <FaShoppingCart />
-                        </div>
-                        <div>
-                            <p className="ct-eyebrow">Review &amp; Confirm</p>
-                            <h1 className="ct-title">Your Cart</h1>
+
+                    {/* Left: back + title */}
+                    <div className="ct-header-left">
+                        <button className="ct-back-btn" onClick={() => navigate(-1)}>
+                            <FaArrowLeft />
+                            <span>Back</span>
+                        </button>
+                        <div className="ct-header-title">
+                            <div
+                                className="ct-header-icon"
+                                style={{
+                                    backgroundColor: cartItems.length ? theme.light : "#e8eaf6",
+                                    color: cartItems.length ? theme.accent : "#5c6bc0",
+                                }}
+                            >
+                                <FaShoppingCart />
+                            </div>
+                            <div>
+                                <p className="ct-eyebrow">Review &amp; Confirm</p>
+                                <h1 className="ct-title">Your Cart</h1>
+                            </div>
                         </div>
                     </div>
+
+                    {/* Right: clear cart (only when items exist) */}
+                    {cartItems.length > 0 && (
+                        <button
+                            className="ct-clear-btn"
+                            onClick={() => dispatch(clearCart())}
+                        >
+                            <FaTrashAlt />
+                            <span>Clear Cart</span>
+                        </button>
+                    )}
                 </div>
 
                 {/* ══ EMPTY STATE ══ */}
@@ -77,17 +94,22 @@ const Cart = () => {
 
                         {/* ── Left: cart items ── */}
                         <div className="ct-items-col">
+                            {
+                                !bookingDetails.date && !bookingDetails.time && (
+                                    <h6><Link className="text-danger text-decoration-none" to={"/dashboard/booking"}> Please fill the booking details before checkout</Link> </h6>
+                                )
+                            }
                             <div className="ct-count-label">
                                 {cartItems.length} item{cartItems.length > 1 ? "s" : ""} in your cart
                             </div>
 
-                            {cartItems.map((item, index) => {
+                            {cartItems.map((item) => {
                                 const t = serviceTheme[item.serviceType] || serviceTheme.baby;
                                 const Icon = t.icon;
                                 return (
                                     <div
                                         className="ct-item-card"
-                                        key={index}
+                                        key={item.serviceId}
                                         style={{ "--ct-accent": t.accent, "--ct-light": t.light }}
                                     >
                                         {/* Icon badge */}
@@ -103,17 +125,19 @@ const Cart = () => {
                                             <span className="ct-item-type" style={{ color: t.accent }}>
                                                 {t.label}
                                             </span>
-                                            <h3 className="ct-item-name">{item.serviceName}</h3>
+                                            <h3 className="ct-item-name">
+                                                {item.serviceName} × {item.quantity}
+                                            </h3>
 
                                             <div className="ct-item-meta">
-                                                {item.bookingDetails?.date && (
+                                                {bookingDetails?.date && (
                                                     <span className="ct-meta-chip">
-                                                        <FaCalendarAlt /> {item.bookingDetails.date}
+                                                        <FaCalendarAlt /> {bookingDetails.date}
                                                     </span>
                                                 )}
-                                                {item.bookingDetails?.time && (
+                                                {bookingDetails?.time && (
                                                     <span className="ct-meta-chip">
-                                                        <FaClock /> {item.bookingDetails.time}
+                                                        <FaClock /> {bookingDetails.time}
                                                     </span>
                                                 )}
                                                 {item.bookingDetails?.duration && (
@@ -127,7 +151,7 @@ const Cart = () => {
                                         {/* Price + remove */}
                                         <div className="ct-item-right">
                                             <span className="ct-item-price" style={{ color: t.accent }}>
-                                                ₹{item.price}
+                                                ₹{item.price * item.quantity}
                                             </span>
                                             <button
                                                 className="ct-remove-btn"
@@ -151,7 +175,7 @@ const Cart = () => {
                                     {cartItems.map((item, i) => (
                                         <div className="ct-summary-row" key={i}>
                                             <span className="ct-summary-row-name">{item.serviceName}</span>
-                                            <span className="ct-summary-row-price">₹{item.price}</span>
+                                            <span className="ct-summary-row-price">₹{item.price * item.quantity}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -170,6 +194,7 @@ const Cart = () => {
                                     className="ct-checkout-btn"
                                     style={{ backgroundColor: theme.accent }}
                                     onClick={() => navigate("/dashboard/checkout")}
+                                    disabled={!bookingDetails.date || !bookingDetails.time}
                                 >
                                     Proceed to Checkout <FaArrowRight />
                                 </button>

@@ -1,33 +1,65 @@
 import axios from "axios";
-import baseUrl from "./baseUrl";
+import { API } from "./baseUrl";
+import { logout } from "../features/auth/authSlice";
+import store from "../app/store/store";
 
-const api = axios.create({
-  baseURL: baseUrl,
+const authApi = axios.create({
+  baseURL: API.AUTH,
 });
 
-api.interceptors.request.use((config) => {
-  const state = store.getState();
-  const token = state.auth.accessToken;
-
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-
-  return config;
+const bookingApi = axios.create({
+  baseURL: API.BOOKING,
 });
 
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
+const paymentApi = axios.create({
+  baseURL: API.PAYMENT,
+});
 
-    if (error.response && error.response.status === 401) {
-      // Token expired or invalid
-      store.dispatch(logout());
-      window.location.href = "/login"; // force redirect
+const trackingApi = axios.create({
+  baseURL: API.TRACKING,
+});
+
+const safetyAiApi = axios.create({
+  baseURL: API.AI,
+});
+
+const addInterceptor = (instance) => {
+  instance.interceptors.request.use((config) => {
+    const token = store.getState()?.auth?.accessToken;
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
 
-    return Promise.reject(error);
-  }
-);
+    return config;
+  },
+    (error) => Promise.reject(error)
+  );
 
-export default api;
+  instance.interceptors.response.use(
+    (res) => res,
+    (error) => {
+      if (error.response && error.response.status === 401) {
+        store.dispatch(logout());
+        window.location.href = "/login";
+      }
+      return Promise.reject(error);
+    }
+  );
+};
+
+[
+  authApi,
+  bookingApi,
+  paymentApi,
+  trackingApi,
+  safetyAiApi,
+].forEach(addInterceptor);
+
+export default {
+  authApi,
+  bookingApi,
+  paymentApi,
+  trackingApi,
+  safetyAiApi,
+};

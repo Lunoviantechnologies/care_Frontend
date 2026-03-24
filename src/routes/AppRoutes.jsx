@@ -41,6 +41,7 @@ import ProfilePage from "../features/profile/ProfilePage";
 import Help from "../components/Help";
 import Settings from "../components/settings/Settings";
 import Wallet from "../features/wallet/wallet";
+import ChangePassword from "../features/auth/ChangePassword";
 
 const AppRoutes = createBrowserRouter([
     {
@@ -110,6 +111,7 @@ const AppRoutes = createBrowserRouter([
             { path: "help", element: <Help /> },
             { path: "settings", element: <Settings /> },
             { path: "wallet", element: <Wallet /> },
+            { path: "change_password", element: <ChangePassword /> },
         ]
     },
 

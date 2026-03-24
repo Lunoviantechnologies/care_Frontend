@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateBookingDetails, removeFromCart } from "../cart/cartSlice";
+import { removeFromCart } from "../cart/cartSlice";
 import { useState } from "react";
 import { FaArrowLeft, FaTrashAlt, FaBaby, FaPaw, FaUserNurse, FaHeartbeat, FaUtensils } from "react-icons/fa";
 import "../../styleSheets/bookingForm.css";
+import { setBookingDetails } from "./bookingSlice";
+import { toast } from "react-toastify";
 
 const BookingForm = () => {
 
@@ -53,25 +55,13 @@ const BookingForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const { bookingDetails } = useSelector((state) => state.booking);
     const { cartItems, totalAmount } = useSelector((state) => state.cart);
-    const serviceType = cartItems[0]?.serviceType;
+    const { serviceType } = useSelector((state) => state.booking);
     const theme = themeMap[serviceType] || themeMap.baby;
     const ServiceIcon = theme.icon;
 
-    const [formData, setFormData] = useState({
-        name: "",
-        date: "",
-        time: "",
-        duration: "",
-        notes: "",
-        guardianPresent: false,
-        allergies: "",
-        medicalHistory: "",
-        walkerAvailable: false,
-        petBehavior: "",
-        vaccinationConfirmed: false,
-        acceptPolicy: false,
-    });
+    const [formData, setFormData] = useState(bookingDetails);
 
     if (cartItems.length === 0) {
         navigate("/");
@@ -89,12 +79,13 @@ const BookingForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!formData.acceptPolicy) {
-            alert("Please accept the service policy before continuing.");
+            toast.error("Please accept the service policy before continuing.");
             return;
         }
-        cartItems.forEach((service) => {
-            dispatch(updateBookingDetails({ serviceId: service.serviceId, bookingDetails: formData }));
-        });
+        // cartItems.forEach((service) => {
+        //     dispatch(updateBookingDetails({ serviceId: service.serviceId, bookingDetails: formData }));
+        // });
+        dispatch(setBookingDetails(formData));
         navigate("/dashboard/checkout");
     };
 
@@ -139,6 +130,7 @@ const BookingForm = () => {
                                     <input
                                         className="bf-input"
                                         name="name"
+                                        value={formData.name}
                                         placeholder="e.g. Priya Sharma"
                                         onChange={handleChange}
                                         required
@@ -154,6 +146,7 @@ const BookingForm = () => {
                                             type="date"
                                             className="bf-input"
                                             name="date"
+                                            value={formData.date}
                                             min={new Date().toISOString().split("T")[0]}
                                             onChange={handleChange}
                                             required
@@ -166,6 +159,7 @@ const BookingForm = () => {
                                             type="time"
                                             className="bf-input"
                                             name="time"
+                                            value={formData.time}
                                             onChange={handleChange}
                                             required
                                             style={{ "--bf-focus": theme.accent }}
@@ -179,6 +173,7 @@ const BookingForm = () => {
                                     <select
                                         className="bf-input bf-select"
                                         name="duration"
+                                        value={formData.duration}
                                         onChange={handleChange}
                                         required
                                         style={{ "--bf-focus": theme.accent }}
@@ -201,6 +196,7 @@ const BookingForm = () => {
                                             <textarea
                                                 className="bf-input bf-textarea"
                                                 name="allergies"
+                                                value={formData.allergies}
                                                 rows="2"
                                                 placeholder="Any known allergies or special care notes..."
                                                 onChange={handleChange}
@@ -208,7 +204,7 @@ const BookingForm = () => {
                                             />
                                         </div>
                                         <label className="bf-check-item">
-                                            <input type="checkbox" name="guardianPresent" className="bf-check-input" onChange={handleCheckbox} required />
+                                            <input type="checkbox" name="guardianPresent" checked={formData.guardianPresent} className="bf-check-input" onChange={handleCheckbox} required />
                                             <span className="bf-check-box" style={{ "--bf-chk": theme.accent }} />
                                             <span className="bf-check-text">Guardian will be present during the session</span>
                                         </label>
@@ -223,6 +219,7 @@ const BookingForm = () => {
                                             <textarea
                                                 className="bf-input bf-textarea"
                                                 name="medicalHistory"
+                                                value={formData.medicalHistory}
                                                 rows="2"
                                                 placeholder="Relevant conditions, medications..."
                                                 onChange={handleChange}
@@ -230,7 +227,7 @@ const BookingForm = () => {
                                             />
                                         </div>
                                         <label className="bf-check-item">
-                                            <input type="checkbox" name="walkerAvailable" className="bf-check-input" onChange={handleCheckbox} />
+                                            <input type="checkbox" name="walkerAvailable" checked={formData.walkerAvailable} className="bf-check-input" onChange={handleCheckbox} />
                                             <span className="bf-check-box" style={{ "--bf-chk": theme.accent }} />
                                             <span className="bf-check-text">Walker / Wheelchair available at home</span>
                                         </label>
@@ -245,13 +242,14 @@ const BookingForm = () => {
                                             <input
                                                 className="bf-input"
                                                 name="petBehavior"
+                                                value={formData.petBehavior}
                                                 placeholder="Friendly / Aggressive / Shy"
                                                 onChange={handleChange}
                                                 style={{ "--bf-focus": theme.accent }}
                                             />
                                         </div>
                                         <label className="bf-check-item">
-                                            <input type="checkbox" name="vaccinationConfirmed" className="bf-check-input" onChange={handleCheckbox} required />
+                                            <input type="checkbox" name="vaccinationConfirmed" checked={formData.vaccinationConfirmed} className="bf-check-input" onChange={handleCheckbox} required />
                                             <span className="bf-check-box" style={{ "--bf-chk": theme.accent }} />
                                             <span className="bf-check-text">Pet vaccination is up to date</span>
                                         </label>
@@ -264,6 +262,7 @@ const BookingForm = () => {
                                     <textarea
                                         className="bf-input bf-textarea"
                                         name="notes"
+                                        value={formData.notes}
                                         rows="3"
                                         placeholder="Any other instructions for the caregiver..."
                                         onChange={handleChange}
@@ -273,7 +272,7 @@ const BookingForm = () => {
 
                                 {/* Policy acceptance */}
                                 <label className="bf-check-item bf-policy-check">
-                                    <input type="checkbox" name="acceptPolicy" className="bf-check-input" onChange={handleCheckbox} required />
+                                    <input type="checkbox" name="acceptPolicy" checked={formData.acceptPolicy} className="bf-check-input" onChange={handleCheckbox} required />
                                     <span className="bf-check-box" style={{ "--bf-chk": theme.accent }} />
                                     <span className="bf-check-text">I agree to the service limitations and responsibilities</span>
                                 </label>
