@@ -4,6 +4,7 @@ import "../styleSheets/servicesDisplay/serviceHomeAssist.css";
 // Import your actual images from assets
 import kitchenCareHero from "../assets/kitchen3.jpg";
 import kitchenOverlay from "../assets/kitchen6.png"; // Replace with your actual kitchen overlay/PNG image
+import { useNavigate } from "react-router-dom";
 
 const stats = [
     { value: "8,200+", label: "Homes Served" },
@@ -114,6 +115,9 @@ const faqs = [
 ];
 
 const ServiceHomeAssistCare = () => {
+
+    const navigate = useNavigate(); 
+
     const [openFaq, setOpenFaq] = useState(null);
 
     const toggleFaq = (index) => {
@@ -150,10 +154,10 @@ const ServiceHomeAssistCare = () => {
                             professionals keep your kitchen running smoothly every day.
                         </p>
                         <div className="shac-hero-btns">
-                            <button className="shac-btn-primary" type="button">
+                            <button className="shac-btn-primary" type="button" onClick={() => navigate("/login")}>
                                 Book Kitchen Helper
                             </button>
-                            <button className="shac-btn-secondary" type="button">
+                            <button className="shac-btn-secondary" type="button" onClick={() => navigate("/login")}>
                                 Hire Home Assistant
                             </button>
                         </div>
@@ -304,10 +308,10 @@ const ServiceHomeAssistCare = () => {
                         assistance services for reliable, hygienic, and affordable home support.
                     </p>
                     <div className="shac-cta-btns">
-                        <button className="shac-btn-primary" type="button">
+                        <button className="shac-btn-primary" type="button" onClick={() => navigate("/login")}>
                             Book Kitchen Helper
                         </button>
-                        <button className="shac-btn-outline" type="button">
+                        <button className="shac-btn-outline" type="button" onClick={() => navigate("/login")}>
                             Learn More
                         </button>
                     </div>

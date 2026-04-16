@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { clearCart } from "../cart/cartSlice";
 import { resetBooking } from "../booking/bookingSlice";
 import { useEffect } from "react";
-import { payOnline } from "../../api/allApis";
+import { payOnline, verifyPayment } from "../../api/allApis";
 
 const CheckoutPage = () => {
 
@@ -88,6 +88,7 @@ const CheckoutPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const { user: id } = useSelector((state) => state.auth);
   const { cartItems, totalAmount } = useSelector((state) => state.cart);
   const { bookingDetails, serviceType } = useSelector((state) => state.booking);
 
@@ -110,17 +111,94 @@ const CheckoutPage = () => {
     navigate("/dashboard/live_tracking");
   };
 
+  const loadRazorpayScript = () => {
+    return new Promise((resolve) => {
+      if (window.Razorpay) return resolve(true);
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
+      document.body.appendChild(script);
+    });
+  };
+
   const handleOnlinePay = async () => {
     console.log("total amount: ", totalAmount + 100);
 
-    try{
-      const res = await payOnline({amount: totalAmount + 100});
+    try {
+      const res = await payOnline({
+        "amount": totalAmount + 100,
+        "booking_id": 1234,
+        "customer_id": id?.user_id,
+      });
       console.log("pay online res: ", res);
-    } catch(error){
-      console.log(error);
+
+      const { razorpay_key_id, razorpay_order_id, amount, payment_id } = res.data;
+
+      const scriptLoaded = await loadRazorpayScript();
+      if (!scriptLoaded) {
+        toast.error("Failed to load payment gateway. Please try again.");
+        return;
+      };
+
+      const options = {
+        key: razorpay_key_id,
+        amount: amount * 100,
+        currency: "INR",
+        name: "Care Services",
+        description: `Booking for ${theme.label}`,
+        order_id: razorpay_order_id,
+        handler: async function (response) {
+          // response has: razorpay_payment_id, razorpay_order_id, razorpay_signature
+          console.log("Payment success:", response);
+          try {
+            await verifyPayment({
+              razorpay_payment_id: response.razorpay_payment_id,  // use response values, not outer vars
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_signature: response.razorpay_signature,
+            });
+
+            toast.success("Payment successful! Your booking is confirmed.");
+            dispatch(clearCart());
+            dispatch(resetBooking());
+            navigate("/dashboard/live_tracking");
+
+          } catch (err) {
+            console.error("Verification failed:", err);
+            toast.error("Payment verification failed. Please contact support.");
+          }
+        },
+
+        prefill: {
+          name: bookingDetails?.name || "",
+        },
+        theme: {
+          color: theme.accent,
+        },
+        modal: {
+          ondismiss: () => {
+            toast.info("Payment cancelled.");
+          },
+        },
+      };
+
+      const rzp = new window.Razorpay(options);
+
+      rzp.on("payment.failed", (response) => {
+        console.error("Payment failed:", response.error);
+        toast.error(`Payment failed: ${response.error.description}`);
+      });
+
+      rzp.open();
+
+    } catch (error) {
+      console.error("Payment error:", error);
+      toast.error("Something went wrong. Please try again.");
     }
     // navigate("/dashboard/payment");
   };
+
+  // console.log("user id: ", id.user_id);
 
   return (
     <div className="co-page" style={{ backgroundColor: theme.pageBg }}>

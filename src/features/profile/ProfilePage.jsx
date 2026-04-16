@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import {
     FaUser, FaPhone, FaEnvelope, FaLock, FaMapMarkerAlt, FaCity,
@@ -6,6 +6,9 @@ import {
     FaStar, FaCalendarCheck, FaClock, FaHeart
 } from "react-icons/fa";
 import "../../styleSheets/profilePage.css";
+import { getCustomerProfile, updateCustomerProfile } from "../../api/allApis";
+import { toast } from "react-toastify";
+import { IMAGE_URLS } from "../../api/baseUrl";
 
 /* ── Static quick-stats (replace with real Redux data if available) ── */
 const QUICK_STATS = [
@@ -26,25 +29,36 @@ const FIELDS = [
 ];
 
 const ProfilePage = () => {
+
     const { user } = useSelector((state) => state.auth);
 
-    /* Seed from Redux; fallback to empty strings */
-    const seedData = {
-        name: user?.name || "Priya Sharma",
-        phone: user?.phone || "+91 98765 43210",
-        email: user?.email || "priya@email.com",
-        password: "",
-        address: user?.address || "12, MG Road, Banjara Hills",
-        city: user?.city || "Hyderabad",
-    };
-
-    const [profileData, setProfileData] = useState(seedData);
+    const [profileData, setProfileData] = useState([]);
     const [editMode, setEditMode] = useState(false);
-    const [draft, setDraft] = useState(seedData);
+    const [draft, setDraft] = useState([]);
     const [avatarUrl, setAvatarUrl] = useState(null);
     const [saved, setSaved] = useState(false);
+    const [selectedFile, setSelectedFile] = useState(null);
 
     const fileRef = useRef(null);
+
+    useEffect(() => {
+        const fetchProfile = async () => {
+            try {
+                const res = await getCustomerProfile(Number(user.user_id));
+                console.log("Profile data:", res.data, user.user_id);
+
+                setProfileData(res.data);
+
+                if (res.data.profile_image) {
+                    setAvatarUrl(`${IMAGE_URLS.AUTH}${res.data.profile_image}`);
+                }
+            } catch (error) {
+                console.error("Error fetching profile:", error);
+            };
+        };
+
+        fetchProfile();
+    }, []);
 
     /* ── Handlers ── */
     const handleEdit = () => {
@@ -58,7 +72,33 @@ const ProfilePage = () => {
         setEditMode(false);
     };
 
-    const handleSave = () => {
+    const handleSave = async () => {
+        try {
+            const formData = new FormData();
+
+            formData.append("name", draft.name || "");
+            formData.append("phone", draft.phone || "");
+            formData.append("email", draft.email || "");
+            formData.append("address", draft.address || "");
+            formData.append("city", draft.city || "");
+
+            if (draft.password) {
+                formData.append("password", draft.password);
+            }
+
+            if (selectedFile) {
+                formData.append("profile_image", selectedFile);
+            }
+
+            const res = await updateCustomerProfile(Number(user.user_id), formData);
+            console.log("Profile updated:", res);
+            console.log("Profile updated data:", draft);
+            toast.success("Profile updated successfully!");
+        } catch (error) {
+            console.error("Error updating profile:", error);
+            toast.error("Failed to update profile. Please try again.");
+        };
+
         setProfileData({ ...draft });
         setEditMode(false);
         setSaved(true);
@@ -68,6 +108,8 @@ const ProfilePage = () => {
     const handleAvatarChange = (e) => {
         const file = e.target.files[0];
         if (file) {
+            setSelectedFile(file);
+
             const reader = new FileReader();
             reader.onloadend = () => setAvatarUrl(reader.result);
             reader.readAsDataURL(file);

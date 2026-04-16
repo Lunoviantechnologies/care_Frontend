@@ -2,17 +2,17 @@
 
 /* ── CSS Variables ────────────────────────────────────────── */
 :root {
-    --clr-bg: #fdf8f3;
+    --clr-bg: #fdf6f9;
     --clr-surface: #ffffff;
-    --clr-primary: #2d6a4f;
-    --clr-primary-light: #52b788;
+    --clr-primary: #c2185b;
+    --clr-primary-light: #f48fb1;
     --clr-accent: #f4a261;
     --clr-accent-deep: #e76f51;
     --clr-text: #1a1a2e;
     --clr-muted: #5a5a72;
-    --clr-border: #e8e0d5;
-    --clr-hero-bg: #e9f5ee;
-    --clr-input-bg: #f7f3ee;
+    --clr-border: #f3d5e4;
+    --clr-hero-bg: #fce4ec;
+    --clr-input-bg: #fdf0f5;
 
     --font-display: "Fraunces", Georgia, serif;
     --font-body: "DM Sans", sans-serif;
@@ -21,7 +21,7 @@
     --radius-md: 16px;
     --radius-lg: 24px;
 
-    --shadow-soft: 0 4px 24px rgba(45, 106, 79, 0.1);
+    --shadow-soft: 0 4px 24px rgba(194, 24, 91, 0.12);
     --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.07);
 
     --transition: 0.25s ease;
@@ -114,8 +114,8 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--clr-primary);
-    background: rgba(82, 183, 136, 0.15);
-    border: 1px solid rgba(82, 183, 136, 0.35);
+    background: rgba(194, 24, 91, 0.1);
+    border: 1px solid rgba(194, 24, 91, 0.28);
     padding: 4px 16px;
     border-radius: 100px;
     margin-bottom: 20px;
@@ -229,7 +229,7 @@ a.ci-detail:hover {
 
 /* ── Side Panel ───────────────────────────────────────────── */
 .contact-side-inner {
-    background: linear-gradient(160deg, var(--clr-primary) 0%, #1b4332 100%);
+    background: linear-gradient(160deg, #c2185b 0%, #880e4f 100%);
     border-radius: var(--radius-lg);
     padding: 40px 32px;
     color: #fff;
@@ -360,14 +360,14 @@ a.ci-detail:hover {
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-    color: #b0aab8;
+    color: #c8a0b4;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
     border-color: var(--clr-primary-light);
-    box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.18);
+    box-shadow: 0 0 0 3px rgba(194, 24, 91, 0.12);
     background: var(--clr-surface);
 }
 
@@ -394,14 +394,14 @@ a.ci-detail:hover {
     letter-spacing: 0.02em;
     transition: background var(--transition), transform var(--transition),
         box-shadow var(--transition);
-    box-shadow: 0 4px 18px rgba(45, 106, 79, 0.28);
+    box-shadow: 0 4px 18px rgba(194, 24, 91, 0.3);
     margin-top: 6px;
 }
 
 .btn-submit:hover {
-    background: #1b4332;
+    background: #880e4f;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(45, 106, 79, 0.35);
+    box-shadow: 0 8px 24px rgba(194, 24, 91, 0.38);
 }
 
 .btn-submit:active {

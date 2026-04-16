@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { isTokenExpired } from './utils/authUtils';
 import { logout } from './features/auth/authSlice';
+import ScrollToTop from './scrollToTop';
 
 function App() {
 
@@ -20,6 +21,8 @@ function App() {
 
   return (
     <div className="App">
+
+      <ScrollToTop />
 
       <Navbar />
 

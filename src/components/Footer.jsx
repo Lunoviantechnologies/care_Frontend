@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaYoutube  } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import careLogo from "../assets/careLogo.png";
 
@@ -50,10 +50,10 @@ const Footer = () => {
                         <h6 className="fw-bold mb-3">Social Links</h6>
 
                         <div className="d-flex gap-3 mb-3">
-                            <a href="#" className="text-muted fs-5"><FaSquareXTwitter /></a>
-                            <a href="#" className="text-muted fs-5"><FaFacebookF /></a>
-                            <a href="#" className="text-muted fs-5"><FaInstagram /></a>
-                            <a href="#" className="text-muted fs-5"><FaLinkedinIn /></a>
+                            <a href="#" className="text-muted fs-5"><FaSquareXTwitter color="black"/></a>
+                            <a href="#" className="text-muted fs-5"><FaFacebookF color="blue"/></a>
+                            <a href="#" className="text-muted fs-5"><FaInstagram color="violet"/></a>
+                            <a href="#" className="text-muted fs-5"><FaYoutube color="red" /></a>
                         </div>
 
                         {/* App Buttons */}

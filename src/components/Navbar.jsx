@@ -15,7 +15,7 @@ const SERVICES = [
     { label: "Pet Care", to: "/services/pet_care" },
     { label: "Elder Care", to: "/services/elder_care" },
     { label: "Pregnancy Care", to: "/services/pregnancy_care" },
-    { label: "Home Assistance", to: "/services/home_assistance_care" },
+    { label: "Home Assistance", to: "/services/kitchen_care" },
 ];
 
 const Navbar = () => {
@@ -228,10 +228,13 @@ const Navbar = () => {
                         <div className={`sc-nav__drawer-submenu ${servicesOpen ? "sc-nav__drawer-submenu--open" : ""}`}>
                             {SERVICES.map(({ label, to }) => (
                                 <Link
-                                    key={to}
                                     className="sc-nav__drawer-sublink"
+                                    key={to}
                                     to={to}
-                                    onClick={() => setMenuOpen(false)}
+                                    onClick={() => {
+                                        setMenuOpen(false);
+                                        setServicesOpen(false);
+                                    }}
                                 >
                                     {label}
                                 </Link>

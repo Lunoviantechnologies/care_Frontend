@@ -1,17 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,700;1,300&family=DM+Sans:wght@400;500;600&display=swap");
 
-/* ── CSS Variables ────────────────────────────────────────── */
-:root {
-    --clr-bg: #fdf8f3;
+/* ═══════════════════════════════════════════════════════════
+   ALL variables scoped to .about-page to avoid global leaks
+   ═══════════════════════════════════════════════════════════ */
+.about-page {
+    --clr-bg: #fdf6f9;
     --clr-surface: #ffffff;
-    --clr-primary: #2d6a4f;
-    --clr-primary-light: #52b788;
+    --clr-primary: #c2185b;
+    --clr-primary-light: #f48fb1;
     --clr-accent: #f4a261;
     --clr-accent-deep: #e76f51;
     --clr-text: #1a1a2e;
     --clr-muted: #5a5a72;
-    --clr-border: #e8e0d5;
-    --clr-hero-bg: #e9f5ee;
+    --clr-border: #f3d5e4;
+    --clr-hero-bg: #fce4ec;
 
     --font-display: "Fraunces", Georgia, serif;
     --font-body: "DM Sans", sans-serif;
@@ -20,27 +22,24 @@
     --radius-md: 16px;
     --radius-lg: 24px;
 
-    --shadow-soft: 0 4px 24px rgba(45, 106, 79, 0.08);
+    --shadow-soft: 0 4px 24px rgba(194, 24, 91, 0.12);
     --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.07);
-
     --transition: 0.25s ease;
 }
 
-/* ── Reset & Base ─────────────────────────────────────────── */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
+/* ── Base ─────────────────────────────────────────────────── */
 .about-page {
     font-family: var(--font-body);
     color: var(--clr-text);
-    background-color: var(--clr-bg);
+    background-color: var(--clr-bg) !important;
     line-height: 1.7;
     overflow-x: hidden;
+}
+
+.about-page *,
+.about-page *::before,
+.about-page *::after {
+    box-sizing: border-box;
 }
 
 .about-page .container {
@@ -50,73 +49,73 @@
     padding: 0 24px;
 }
 
-/* ── Hero Section ─────────────────────────────────────────── */
-.about-hero {
+/* ── Hero ─────────────────────────────────────────────────── */
+.about-page .about-hero {
     position: relative;
-    background-color: var(--clr-hero-bg);
+    background-color: var(--clr-hero-bg) !important;
     padding: 100px 0 80px;
     overflow: hidden;
 }
 
-.hero-bg-shapes {
+.about-page .hero-bg-shapes {
     position: absolute;
     inset: 0;
     pointer-events: none;
     z-index: 0;
 }
 
-.shape {
+.about-page .shape {
     position: absolute;
     border-radius: 50%;
     opacity: 0.18;
 }
 
-.shape-1 {
+.about-page .shape-1 {
     width: 420px;
     height: 420px;
-    background: var(--clr-primary-light);
+    background: var(--clr-primary-light) !important;
     top: -120px;
     right: -80px;
 }
 
-.shape-2 {
+.about-page .shape-2 {
     width: 260px;
     height: 260px;
-    background: var(--clr-accent);
+    background: var(--clr-accent) !important;
     bottom: -80px;
     left: -60px;
 }
 
-.shape-3 {
+.about-page .shape-3 {
     width: 140px;
     height: 140px;
-    background: var(--clr-primary);
+    background: var(--clr-primary) !important;
     top: 60px;
     left: 38%;
 }
 
-.hero-content {
+.about-page .hero-content {
     position: relative;
     z-index: 1;
     text-align: center;
 }
 
-.hero-eyebrow {
+.about-page .hero-eyebrow {
     display: inline-block;
     font-family: var(--font-body);
     font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--clr-primary);
-    background: rgba(82, 183, 136, 0.15);
-    border: 1px solid rgba(82, 183, 136, 0.35);
+    color: var(--clr-primary) !important;
+    background: rgba(194, 24, 91, 0.1) !important;
+    border: 1px solid rgba(194, 24, 91, 0.28) !important;
     padding: 4px 16px;
     border-radius: 100px;
     margin-bottom: 20px;
 }
 
-.about-hero h1 {
+.about-page .about-hero h1 {
     font-family: var(--font-display);
     font-size: clamp(2rem, 5vw, 3.6rem);
     font-weight: 700;
@@ -126,32 +125,32 @@
     margin: 0 auto 20px;
 }
 
-.about-hero h1 .highlight {
-    color: var(--clr-primary);
+.about-page .about-hero h1 .highlight {
+    color: var(--clr-primary) !important;
     font-style: italic;
 }
 
-.hero-tagline {
+.about-page .hero-tagline {
     font-size: clamp(1rem, 2vw, 1.2rem);
     color: var(--clr-muted);
     max-width: 560px;
     margin: 0 auto;
 }
 
-/* ── Mission Section ──────────────────────────────────────── */
-.about-mission {
+/* ── Mission ──────────────────────────────────────────────── */
+.about-page .about-mission {
     padding: 80px 0;
-    background: var(--clr-surface);
+    background: var(--clr-surface) !important;
 }
 
-.mission-grid {
+.about-page .mission-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 56px;
     align-items: center;
 }
 
-.mission-text h2 {
+.about-page .mission-text h2 {
     font-family: var(--font-display);
     font-size: clamp(1.6rem, 3vw, 2.4rem);
     font-weight: 600;
@@ -159,52 +158,72 @@
     margin-bottom: 20px;
 }
 
-.mission-text p {
+.about-page .mission-text p {
     color: var(--clr-muted);
     font-size: 1.05rem;
     margin-bottom: 16px;
 }
 
-.mission-text p strong {
-    color: var(--clr-primary);
+.about-page .mission-text p strong {
+    color: var(--clr-primary) !important;
     font-weight: 600;
 }
 
-.mission-visual {
+.about-page .mission-visual {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.mission-card {
-    background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-primary-light) 100%);
-    color: #fff;
+.about-page .mission-card {
     border-radius: var(--radius-lg);
-    padding: 48px 40px;
-    text-align: center;
-    box-shadow: 0 12px 40px rgba(45, 106, 79, 0.25);
+    overflow: hidden;
+    height: 320px;
     width: 100%;
-    max-width: 320px;
+    max-width: 420px;
+    position: relative;
+    box-shadow: 0 12px 40px rgba(194, 24, 91, 0.22);
+    background: #f3d5e4 !important;
+    padding: 0 !important;
+    text-align: left;
 }
 
-.mission-icon {
+.about-page .mission-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
-    font-size: 4rem;
-    margin-bottom: 16px;
 }
 
-.mission-card p {
+.about-page .mission-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(194, 24, 91, 0.78) 0%,
+            rgba(194, 24, 91, 0.08) 55%,
+            transparent 100%) !important;
+    display: flex;
+    align-items: flex-end;
+    padding: 28px;
+}
+
+.about-page .mission-overlay p {
     font-family: var(--font-display);
     font-size: 1.4rem;
     font-style: italic;
     font-weight: 300;
+    color: #fff !important;
     line-height: 1.4;
-    color: #fff;
+    margin: 0;
 }
 
-/* ── Stats Section ────────────────────────────────────────── */
-.about-stats {
-    background: var(--clr-primary);
+.about-page .mission-icon {
+    display: none !important;
+}
+
+/* ── Stats ────────────────────────────────────────────────── */
+.about-page .about-stats {
+    background: var(--clr-primary) !important;
     padding: 60px 0;
 }
 
@@ -227,24 +246,23 @@
     font-family: var(--font-display);
     font-size: clamp(1.8rem, 3.5vw, 2.8rem);
     font-weight: 700;
-    color: #ffffff;
+    color: #ffffff !important;
     line-height: 1;
 }
 
 .about-page .stat-label {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.75) !important;
+    color: rgba(255, 255, 255, 0.78) !important;
     letter-spacing: 0.04em;
 }
 
-/* ── Services Section ─────────────────────────────────────── */
+/* ── Services ─────────────────────────────────────────────── */
 .about-page .about-services {
     padding: 88px 0;
-    background: var(--clr-bg);
+    background: var(--clr-bg) !important;
 }
 
-.about-services h2,
-.about-values h2 {
+.about-page .about-services h2 {
     font-family: var(--font-display);
     font-size: clamp(1.6rem, 3vw, 2.4rem);
     font-weight: 600;
@@ -261,86 +279,213 @@
     margin: 0 auto 48px;
 }
 
-.about-services .services-grid {
+.about-page .about-services .services-grid {
     list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 28px;
-    justify-content: center;
-    align-items: stretch;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding: 0;
+    margin: 0;
 }
 
-.about-services .service-card {
-    flex: 1 1 280px;
-    max-width: calc(33.333% - 20px);
-    background: var(--clr-surface);
-    border: 1px solid var(--clr-border);
+/* Base card — removed overflow:hidden, added min-height */
+.about-page .about-services .service-card {
     border-radius: var(--radius-md);
-    padding: 36px 28px;
+    padding: 32px 24px 28px !important;
     text-align: center;
-    box-shadow: var(--shadow-card);
+    cursor: pointer;
     transition: transform var(--transition), box-shadow var(--transition);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;
-    height: auto;
-    align-self: stretch;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    background: #ffffff !important;
+    border: 1.5px solid #f0e0e8 !important;
+    box-shadow: 0 2px 12px rgba(194, 24, 91, 0.06) !important;
+    position: relative;
+    /* REMOVED overflow: hidden — it was clipping the icon */
+    min-height: 220px;
+    /* ensure full text is visible */
 }
 
-.about-services .service-card:hover {
+/* Colored top accent bar */
+.about-page .about-services .service-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.about-page .about-services .service-card:hover {
     transform: translateY(-6px);
-    box-shadow: var(--shadow-soft);
+    box-shadow: 0 16px 40px rgba(194, 24, 91, 0.13) !important;
 }
 
-.about-page .service-icon {
-    display: block;
-    font-size: 3rem;
-    margin-bottom: 16px;
+/* Per-service border & top bar colors — unchanged */
+.about-page .about-services .services-grid .service-card[data-service="baby"] {
+    background: #ffffff !important;
+    border-color: #fadadd !important;
 }
 
-.about-services .service-card h3 {
+.about-page .about-services .services-grid .service-card[data-service="baby"]::before {
+    background: linear-gradient(90deg, #e00950, #f48fb1);
+}
+
+.about-page .about-services .services-grid .service-card[data-service="elder"] {
+    background: #ffffff !important;
+    border-color: #ddd2ff !important;
+}
+
+.about-page .about-services .services-grid .service-card[data-service="elder"]::before {
+    background: linear-gradient(90deg, #5e35b1, #9575cd);
+}
+
+.about-page .about-services .services-grid .service-card[data-service="pet"] {
+    background: #ffffff !important;
+    border-color: #fde68a !important;
+}
+
+.about-page .about-services .services-grid .service-card[data-service="pet"]::before {
+    background: linear-gradient(90deg, #c49000, #f9c74f);
+}
+
+.about-page .about-services .services-grid .service-card[data-service="kitchen"] {
+    background: #ffffff !important;
+    border-color: #fad9b0 !important;
+}
+
+.about-page .about-services .services-grid .service-card[data-service="kitchen"]::before {
+    background: linear-gradient(90deg, #a0520f, #f4a261);
+}
+
+.about-page .about-services .services-grid .service-card[data-service="pregnancy"] {
+    background: #ffffff !important;
+    border-color: #bbdefb !important;
+}
+
+.about-page .about-services .services-grid .service-card[data-service="pregnancy"]::before {
+    background: linear-gradient(90deg, #1565c0, #64b5f6);
+}
+
+/* Icon container — kept flat, no overflow, proper top margin to clear the ::before bar */
+.about-page .about-services .service-card .service-icon-wrap {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-top: 8px !important;
+    /* small gap below the accent bar */
+    margin-bottom: 16px !important;
+    flex-shrink: 0;
+}
+
+.about-page .about-services .services-grid .service-card[data-service="baby"] .service-icon-wrap {
+    background: #fce4ec !important;
+}
+
+.about-page .about-services .services-grid .service-card[data-service="elder"] .service-icon-wrap {
+    background: #ede7f6 !important;
+}
+
+.about-page .about-services .services-grid .service-card[data-service="pet"] .service-icon-wrap {
+    background: #fffde7 !important;
+}
+
+.about-page .about-services .services-grid .service-card[data-service="kitchen"] .service-icon-wrap {
+    background: #fdf3e7 !important;
+}
+
+.about-page .about-services .services-grid .service-card[data-service="pregnancy"] .service-icon-wrap {
+    background: #e3f2fd !important;
+}
+
+/* Icon emoji */
+.about-page .about-services .service-card .service-icon {
+    display: block !important;
+    font-size: 1.8rem !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+}
+
+/* Title */
+.about-page .about-services .service-card h3 {
     font-family: var(--font-display);
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 600;
-    color: var(--clr-primary);
     margin-bottom: 10px;
-    margin-right: 5px;
+    color: #1a1a2e;
 }
 
-.about-services .service-card p {
-    color: var(--clr-muted);
-    font-weight: bold;
-    font-size: 0.97rem;
+.about-page .about-services .services-grid .service-card[data-service="baby"] h3 {
+    color: #c2185b !important;
+}
+
+.about-page .about-services .services-grid .service-card[data-service="elder"] h3 {
+    color: #5e35b1 !important;
+}
+
+.about-page .about-services .services-grid .service-card[data-service="pet"] h3 {
+    color: #c49000 !important;
+}
+
+.about-page .about-services .services-grid .service-card[data-service="kitchen"] h3 {
+    color: #a0520f !important;
+}
+
+.about-page .about-services .services-grid .service-card[data-service="pregnancy"] h3 {
+    color: #1565c0 !important;
+}
+
+/* Description — removed any implicit height cap */
+.about-page .about-services .service-card p {
+    color: var(--clr-muted) !important;
+    font-size: 0.93rem;
     line-height: 1.65;
+    font-weight: 400 !important;
+    margin: 0;
+    width: 100%;
+    overflow: visible;
 }
 
-/* ── Values Section ───────────────────────────────────────── */
+/* ── Values ───────────────────────────────────────────────── */
 .about-page .about-values {
     padding: 88px 0;
-    background: var(--clr-surface);
+    background: var(--clr-surface) !important;
+}
+
+.about-page .about-values h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 600;
+    color: var(--clr-text);
+    text-align: center;
+    margin-bottom: 12px;
 }
 
 .about-page .values-grid {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    margin-top: 0;
+    gap: 20px;
+    padding: 0;
 }
 
 .about-page .value-card {
     display: flex;
     gap: 20px;
     align-items: flex-start;
-    background: var(--clr-bg);
-    border: 1px solid var(--clr-border);
+    background: var(--clr-bg) !important;
+    border: 1px solid var(--clr-border) !important;
     border-radius: var(--radius-md);
     padding: 28px 24px;
     transition: box-shadow var(--transition);
 }
 
-.value-card:hover {
+.about-page .value-card:hover {
     box-shadow: var(--shadow-soft);
 }
 
@@ -350,7 +495,7 @@
     margin-top: 2px;
 }
 
-.value-card h3 {
+.about-page .value-card h3 {
     font-family: var(--font-display);
     font-size: 1.15rem;
     font-weight: 600;
@@ -358,38 +503,38 @@
     margin-bottom: 6px;
 }
 
-.value-card p {
+.about-page .value-card p {
     color: var(--clr-muted);
     font-size: 0.95rem;
     line-height: 1.65;
 }
 
-/* ── CTA Section ──────────────────────────────────────────── */
-.about-cta {
-    background: linear-gradient(135deg, #1b4332 0%, var(--clr-primary) 60%, var(--clr-primary-light) 100%);
+/* ── CTA ──────────────────────────────────────────────────── */
+.about-page .about-cta {
+    background: #880e4f !important;
     padding: 88px 0;
 }
 
-.cta-inner {
+.about-page .cta-inner {
     text-align: center;
 }
 
-.about-cta h2 {
+.about-page .about-cta h2 {
     font-family: var(--font-display);
     font-size: clamp(1.8rem, 3.5vw, 2.8rem);
     font-weight: 700;
-    color: #ffffff;
+    color: #ffffff !important;
     margin-bottom: 16px;
 }
 
-.about-cta p {
-    color: rgba(255, 255, 255, 0.8);
+.about-page .about-cta p {
+    color: rgba(255, 255, 255, 0.82) !important;
     font-size: 1.1rem;
     max-width: 540px;
     margin: 0 auto 36px;
 }
 
-.cta-buttons {
+.about-page .cta-buttons {
     display: flex;
     gap: 16px;
     justify-content: center;
@@ -397,9 +542,9 @@
 }
 
 .about-page .btn-primary {
-    background: var(--clr-accent);
-    color: #fff;
-    border: none;
+    background: var(--clr-accent) !important;
+    color: #fff !important;
+    border: none !important;
     padding: 14px 36px;
     border-radius: 100px;
     font-family: var(--font-body);
@@ -411,48 +556,46 @@
 }
 
 .about-page .btn-primary:hover {
-    background: var(--clr-accent-deep);
+    background: var(--clr-accent-deep) !important;
     transform: translateY(-2px);
 }
 
 .about-page .btn-secondary {
-    background: transparent;
-    color: #fff;
-    border: 2px solid rgba(255, 255, 255, 0.6);
+    background: transparent !important;
+    color: #fff !important;
+    border: 2px solid rgba(255, 255, 255, 0.6) !important;
     padding: 14px 36px;
     border-radius: 100px;
     font-family: var(--font-body);
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: border-color var(--transition), background var(--transition),
-        transform var(--transition);
+    transition: border-color var(--transition), background var(--transition), transform var(--transition);
 }
 
 .about-page .btn-secondary:hover {
-    border-color: #fff;
-    background: rgba(255, 255, 255, 0.1);
+    border-color: #fff !important;
+    background: rgba(255, 255, 255, 0.1) !important;
     transform: translateY(-2px);
 }
 
-/* ============================================================
-   Responsive Breakpoints
-   ============================================================ */
+/* ═══════════════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════════════ */
 
-/* ── Large Tablet: ≤ 1024px ───────────────────────────────── */
 @media (max-width: 1024px) {
-    .mission-grid {
+    .about-page .mission-grid {
         grid-template-columns: 1fr;
         gap: 40px;
     }
 
-    .mission-visual {
+    .about-page .mission-visual {
         order: -1;
     }
 
-    .mission-card {
+    .about-page .mission-card {
         max-width: 100%;
-        padding: 36px 28px;
+        height: 280px;
     }
 
     .about-page .stats-grid {
@@ -460,11 +603,11 @@
         gap: 32px;
     }
 
-    .about-services .services-grid {
-        gap: 20px;
+    .about-page .about-services .services-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .about-services .service-card {
+    .about-page .about-services .service-card {
         flex: 1 1 calc(50% - 10px);
         max-width: calc(50% - 10px);
     }
@@ -474,20 +617,19 @@
     }
 }
 
-/* ── Tablet: ≤ 768px ──────────────────────────────────────── */
 @media (max-width: 768px) {
-    .about-hero {
+    .about-page .about-hero {
         padding: 72px 0 56px;
     }
 
-    .about-mission,
-    .about-services,
-    .about-values,
-    .about-cta {
+    .about-page .about-mission,
+    .about-page .about-services,
+    .about-page .about-values,
+    .about-page .about-cta {
         padding: 64px 0;
     }
 
-    .about-stats {
+    .about-page .about-stats {
         padding: 48px 0;
     }
 
@@ -496,14 +638,10 @@
         gap: 24px;
     }
 
-    .about-services .services-grid {
-        gap: 16px;
-    }
-
-    .about-services .service-card {
+    .about-page .about-services .service-card {
         flex: 1 1 calc(50% - 8px);
         max-width: calc(50% - 8px);
-        padding: 28px 20px;
+        padding: 28px 20px !important;
     }
 
     .about-page .values-grid {
@@ -511,41 +649,40 @@
         gap: 16px;
     }
 
-    .value-card {
+    .about-page .value-card {
         padding: 22px 18px;
     }
 
-    .mission-card {
-        padding: 32px 24px;
+    .about-page .mission-card {
+        height: 260px;
     }
 
-    .about-cta h2 {
+    .about-page .about-cta h2 {
         font-size: 1.8rem;
     }
 }
 
-/* ── Small Mobile: ≤ 480px ────────────────────────────────── */
 @media (max-width: 480px) {
     .about-page .container {
         padding: 0 16px;
     }
 
-    .about-hero {
+    .about-page .about-hero {
         padding: 56px 0 40px;
     }
 
-    .hero-eyebrow {
+    .about-page .hero-eyebrow {
         font-size: 0.72rem;
     }
 
-    .about-mission,
-    .about-services,
-    .about-values,
-    .about-cta {
+    .about-page .about-mission,
+    .about-page .about-services,
+    .about-page .about-values,
+    .about-page .about-cta {
         padding: 48px 0;
     }
 
-    .about-stats {
+    .about-page .about-stats {
         padding: 36px 0;
     }
 
@@ -558,45 +695,39 @@
         font-size: 1.8rem;
     }
 
-    .about-services .services-grid {
-        gap: 12px;
+    .about-page .about-services .services-grid {
+        grid-template-columns: 1fr;
     }
 
-    .about-services .service-card {
-        flex: 1 1 100%;
-        max-width: 100%;
-        padding: 24px 18px;
+    .about-page .about-services .service-card {
+        padding: 28px 20px 24px !important;
     }
 
-    .about-page .service-icon {
-        font-size: 2.4rem;
+    .about-page .about-services .service-card .service-icon {
+        font-size: 2.4rem !important;
     }
 
-    .about-services .service-card h3 {
-        font-size: 1.15rem;
+    .about-page .about-services .service-card h3 {
+        font-size: 1.1rem;
     }
 
-    .mission-grid {
+    .about-page .mission-grid {
         gap: 28px;
     }
 
-    .mission-card {
-        padding: 28px 20px;
+    .about-page .mission-card {
+        height: 240px;
     }
 
-    .mission-icon {
-        font-size: 3rem;
-    }
-
-    .mission-card p {
-        font-size: 1.2rem;
+    .about-page .mission-overlay p {
+        font-size: 1.15rem;
     }
 
     .about-page .values-grid {
         gap: 12px;
     }
 
-    .value-card {
+    .about-page .value-card {
         padding: 18px 14px;
         gap: 14px;
     }
@@ -605,7 +736,7 @@
         font-size: 1.6rem;
     }
 
-    .cta-buttons {
+    .about-page .cta-buttons {
         flex-direction: column;
         align-items: center;
     }
@@ -618,7 +749,6 @@
     }
 }
 
-/* ── Extra Small: ≤ 360px ─────────────────────────────────── */
 @media (max-width: 360px) {
     .about-page .stats-grid {
         grid-template-columns: 1fr 1fr;
@@ -633,11 +763,11 @@
         font-size: 0.8rem;
     }
 
-    .about-services .service-card {
-        padding: 20px 14px;
+    .about-page .about-services .service-card {
+        padding: 20px 14px !important;
     }
 
-    .value-card {
+    .about-page .value-card {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;

@@ -84,7 +84,7 @@ const AppRoutes = createBrowserRouter([
                     { path: "pet_care", element: <ServicePetCare /> },
                     { path: "elder_care", element: <ServiceElderCare /> },
                     { path: "pregnancy_care", element: <ServicePregnancyCare /> },
-                    { path: "home_assistance_care", element: <ServiceHomeAssistCare /> },
+                    { path: "kitchen_care", element: <ServiceHomeAssistCare /> },
                 ],
             },
 

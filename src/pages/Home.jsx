@@ -181,10 +181,10 @@ const Home = () => {
 
                 <div className="features-row mb-5">
                     {[
-                        { icon: "🛡️", title: "Background Verified", desc: "All caregivers undergo identity verification, document verification, and background checks to ensure safety." },
-                        { icon: "📍", title: "Real-Time Tracking", desc: "Monitor your caregiver's location and includes GPS tracking, emergency alerts, and real-time monitoring for complete security." },
-                        { icon: "🔄", title: "Flexible Scheduling", desc: "Book once or set a recurring schedule — we adapt to your routine." },
-                        { icon: "💬", title: "24/7 Support", desc: "Our team is always available to help resolve any concerns instantly." },
+                        { icon: "🛡️", title: "AI Faced Verified", desc: "All caregivers undergo identity verification, document verification, and background checks to ensure safety." },
+                        { icon: "📍", title: "Live Monitoring & Geo Fenching", desc: "Monitor your caregiver's location and includes GPS tracking, emergency alerts, and real-time monitoring for complete security." },
+                        { icon: "🔄", title: "SOS", desc: "Book once or set a recurring schedule — we adapt to your routine." },
+                        { icon: "🌡️", title: "Health-Verified Caregivers", desc: "Every caregiver completes a temperature check and health screening before starting their shift, ensuring your family's safety at every visit." },
                     ].map((f, i) => (
                         <div className="feature-card" key={i}>
                             <div className="feature-icon">{f.icon}</div>
@@ -204,19 +204,19 @@ const Home = () => {
                     {[
                         {
                             text: "The baby care service was exceptional. Our caregiver was so warm and attentive — we felt completely at ease leaving our little one.",
-                            author: "Priya Nair",
+                            author: "Priya M",
                             role: "Mom of a 7-month-old",
                             stars: "★★★★★"
                         },
                         {
                             text: "My elderly mother needed daily assistance, and the elder care team has been a blessing. Professional, patient, and truly caring.",
-                            author: "Rahul Mehta",
+                            author: "Rahul Yadav",
                             role: "Son & caregiver",
                             stars: "★★★★★"
                         },
                         {
                             text: "Booked a pet sitter for 3 days and our dog had the best time. The daily photo updates were such a sweet touch!",
-                            author: "Ananya Sharma",
+                            author: "Ananya Goud",
                             role: "Fur parent",
                             stars: "★★★★☆"
                         },

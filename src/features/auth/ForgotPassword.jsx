@@ -1,5 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../../styleSheets/forgotPassword.css";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { createNewPassword, forgotPassword, verifyForgotPassword } from "../../api/allApis";
 
 const STEPS = {
     EMAIL: 0,
@@ -85,7 +88,28 @@ const ForgotPassword = () => {
         const errs = validateEmail();
         if (Object.keys(errs).length) return setErrors(errs);
         setLoading(true);
-        await new Promise((r) => setTimeout(r, 1400));
+
+        try {
+            const res = await forgotPassword({ email });
+            console.log("OTP sent response:", res);
+
+            if (res?.data?.success) {
+                goToStep(STEPS.OTP);
+            } else {
+                setErrors({ email: res?.data?.message || "Failed to send OTP" });
+            }
+
+            toast.success("OTP sent successfully.");
+        } catch (error) {
+            console.error("Error sending OTP:", error);
+            setErrors({ email: "Failed to send OTP. Please try again." });
+            setLoading(false);
+            toast.error("Failed to send OTP. Please try again.");
+            return;
+        } finally {
+            setLoading(false);
+        };
+
         setLoading(false);
         goToStep(STEPS.OTP);
     };
@@ -118,7 +142,28 @@ const ForgotPassword = () => {
         const errs = validateOtp();
         if (Object.keys(errs).length) return setErrors(errs);
         setLoading(true);
-        await new Promise((r) => setTimeout(r, 1200));
+
+        try {
+            const res = await verifyForgotPassword({ email, otp: otp.join("") });
+            console.log("OTP verification response:", res);
+
+            if (res?.data?.success) {
+                goToStep(STEPS.RESET);
+            } else {
+                setErrors({ otp: res?.data?.message || "Invalid OTP" });
+            }
+
+            toast.success("OTP verified successfully.");
+        } catch (error) {
+            console.error("Error verifying OTP:", error);
+            setErrors({ otp: "Invalid OTP. Please try again." });
+            setLoading(false);
+            toast.error("Invalid OTP. Please try again.");
+            return;
+        } finally {
+            setLoading(false);
+        };
+
         setLoading(false);
         goToStep(STEPS.RESET);
     };
@@ -128,7 +173,15 @@ const ForgotPassword = () => {
         setOtp(["", "", "", "", "", ""]);
         setErrors({});
         setLoading(true);
-        await new Promise((r) => setTimeout(r, 800));
+
+        try {
+            await forgotPassword({ email });
+        } catch (error) {
+            console.error("Resend OTP failed");
+        } finally { 
+            setLoading(false);
+        }
+
         setLoading(false);
         setTimer(60);
         setCanResend(false);
@@ -145,7 +198,28 @@ const ForgotPassword = () => {
         const errs = validatePassword();
         if (Object.keys(errs).length) return setErrors(errs);
         setLoading(true);
-        await new Promise((r) => setTimeout(r, 1400));
+
+        try {
+            const res = await createNewPassword({ email, password: newPassword, });
+            console.log("Password reset response:", res);
+
+            if (res?.data?.success) {
+                goToStep(STEPS.SUCCESS);
+            } else {
+                setErrors({
+                    newPassword: res?.data?.message || "Failed to reset password",
+                });
+            }
+            toast.success("Password reset successfully.");
+        } catch (error) {
+            setErrors({ newPassword: error?.response?.data?.message || "Reset password failed", });
+            console.error("Error resetting password:", error);
+            toast.error("Failed to reset password.");
+            setLoading(false);
+        } finally {
+            setLoading(false);
+        }
+
         setLoading(false);
         goToStep(STEPS.SUCCESS);
     };
@@ -276,7 +350,7 @@ const ForgotPassword = () => {
 
                         <p className="fp-helper-text">
                             Remembered your password?{" "}
-                            <a href="/login" className="fp-link">Sign in</a>
+                            <Link to="/login" className="fp-link">Sign in</Link>
                         </p>
                     </div>
                 )}

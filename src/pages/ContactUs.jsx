@@ -268,7 +268,7 @@ const ContactUs = () => {
                                 </div>
 
                                 <button className="btn-submit" type="submit">
-                                    📅 Book a Caregiver Today
+                                    Submit your Query
                                 </button>
                             </form>
                         )}

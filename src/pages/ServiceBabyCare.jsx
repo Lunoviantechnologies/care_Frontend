@@ -5,6 +5,7 @@ import "../styleSheets/servicesDisplay/serviceBaby.css";
 import babyCareHero from "../assets/baby2.jpg";
 import babyCareBanner from "../assets/baby1.jpg";
 import babyOverlay from "../assets/baby7.png";
+import { useNavigate } from "react-router-dom";
 
 const stats = [
     { value: "12,500+", label: "Happy Families" },
@@ -114,6 +115,9 @@ const faqs = [
 ];
 
 const ServiceBabyCare = () => {
+
+    const navigate = useNavigate();
+
     const [openFaq, setOpenFaq] = useState(null);
 
     const toggleFaq = (index) => {
@@ -147,10 +151,10 @@ const ServiceBabyCare = () => {
                             Find trusted babysitters near you. Connect with verified babysitters and professional childcare providers for safe, reliable care for newborns, infants, and toddlers. Book affordable in-home babysitting services for feeding, diaper changes, sleep routines, and child supervision.
                         </p>
                         <div className="sbc-hero-btns">
-                            <button className="sbc-btn-primary" type="button">
+                            <button className="sbc-btn-primary" type="button" onClick={() => navigate("/login")}>
                                 Book a Babysitter
                             </button>
-                            <button className="sbc-btn-secondary" type="button">
+                            <button className="sbc-btn-secondary" type="button" onClick={() => navigate("/login")}>
                                 Find a Caregiver Near Me
                             </button>
                         </div>
@@ -295,10 +299,10 @@ const ServiceBabyCare = () => {
                         services at home. Safe, verified, and available near you.
                     </p>
                     <div className="sbc-cta-btns">
-                        <button className="sbc-btn-primary" type="button">
+                        <button className="sbc-btn-primary" type="button" onClick={() => navigate("/login")}>
                             Book a Babysitter
                         </button>
-                        <button className="sbc-btn-outline" type="button">
+                        <button className="sbc-btn-outline" type="button" onClick={() => navigate("/login")}>
                             Learn More
                         </button>
                     </div>
