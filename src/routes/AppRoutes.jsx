@@ -87,10 +87,9 @@ const AppRoutes = createBrowserRouter([
                     { path: "kitchen_care", element: <ServiceHomeAssistCare /> },
                 ],
             },
-
-            { path: "/admin_login", element: <AdminLogin /> },
         ],
     },
+    { path: "/admin_login", element: <AdminLogin /> },
     {
         path: "/dashboard",
         element: (

@@ -200,7 +200,7 @@ const ForgotPassword = () => {
         setLoading(true);
 
         try {
-            const res = await createNewPassword({ email, password: newPassword, });
+            const res = await createNewPassword({ email, otp: otp.join(""), new_password: newPassword, confirm_password: confirmPassword });
             console.log("Password reset response:", res);
 
             if (res?.data?.success) {

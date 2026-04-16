@@ -1,16 +1,15 @@
 import { useState, useRef, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
     FaUser, FaPhone, FaEnvelope, FaLock, FaMapMarkerAlt, FaCity,
     FaCamera, FaPencilAlt, FaCheck, FaTimes, FaShieldAlt,
-    FaStar, FaCalendarCheck, FaClock, FaHeart
+    FaStar, FaCalendarCheck, FaClock, FaHeart, FaCrosshairs
 } from "react-icons/fa";
 import "../../styleSheets/profilePage.css";
-import { getCustomerProfile, updateCustomerProfile } from "../../api/allApis";
 import { toast } from "react-toastify";
 import { IMAGE_URLS } from "../../api/baseUrl";
+import { fetchCustomerProfile, saveCustomerProfile } from "../../features/profile/customerProfileSlice";
 
-/* ── Static quick-stats (replace with real Redux data if available) ── */
 const QUICK_STATS = [
     { icon: FaCalendarCheck, label: "Bookings", value: "14", color: "#4A6CF7" },
     { icon: FaStar, label: "Avg Rating", value: "4.8", color: "#c49000" },
@@ -18,7 +17,6 @@ const QUICK_STATS = [
     { icon: FaHeart, label: "Saved", value: "3", color: "#e00950" },
 ];
 
-/* ── Field config ── */
 const FIELDS = [
     { key: "name", label: "Full Name", icon: FaUser, type: "text", placeholder: "e.g. Priya Sharma" },
     { key: "phone", label: "Phone", icon: FaPhone, type: "tel", placeholder: "e.g. +91 98765 43210" },
@@ -29,109 +27,138 @@ const FIELDS = [
 ];
 
 const ProfilePage = () => {
-
+    const dispatch = useDispatch();
     const { user } = useSelector((state) => state.auth);
+    const { data: profileData, loading } = useSelector((state) => state.customerProfile);
 
-    const [profileData, setProfileData] = useState([]);
     const [editMode, setEditMode] = useState(false);
-    const [draft, setDraft] = useState([]);
+    const [draft, setDraft] = useState({});
     const [avatarUrl, setAvatarUrl] = useState(null);
     const [saved, setSaved] = useState(false);
     const [selectedFile, setSelectedFile] = useState(null);
+    const [locStatus, setLocStatus] = useState("idle"); // idle | loading | success | error
 
     const fileRef = useRef(null);
 
     useEffect(() => {
-        const fetchProfile = async () => {
-            try {
-                const res = await getCustomerProfile(Number(user.user_id));
-                console.log("Profile data:", res.data, user.user_id);
+        if (user?.user_id) {
+            dispatch(fetchCustomerProfile(Number(user.user_id)));
+        }
+    }, [user?.user_id]);
 
-                setProfileData(res.data);
+    useEffect(() => {
+        if (profileData?.profile_image) {
+            setAvatarUrl(`${IMAGE_URLS.AUTH}${profileData.profile_image}`);
+        }
+    }, [profileData]);
 
-                if (res.data.profile_image) {
-                    setAvatarUrl(`${IMAGE_URLS.AUTH}${res.data.profile_image}`);
-                }
-            } catch (error) {
-                console.error("Error fetching profile:", error);
-            };
-        };
+    const getLocation = () => {
+        if (!navigator.geolocation) {
+            toast.error("Geolocation not supported");
+            return;
+        }
+        setLocStatus("loading");
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+                setDraft((prev) => ({ ...prev, latitude, longitude }));
+                setLocStatus("success");
+                toast.success("Location captured!");
+            },
+            (error) => {
+                console.error(error);
+                setLocStatus("error");
+                toast.error("Failed to get location");
+            }
+        );
+    };
 
-        fetchProfile();
-    }, []);
-
-    /* ── Handlers ── */
     const handleEdit = () => {
         setDraft({ ...profileData });
         setEditMode(true);
         setSaved(false);
+        setLocStatus("idle");
     };
 
     const handleCancel = () => {
         setDraft({ ...profileData });
         setEditMode(false);
+        setLocStatus("idle");
     };
 
     const handleSave = async () => {
-        try {
-            const formData = new FormData();
+        const formData = new FormData();
+        formData.append("name", draft.name || "");
+        formData.append("phone", draft.phone || "");
+        formData.append("email", draft.email || "");
+        formData.append("address", draft.address || "");
+        formData.append("city", draft.city || "");
 
-            formData.append("name", draft.name || "");
-            formData.append("phone", draft.phone || "");
-            formData.append("email", draft.email || "");
-            formData.append("address", draft.address || "");
-            formData.append("city", draft.city || "");
+        // Only send coordinates if they were captured in this session
+        if (draft.latitude && draft.longitude) {
+            formData.append("latitude", draft.latitude);
+            formData.append("longitude", draft.longitude);
+        }
 
-            if (draft.password) {
-                formData.append("password", draft.password);
-            }
+        if (draft.password) formData.append("password", draft.password);
+        if (selectedFile) formData.append("profile_image", selectedFile);
 
-            if (selectedFile) {
-                formData.append("profile_image", selectedFile);
-            }
+        const result = await dispatch(saveCustomerProfile({
+            customerId: Number(user.user_id),
+            formData,
+        }));
 
-            const res = await updateCustomerProfile(Number(user.user_id), formData);
-            console.log("Profile updated:", res);
-            console.log("Profile updated data:", draft);
+        if (saveCustomerProfile.fulfilled.match(result)) {
             toast.success("Profile updated successfully!");
-        } catch (error) {
-            console.error("Error updating profile:", error);
+            setSaved(true);
+            setTimeout(() => setSaved(false), 3000);
+        } else {
             toast.error("Failed to update profile. Please try again.");
-        };
+        }
 
-        setProfileData({ ...draft });
         setEditMode(false);
-        setSaved(true);
-        setTimeout(() => setSaved(false), 3000);
+        setLocStatus("idle");
     };
 
     const handleAvatarChange = (e) => {
         const file = e.target.files[0];
         if (file) {
             setSelectedFile(file);
-
             const reader = new FileReader();
             reader.onloadend = () => setAvatarUrl(reader.result);
             reader.readAsDataURL(file);
         }
     };
 
-    const initials = profileData.name
+    const initials = profileData?.name
         ? profileData.name.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase()
         : "U";
 
+    const hasLocation = draft.latitude && draft.longitude;
+    const existingLocation = profileData?.latitude && profileData?.longitude;
+
+    if (loading && !profileData) {
+        return (
+            <div className="pp-page">
+                <div className="pp-loading">
+                    <div className="pp-spinner" />
+                    <p>Loading profile…</p>
+                </div>
+            </div>
+        );
+    }
+
+    console.log("Profile Data:", profileData);
+
     return (
         <div className="pp-page">
-            {/* background blobs */}
             <div className="pp-blob pp-blob--1" aria-hidden="true" />
             <div className="pp-blob pp-blob--2" aria-hidden="true" />
 
             <div className="pp-container">
 
-                {/* ══ HERO CARD ══ */}
+                {/* HERO CARD */}
                 <div className="pp-hero-card">
-
-                    {/* Avatar */}
                     <div className="pp-avatar-wrap">
                         <div className="pp-avatar">
                             {avatarUrl
@@ -139,35 +166,21 @@ const ProfilePage = () => {
                                 : <span className="pp-avatar-initials">{initials}</span>
                             }
                         </div>
-                        <button
-                            className="pp-avatar-btn"
-                            onClick={() => fileRef.current.click()}
-                            title="Change photo"
-                        >
+                        <button className="pp-avatar-btn" onClick={() => fileRef.current.click()} title="Change photo">
                             <FaCamera />
                         </button>
-                        <input
-                            ref={fileRef}
-                            type="file"
-                            accept="image/*"
-                            className="pp-file-input"
-                            onChange={handleAvatarChange}
-                        />
+                        <input ref={fileRef} type="file" accept="image/*" className="pp-file-input" onChange={handleAvatarChange} />
                     </div>
 
-                    {/* Name + badge */}
                     <div className="pp-hero-info">
-                        <div className="pp-hero-badge">
-                            <FaShieldAlt /> Verified Member
-                        </div>
-                        <h1 className="pp-hero-name">{profileData.name || "Your Name"}</h1>
+                        <div className="pp-hero-badge"><FaShieldAlt /> Verified Member</div>
+                        <h1 className="pp-hero-name">{profileData?.name || "Your Name"}</h1>
                         <p className="pp-hero-sub">
-                            {profileData.city && <span><FaMapMarkerAlt /> {profileData.city}</span>}
-                            {profileData.email && <span><FaEnvelope /> {profileData.email}</span>}
+                            {profileData?.city && <span><FaMapMarkerAlt /> {profileData.city}</span>}
+                            {profileData?.email && <span><FaEnvelope /> {profileData.email}</span>}
                         </p>
                     </div>
 
-                    {/* Edit / Save / Cancel */}
                     <div className="pp-hero-actions">
                         {!editMode ? (
                             <button className="pp-edit-btn" onClick={handleEdit}>
@@ -175,24 +188,15 @@ const ProfilePage = () => {
                             </button>
                         ) : (
                             <div className="pp-edit-action-row">
-                                <button className="pp-save-btn" onClick={handleSave}>
-                                    <FaCheck /> Save Changes
-                                </button>
-                                <button className="pp-cancel-btn" onClick={handleCancel}>
-                                    <FaTimes />
-                                </button>
+                                <button className="pp-save-btn" onClick={handleSave}><FaCheck /> Save Changes</button>
+                                <button className="pp-cancel-btn" onClick={handleCancel}><FaTimes /></button>
                             </div>
                         )}
-                        {saved && (
-                            <div className="pp-saved-toast">
-                                <FaCheck /> Profile updated!
-                            </div>
-                        )}
+                        {saved && <div className="pp-saved-toast"><FaCheck /> Profile updated!</div>}
                     </div>
-
                 </div>
 
-                {/* ══ QUICK STATS ══ */}
+                {/* QUICK STATS */}
                 <div className="pp-stats-strip">
                     {QUICK_STATS.map((s, i) => (
                         <div className="pp-stat-card" key={i} style={{ "--pp-sc": s.color }}>
@@ -203,9 +207,8 @@ const ProfilePage = () => {
                     ))}
                 </div>
 
-                {/* ══ DETAILS CARD ══ */}
+                {/* DETAILS CARD */}
                 <div className="pp-details-card">
-
                     <div className="pp-details-header">
                         <h2 className="pp-details-title">Personal Information</h2>
                         <p className="pp-details-sub">
@@ -222,24 +225,20 @@ const ProfilePage = () => {
                                         <Icon className="pp-label-icon" />
                                         {f.label}
                                     </label>
-
                                     {editMode ? (
                                         <input
                                             className="pp-input pp-input--edit"
                                             type={f.type}
                                             placeholder={f.placeholder}
-                                            value={draft[f.key]}
-                                            onChange={(e) =>
-                                                setDraft({ ...draft, [f.key]: e.target.value })
-                                            }
+                                            value={draft[f.key] || ""}
+                                            readOnly={f.key === "phone"}
+                                            onChange={(e) => setDraft({ ...draft, [f.key]: e.target.value })}
                                         />
                                     ) : (
                                         <div className="pp-value">
                                             {f.key === "password"
                                                 ? "••••••••"
-                                                : profileData[f.key] || (
-                                                    <span className="pp-value--empty">Not set</span>
-                                                )
+                                                : profileData?.[f.key] || <span className="pp-value--empty">Not set</span>
                                             }
                                         </div>
                                     )}
@@ -248,7 +247,64 @@ const ProfilePage = () => {
                         })}
                     </div>
 
-                    {/* Bottom save bar — only in edit mode */}
+                    {/* LOCATION SECTION */}
+                    <div className="pp-location-section">
+                        <div className="pp-location-header">
+                            <div className="pp-location-title">
+                                <FaMapMarkerAlt className="pp-location-title-icon" />
+                                <span>Live Location</span>
+                            </div>
+                            {(existingLocation || hasLocation) && (
+                                <span className="pp-location-tag">
+                                    {hasLocation ? "📍 New location ready" : "✓ Location saved"}
+                                </span>
+                            )}
+                        </div>
+
+                        {/* Coordinate display */}
+                        <div className="pp-location-coords">
+                            <div className="pp-coord-box">
+                                <span className="pp-coord-label">Latitude</span>
+                                <span className="pp-coord-value">
+                                    {hasLocation
+                                        ? draft.latitude.toFixed(6)
+                                        : profileData?.latitude
+                                            ? Number(profileData.latitude).toFixed(6)
+                                            : <span className="pp-value--empty">Not set</span>
+                                    }
+                                </span>
+                            </div>
+                            <div className="pp-coord-divider" />
+                            <div className="pp-coord-box">
+                                <span className="pp-coord-label">Longitude</span>
+                                <span className="pp-coord-value">
+                                    {hasLocation
+                                        ? draft.longitude.toFixed(6)
+                                        : profileData?.longitude
+                                            ? Number(profileData.longitude).toFixed(6)
+                                            : <span className="pp-value--empty">Not set</span>
+                                    }
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Get location button — only in edit mode */}
+                        {editMode && (
+                            <button
+                                onClick={getLocation}
+                                className={`pp-location-btn pp-location-btn--${locStatus}`}
+                                disabled={locStatus === "loading"}
+                            >
+                                <FaCrosshairs className="pp-location-btn-icon" />
+                                {locStatus === "loading" && "Detecting…"}
+                                {locStatus === "success" && "Location Updated ✓"}
+                                {locStatus === "error" && "Retry Location"}
+                                {locStatus === "idle" && "Get Current Location"}
+                            </button>
+                        )}
+                    </div>
+
+                    {/* Save bar */}
                     {editMode && (
                         <div className="pp-save-bar">
                             <button className="pp-save-btn pp-save-btn--bar" onClick={handleSave}>
@@ -259,9 +315,7 @@ const ProfilePage = () => {
                             </button>
                         </div>
                     )}
-
                 </div>
-
             </div>
         </div>
     );

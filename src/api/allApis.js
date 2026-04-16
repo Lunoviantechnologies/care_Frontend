@@ -4,13 +4,7 @@ import { API } from "./baseUrl";
 // register customer api
 export const registerCustomer = async (data) => {
     try {
-        const res = await axios.post(`${API.AUTH}/customer/create`, data,
-            {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            }
-        );
+        const res = await axios.post(`${API.AUTH}/customer/create`, data);
         return res;
     } catch (error) {
         throw error;
@@ -55,6 +49,16 @@ export const createNewPassword = async (payload) => {
     }
 };
 
+// Contact Us
+export const ContactUsApi = async (payload) => {
+    try {
+        const res = await axios.post(`${API.AUTH}/contact`, payload);
+        return res;
+    } catch (error) {
+        throw error;
+    }
+};
+
 // Get Customer Profile
 export const getCustomerProfile = async (customerId) => {
     try {
@@ -67,7 +71,13 @@ export const getCustomerProfile = async (customerId) => {
 // Update Customer Profile
 export const updateCustomerProfile = async (customerId, data) => {
     try {
-        const res = await axios.put(`${API.AUTH}/customer/update/${customerId}`, data);
+        const res = await axios.put(`${API.AUTH}/customer/update/${customerId}`, data,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            }
+        );
         return res;
     } catch (error) {
         throw error;

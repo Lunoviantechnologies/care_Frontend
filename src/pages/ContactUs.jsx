@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "../styleSheets/contactus.css";
+import { toast } from "react-toastify";
+import { ContactUsApi } from "../api/allApis";
 
 const contactInfo = [
     {
@@ -36,10 +38,10 @@ const services = [
 
 const ContactUs = () => {
     const [formData, setFormData] = useState({
-        name: "",
-        phone: "",
+        full_name: "",
+        phone_number: "",
         email: "",
-        service: "",
+        service_required: "",
         city: "",
         message: "",
     });
@@ -49,9 +51,20 @@ const ContactUs = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setSubmitted(true);
+
+        try {
+            const res = await ContactUsApi(formData);
+            console.log("Contact form submitted successfully:", res.data);
+            console.log("Submitted data:", formData);
+            setSubmitted(true);
+            toast.success("Form submitted successfully!");
+        } catch (error) {
+            console.error("Error submitting contact form:", error);
+            toast.error("There was an error submitting the form. Please try again later.");
+            return;
+        };
     };
 
     return (
@@ -160,10 +173,10 @@ const ContactUs = () => {
                                     onClick={() => {
                                         setSubmitted(false);
                                         setFormData({
-                                            name: "",
-                                            phone: "",
+                                            full_name: "",
+                                            phone_number: "",
                                             email: "",
-                                            service: "",
+                                            service_required: "",
                                             city: "",
                                             message: "",
                                         });
@@ -181,26 +194,26 @@ const ContactUs = () => {
                             >
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label htmlFor="name">Full Name *</label>
+                                        <label htmlFor="full_name">Full Name *</label>
                                         <input
-                                            id="name"
-                                            name="name"
+                                            id="full_name"
+                                            name="full_name"
                                             type="text"
                                             placeholder="Your full name"
-                                            value={formData.name}
+                                            value={formData.full_name}
                                             onChange={handleChange}
                                             required
                                             autoComplete="name"
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="phone">Phone Number *</label>
+                                        <label htmlFor="phone_number">Phone Number *</label>
                                         <input
-                                            id="phone"
-                                            name="phone"
+                                            id="phone_number"
+                                            name="phone_number"
                                             type="tel"
                                             placeholder="+91 XXXXX XXXXX"
-                                            value={formData.phone}
+                                            value={formData.phone_number}
                                             onChange={handleChange}
                                             required
                                             autoComplete="tel"
@@ -236,11 +249,11 @@ const ContactUs = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="service">Service Required *</label>
+                                    <label htmlFor="service_required">Service Required *</label>
                                     <select
-                                        id="service"
-                                        name="service"
-                                        value={formData.service}
+                                        id="service_required"
+                                        name="service_required"
+                                        value={formData.service_required}
                                         onChange={handleChange}
                                         required
                                     >

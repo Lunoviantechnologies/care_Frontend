@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 import about_us from "../assets/aboutus.png";
 import { toast } from "react-toastify";
 
+import city1 from "../assets/city1.jpg";
+import city2 from "../assets/city2.jpg";
+import city3 from "../assets/city3.jpg";
+
 const stats = [
     { value: "10K+", label: "Families Served" },
     { value: "500+", label: "Verified Caregivers" },
@@ -78,6 +82,38 @@ const values = [
         title: "Trusted Matches",
         description:
             "Our smart matching system connects families with the right caregiver based on needs, location, and personality fit.",
+    },
+];
+
+const cities = [
+    {
+        name: "Hyderabad",
+        landmark: "Charminar · City of Pearls",
+        badge: "Headquarters",
+        // tag: "500+ caregivers",
+        img: city1,
+        alt: "Charminar, Hyderabad",
+    },
+    {
+        name: "Chennai",
+        landmark: "Marina Beach · Gateway of South",
+        // tag: "200+ caregivers",
+        img: city3,
+        alt: "Marina Beach, Chennai",
+    },
+    {
+        name: "Mumbai",
+        landmark: "Gateway of India · City of Dreams",
+        // tag: "300+ caregivers",
+        img: city2,
+        alt: "Gateway of India, Mumbai",
+    },
+    {
+        name: "Pune",
+        landmark: "Shaniwar Wada · Oxford of the East",
+        // tag: "150+ caregivers",
+        img: "https://images.unsplash.com/photo-1609920658906-8223bd289001?w=600&auto=format&fit=crop",
+        alt: "Shaniwar Wada, Pune",
     },
 ];
 
@@ -211,6 +247,43 @@ const AboutUs = () => {
                                 <div>
                                     <h3>{val.title}</h3>
                                     <p>{val.description}</p>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </section>
+
+            {/* ── Cities ── */}
+            <section className="about-cities" aria-labelledby="cities-heading">
+                <div className="container">
+                    <div className="cities-header">
+                        <span className="cities-eyebrow">Where We Operate</span>
+                        <h2 id="cities-heading">Serving Families Across Major Cities</h2>
+                        <p className="section-sub">
+                            Our verified caregivers are available in these key cities, bringing
+                            trusted home care to your doorstep.
+                        </p>
+                    </div>
+                    <ul className="cities-grid" role="list">
+                        {cities.map((city) => (
+                            <li 
+                                key={city.name} 
+                                className="city-card" 
+                                onClick={() => navigate("/login")}
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) => e.key === "Enter" && navigate("/login")}
+                            >
+                                <div className="city-img-wrap">
+                                    <img src={city.img} alt={city.alt} loading="lazy" />
+                                    <div className="city-overlay" />
+                                    {city.badge && <span className="city-badge">{city.badge}</span>}
+                                </div>
+                                <div className="city-info">
+                                    <p className="city-name">{city.name}</p>
+                                    <p className="city-landmark">{city.landmark}</p>
+                                    {/* <span className="city-tag">{city.tag}</span> */}
                                 </div>
                             </li>
                         ))}
